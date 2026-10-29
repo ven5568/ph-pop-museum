@@ -25,130 +25,93 @@
 
     /* HERO */
     #hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 24px 80px; background: radial-gradient(ellipse at 20% 50%, rgba(139,92,246,0.15) 0%, transparent 50%), radial-gradient(ellipse at 80% 30%, rgba(0,168,255,0.1) 0%, transparent 50%), linear-gradient(180deg, var(--black) 0%, #111122 100%); position: relative; overflow: hidden; }
-    #hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.02) 2px, rgba(255,255,255,0.02) 4px); pointer-events: none; }
     #hero h1 { font-size: clamp(2.8rem, 8vw, 5.5rem); background: linear-gradient(135deg, var(--silver), var(--electric-blue), var(--purple), var(--pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.1; margin-bottom: 16px; position: relative; z-index: 1; }
-    #hero .subtitle { font-size: 1.2rem; color: var(--silver); margin-bottom: 8px; z-index: 1; position: relative; }
-    #hero .tagline { font-style: italic; color: var(--gray); margin-bottom: 40px; z-index: 1; position: relative; }
-    #hero .intro-text { max-width: 640px; color: #aaa; font-size: 1rem; margin-bottom: 40px; z-index: 1; position: relative; }
-    .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; z-index: 1; position: relative; }
+    #hero .subtitle { font-size: 1.2rem; color: var(--silver); margin-bottom: 8px; position: relative; }
+    #hero .tagline { font-style: italic; color: var(--gray); margin-bottom: 40px; position: relative; }
+    #hero .intro-text { max-width: 640px; color: #aaa; font-size: 1rem; margin-bottom: 40px; position: relative; }
+    .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; position: relative; }
     .btn { padding: 14px 36px; border-radius: 8px; font-weight: 700; font-size: 1rem; border: none; transition: transform 0.2s, box-shadow 0.2s; }
     .btn-primary { background: linear-gradient(135deg, var(--electric-blue), var(--purple)); color: white; box-shadow: 0 4px 20px rgba(0,168,255,0.3); }
     .btn-secondary { background: transparent; color: var(--silver); border: 2px solid var(--window-border); }
     .btn:hover { transform: translateY(-2px); }
-    .btn-primary:hover { box-shadow: 0 6px 30px rgba(0,168,255,0.5); }
-    .btn-secondary:hover { border-color: var(--silver); }
 
     /* SECTIONS */
     .section { display: none; padding: 100px 24px 60px; max-width: 1200px; margin: 0 auto; }
     .section.active { display: block; animation: fadeIn 0.4s ease-in-out; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    .section-title { font-size: 2rem; margin-bottom: 8px; background: linear-gradient(135deg, var(--silver), var(--electric-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .section-title { font-size: 2rem; margin-bottom: 8px; color: var(--white); }
     .section-subtitle { color: var(--gray); margin-bottom: 36px; font-size: 0.95rem; }
 
     /* LOBBY */
     .lobby-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 32px; }
-    .room-card { background: var(--window-bg); border: 1px solid var(--window-border); border-radius: 12px; padding: 28px; cursor: pointer; transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; position: relative; overflow: hidden; }
-    .room-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--electric-blue), var(--purple)); opacity: 0; transition: 0.2s; }
+    .room-card { background: var(--window-bg); border: 1px solid var(--window-border); border-radius: 12px; padding: 28px; cursor: pointer; transition: 0.2s; }
     .room-card:hover { transform: translateY(-4px); border-color: var(--purple); box-shadow: 0 8px 30px rgba(139,92,246,0.15); }
-    .room-card:hover::before { opacity: 1; }
-    .room-card .room-num { font-size: 0.75rem; color: var(--electric-blue); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+    .room-card .room-num { font-size: 0.75rem; color: var(--electric-blue); font-weight: 700; text-transform: uppercase; }
     .room-card h3 { font-size: 1.3rem; margin: 8px 0; color: var(--white); }
     .room-card p { color: var(--gray); font-size: 0.9rem; margin-bottom: 16px; }
-    .room-card .explore-link { color: var(--electric-blue); font-weight: 600; font-size: 0.9rem; }
 
     /* ROOM CONTENT */
-    .room-header { margin-bottom: 36px; }
-    .room-header h2 { font-size: 2rem; color: var(--white); margin-bottom: 4px; }
-    .room-header .room-desc { color: var(--gray); font-size: 0.95rem; max-width: 700px; }
-    .back-btn { display: inline-flex; align-items: center; gap: 6px; background: var(--charcoal); color: var(--silver); border: 1px solid var(--window-border); padding: 10px 20px; border-radius: 8px; font-size: 0.85rem; margin-bottom: 24px; transition: 0.2s; }
-    .back-btn:hover { border-color: var(--silver); color: var(--white); }
-
+    .back-btn { background: var(--charcoal); color: var(--silver); border: 1px solid var(--window-border); padding: 10px 20px; border-radius: 8px; margin-bottom: 24px; }
+    .back-btn:hover { color: var(--white); border-color: var(--silver); }
     .artifact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 40px; }
     .artifact-card { background: var(--window-bg); border: 1px solid var(--window-border); border-radius: 10px; padding: 20px; cursor: pointer; transition: 0.2s; }
     .artifact-card:hover { border-color: var(--electric-blue); transform: scale(1.02); }
-    .artifact-card h4 { font-size: 1rem; margin-bottom: 6px; color: var(--white); }
-    .artifact-card .artifact-tag { font-size: 0.75rem; color: var(--purple); text-transform: uppercase; letter-spacing: 0.08em; }
+    .artifact-card h4 { font-size: 1rem; margin-bottom: 6px; }
+    .artifact-card .artifact-tag { font-size: 0.75rem; color: var(--purple); text-transform: uppercase; }
 
-    /* MODAL */
-    .modal-overlay { display: none; position: fixed; inset: 0; z-index: 2000; background: rgba(0,0,0,0.85); backdrop-filter: blur(6px); align-items: center; justify-content: center; padding: 24px; }
-    .modal-overlay.open { display: flex; }
-    .modal-box { background: var(--window-bg); border: 1px solid var(--window-border); border-radius: 14px; max-width: 560px; width: 100%; padding: 32px; max-height: 80vh; overflow-y: auto; position: relative; }
-    .modal-box h3 { font-size: 1.5rem; margin-bottom: 4px; color: var(--white); }
-    .modal-box .modal-tag { color: var(--electric-blue); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
-    .modal-box p { color: #bbb; font-size: 0.95rem; margin-bottom: 12px; }
-    .close-modal { position: absolute; top: 12px; right: 16px; background: none; border: none; color: var(--gray); font-size: 1.5rem; }
-    .close-modal:hover { color: var(--white); }
-
-    /* VIDEOS */
+    /* VIDEO CARDS */
     .video-section { margin-top: 40px; }
     .video-section h3 { font-size: 1.3rem; color: var(--electric-blue); margin-bottom: 16px; }
     .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
-    .video-card { background: var(--window-bg); border: 1px solid var(--window-border); border-radius: 10px; overflow: hidden; transition: 0.2s; }
+    .video-card { background: var(--window-bg); border: 1px solid var(--window-border); border-radius: 10px; overflow: hidden; cursor: pointer; transition: 0.2s; }
     .video-card:hover { border-color: var(--purple); }
-    .video-thumb { background: #111; height: 150px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer; text-decoration: none; }
-    .video-thumb .play-icon { width: 48px; height: 48px; border-radius: 50%; background: rgba(0,168,255,0.9); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: white; transition: 0.2s; }
-    .video-thumb:hover .play-icon { transform: scale(1.1); background: var(--purple); }
+    .video-thumb { background: #111; height: 150px; display: flex; align-items: center; justify-content: center; }
+    .video-thumb .play-icon { width: 48px; height: 48px; border-radius: 50%; background: rgba(0,168,255,0.9); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: white; }
     .video-info { padding: 16px; }
-    .video-info h4 { font-size: 0.95rem; color: var(--white); margin-bottom: 4px; }
-    .video-info p { font-size: 0.8rem; color: var(--gray); margin-bottom: 6px; }
-    .video-info .video-source { font-size: 0.7rem; color: var(--pink); }
+    .video-info h4 { font-size: 0.95rem; margin-bottom: 4px; }
+    .video-info p { font-size: 0.8rem; color: var(--gray); }
+
+    /* MODALS */
+    .modal-overlay { display: none; position: fixed; inset: 0; z-index: 2000; background: rgba(0,0,0,0.85); backdrop-filter: blur(6px); align-items: center; justify-content: center; padding: 24px; }
+    .modal-overlay.open { display: flex; }
+    .modal-box { background: var(--window-bg); border: 1px solid var(--window-border); border-radius: 14px; max-width: 560px; width: 100%; padding: 32px; position: relative; }
+    .modal-box h3 { font-size: 1.5rem; margin-bottom: 4px; }
+    .modal-box p { color: #bbb; font-size: 0.95rem; margin-bottom: 12px; }
+    .close-modal { position: absolute; top: 12px; right: 16px; background: none; border: none; color: var(--gray); font-size: 1.5rem; }
+    
+    /* VIDEO PLAYER MODAL (Special) */
+    .video-modal-box { max-width: 800px; width: 100%; background: var(--black); padding: 20px; border-radius: 12px; border: 1px solid var(--window-border); position: relative; }
+    .video-player-wrapper { position: relative; padding-bottom: 56.25%; /* 16:9 Aspect Ratio */ height: 0; overflow: hidden; margin-bottom: 16px; background: #000; border-radius: 8px; display: flex; align-items: center; justify-content: center;}
+    .video-player-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+    .video-placeholder-text { position: absolute; color: var(--gray); text-align: center; padding: 20px; }
 
     /* SIMULATORS */
-    .friendster-sim { background: #e8e0d8; border-radius: 10px; padding: 20px; color: #333; max-width: 500px; margin: 24px 0; border: 2px solid #ccc; }
-    .friendster-sim .fs-header { display: flex; gap: 16px; align-items: center; margin-bottom: 16px; }
-    .friendster-sim .fs-avatar { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, #ff6b9d, #8b5cf6); display: flex; align-items: center; justify-content: center; font-size: 2rem; color: white; font-weight: 900; }
-    .friendster-sim .fs-name { font-size: 1.2rem; font-weight: 800; color: #222; }
-    .friendster-sim .fs-bio { font-size: 0.85rem; color: #666; margin-top: 2px; }
-    .friendster-sim .fs-tabs { display: flex; gap: 4px; margin-bottom: 12px; flex-wrap: wrap; }
-    .friendster-sim .fs-tab { padding: 6px 14px; background: #d0c8c0; border: none; border-radius: 4px 4px 0 0; font-size: 0.8rem; font-weight: 600; color: #555; cursor: pointer; }
-    .friendster-sim .fs-tab.active { background: white; color: #222; }
-    .friendster-sim .fs-content { background: white; padding: 16px; border-radius: 0 4px 4px 4px; min-height: 100px; font-size: 0.85rem; display: none; }
+    .friendster-sim { background: #e8e0d8; border-radius: 10px; padding: 20px; color: #333; max-width: 500px; margin: 24px 0; }
+    .friendster-sim .fs-tab { padding: 6px 14px; background: #d0c8c0; border: none; border-radius: 4px 4px 0 0; font-size: 0.8rem; font-weight: 600; }
+    .friendster-sim .fs-tab.active { background: white; }
+    .friendster-sim .fs-content { background: white; padding: 16px; display: none; }
     .friendster-sim .fs-content.active { display: block; }
-    .friendster-sim .fs-content ul { list-style: none; }
-    .friendster-sim .fs-content ul li { padding: 4px 0; border-bottom: 1px solid #eee; }
 
-    .sms-sim { max-width: 380px; margin: 24px 0; background: #1a1a2e; border-radius: 16px; padding: 20px; border: 2px solid var(--window-border); }
-    .sms-sim .sms-header { text-align: center; font-size: 0.8rem; color: var(--gray); margin-bottom: 16px; border-bottom: 1px solid var(--window-border); padding-bottom: 10px; }
-    .sms-messages { min-height: 180px; max-height: 240px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+    .sms-sim { max-width: 380px; margin: 24px 0; background: #1a1a2e; border-radius: 16px; padding: 20px; border: 1px solid var(--window-border); }
+    .sms-messages { min-height: 150px; display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
     .sms-bubble { padding: 8px 14px; border-radius: 14px; font-size: 0.85rem; max-width: 80%; }
-    .sms-bubble.sent { background: var(--electric-blue); color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
-    .sms-bubble.received { background: var(--charcoal); color: var(--silver); align-self: flex-start; border-bottom-left-radius: 4px; }
+    .sms-bubble.sent { background: var(--electric-blue); align-self: flex-end; }
+    .sms-bubble.received { background: var(--charcoal); align-self: flex-start; }
     .sms-input-row { display: flex; gap: 8px; }
-    .sms-input-row input { flex: 1; padding: 10px 14px; border-radius: 20px; border: 1px solid var(--window-border); background: var(--black); color: var(--white); font-size: 0.85rem; outline: none; }
-    .sms-input-row input:focus { border-color: var(--electric-blue); }
-    .sms-input-row button { padding: 10px 18px; border-radius: 20px; border: none; background: var(--purple); color: white; font-weight: 700; font-size: 0.85rem; }
-
-    /* RELATIONSHIP MAP */
-    .rel-map { position: relative; display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin: 32px 0; }
-    .rel-node { padding: 20px 24px; border-radius: 12px; border: 2px solid var(--window-border); background: var(--window-bg); cursor: pointer; text-align: center; transition: 0.2s; min-width: 180px; flex: 1; }
-    .rel-node:hover, .rel-node.active { border-color: var(--electric-blue); box-shadow: 0 0 20px rgba(0,168,255,0.2); background: rgba(0,168,255,0.08); }
-    .rel-node h4 { font-size: 1rem; color: var(--white); margin-bottom: 4px; }
-    .rel-detail { background: var(--window-bg); border: 1px solid var(--window-border); border-radius: 12px; padding: 24px; margin-top: 16px; display: none; }
-    .rel-detail.active { display: block; }
-    .rel-detail h3 { color: var(--electric-blue); margin-bottom: 8px; }
-    .rel-detail p { color: #bbb; font-size: 0.9rem; margin-bottom: 12px; }
-
-    @media (max-width: 768px) {
-      nav ul { display: none; }
-      nav ul.open { display: flex; flex-direction: column; position: absolute; top: 60px; left: 0; right: 0; background: var(--black); padding: 16px; border-bottom: 1px solid var(--window-border); }
-      .hamburger { display: block; }
-      .section { padding: 80px 16px 40px; }
-      #hero h1 { font-size: 2.2rem; }
-      .lobby-grid { grid-template-columns: 1fr; }
-    }
+    .sms-input-row input { flex: 1; padding: 10px; border-radius: 20px; border: none; background: var(--black); color: white; }
+    
+    /* FOOTER */
+    footer { text-align: center; padding: 40px 20px; border-top: 1px solid var(--window-border); color: var(--gray); font-size: 0.85rem; margin-top: 40px; }
   </style>
 </head>
 <body>
 
 <nav>
   <div class="logo">TRACING THE POP</div>
-  <button class="hamburger" onclick="document.querySelector('nav ul').classList.toggle('open')">☰</button>
   <ul id="nav-links">
     <li><a onclick="showSection('hero')" class="active">Home</a></li>
     <li><a onclick="showSection('lobby')">Museum</a></li>
     <li><a onclick="showSection('timeline-section')">Timeline</a></li>
-    <li><a onclick="showSection('themes-section')">Themes</a></li>
-    <li><a onclick="showSection('about')">About</a></li>
     <li><a onclick="showSection('references')">References</a></li>
   </ul>
 </nav>
@@ -166,37 +129,31 @@
 
 <section id="lobby" class="section">
   <h2 class="section-title">Museum Lobby</h2>
-  <p class="section-subtitle">Welcome to the virtual museum. Six exhibition rooms await. Select a room to begin exploring.</p>
+  <p class="section-subtitle">Six exhibition rooms await.</p>
   <div class="lobby-grid">
     <div class="room-card" onclick="showSection('room-body')">
       <div class="room-num">Room 01</div><h3>Body & Self-Image</h3>
-      <p>Low-rise jeans, side-swept bangs, chunky skate shoes, and the celebrity-driven beauty ideals that shaped youth identity.</p>
-      <span class="explore-link">Explore Room →</span>
+      <p>Y2K fashion, side-swept bangs, and celebrity-driven beauty.</p>
     </div>
     <div class="room-card" onclick="showSection('room-music')">
       <div class="room-num">Room 02</div><h3>Music & Performance</h3>
-      <p>OPM rock renaissance, novelty dances, reality talent searches, and the commercialization of celebrity culture.</p>
-      <span class="explore-link">Explore Room →</span>
+      <p>OPM rock renaissance, novelty dances, and reality talent searches.</p>
     </div>
     <div class="room-card" onclick="showSection('room-tech')">
       <div class="room-num">Room 03</div><h3>Technology & Digital Culture</h3>
-      <p>Dial-up internet, internet cafés, Counter-Strike, Friendster, and the rise of mobile texting.</p>
-      <span class="explore-link">Explore Room →</span>
+      <p>Internet cafés, Counter-Strike, Friendster, and texting.</p>
     </div>
     <div class="room-card" onclick="showSection('room-themes')">
       <div class="room-num">Room 04</div><h3>Intersecting Themes</h3>
-      <p>How celebrity, globalization, youth identity, and nostalgia reinforced one another across the decade.</p>
-      <span class="explore-link">Explore Room →</span>
+      <p>Celebrity, globalization, youth identity, and nostalgia.</p>
     </div>
     <div class="room-card" onclick="showSection('room-forms')">
       <div class="room-num">Room 05</div><h3>Forms of Pop Culture</h3>
-      <p>The formats and platforms—television, music, fashion, gaming—through which pop culture was experienced.</p>
-      <span class="explore-link">Explore Room →</span>
+      <p>TV, music, fashion, and gaming platforms.</p>
     </div>
     <div class="room-card" onclick="showSection('room-patterns')">
-      <div class="room-num">Room 06</div><h3>Patterns, Continuity & Change</h3>
-      <p>What continued from earlier decades, what shifted, and how the 2000s became a bridge to the 2010s.</p>
-      <span class="explore-link">Explore Room →</span>
+      <div class="room-num">Room 06</div><h3>Patterns & Change</h3>
+      <p>How the 2000s bridged broadcast and networked culture.</p>
     </div>
   </div>
 </section>
@@ -204,43 +161,22 @@
 <!-- ROOM 01 -->
 <section id="room-body" class="section">
   <button class="back-btn" onclick="showSection('lobby')">← Back to Lobby</button>
-  <div class="room-header">
-    <h2>Room 01 — Body & Self-Image</h2>
-    <p class="room-desc">Celebrity-driven beauty, fashion, and youth self-expression during 2000–2010.</p>
-  </div>
+  <h2 class="section-title">Room 01 — Body & Self-Image</h2>
   <div class="artifact-grid">
-    <div class="artifact-card" onclick="openModal('Low-Rise Jeans', 'Fashion', 'Low-rise jeans were a defining trend of the Y2K era. Popularized by pop stars and celebrities, they reflected a shift toward more revealing, body-conscious fashion among Filipino youth.')">
+    <div class="artifact-card" onclick="openArtifactModal('Low-Rise Jeans', 'A defining trend of the Y2K era. Popularized by pop stars, reflecting a shift toward more revealing, body-conscious fashion.')">
       <div class="artifact-tag">Fashion</div><h4>Low-Rise Jeans</h4>
     </div>
-    <div class="artifact-card" onclick="openModal('Side-Swept Bangs', 'Beauty', 'Inspired by Asianovelas and pop princesses, side-swept bangs became a staple haircut for students, symbolizing a soft, trendy, and approachable look.')">
+    <div class="artifact-card" onclick="openArtifactModal('Side-Swept Bangs', 'Inspired by Asianovelas and pop princesses, this became a staple haircut for students, symbolizing a soft, trendy look.')">
       <div class="artifact-tag">Beauty</div><h4>Side-Swept Bangs</h4>
     </div>
-    <div class="artifact-card" onclick="openModal('Chunky Skate Shoes', 'Footwear', 'Brands like DC and Vans dominated the footwear scene, blending skate culture with mainstream youth fashion, often worn with oversized pants.')">
-      <div class="artifact-tag">Footwear</div><h4>Chunky Skate Shoes</h4>
-    </div>
   </div>
-  
   <div class="video-section">
-    <h3>Watch the Archive: The Looks We Copied</h3>
+    <h3>Watch the Archive</h3>
     <div class="video-grid">
-      <!-- Search Link 1 -->
-      <a href="https://www.youtube.com/results?search_query=2000s+Pinoy+emo+fashion+Philippines" target="_blank" class="video-card" style="text-decoration:none;">
+      <div class="video-card" onclick="openVideoModal('2000s Pinoy Emo & Fashion')">
         <div class="video-thumb"><div class="play-icon">▶</div></div>
-        <div class="video-info">
-          <h4>2000s Pinoy Emo & Fashion</h4>
-          <p>Side-swept bangs, skinny jeans, and youth identity.</p>
-          <div class="video-source">Source: YouTube Search</div>
-        </div>
-      </a>
-      <!-- Search Link 2 -->
-      <a href="https://www.youtube.com/results?search_query=2000s+Filipino+Y2K+fashion+skater+style" target="_blank" class="video-card" style="text-decoration:none;">
-        <div class="video-thumb"><div class="play-icon">▶</div></div>
-        <div class="video-info">
-          <h4>2000s Filipino Y2K & Skate</h4>
-          <p>Chunky shoes, mall culture, and everyday fashion.</p>
-          <div class="video-source">Source: YouTube Search</div>
-        </div>
-      </a>
+        <div class="video-info"><h4>2000s Pinoy Emo & Fashion</h4><p>Side-swept bangs and youth identity.</p></div>
+      </div>
     </div>
   </div>
 </section>
@@ -248,49 +184,14 @@
 <!-- ROOM 02 -->
 <section id="room-music" class="section">
   <button class="back-btn" onclick="showSection('lobby')">← Back to Lobby</button>
-  <div class="room-header">
-    <h2>Room 02 — Music & Performance</h2>
-    <p class="room-desc">OPM rock, novelty dances, reality talent searches, and the stage as a space for youth expression.</p>
-  </div>
-  <div class="artifact-grid">
-    <div class="artifact-card" onclick="openModal('OPM Rock Renaissance', 'Music', 'Bands like Hale, Sponge Cola, and Kamikazee brought alternative rock to the mainstream, creating anthems for Filipino youth navigating love and angst.')">
-      <div class="artifact-tag">Music</div><h4>OPM Rock Renaissance</h4>
-    </div>
-    <div class="artifact-card" onclick="openModal('Novelty Dance Culture', 'Dance', 'Groups like the SexBomb Girls popularized dance crazes like the Spaghetti Dance that swept through barangays and school programs.')">
-      <div class="artifact-tag">Dance</div><h4>Novelty Dance Culture</h4>
-    </div>
-  </div>
-  
+  <h2 class="section-title">Room 02 — Music & Performance</h2>
   <div class="video-section">
-    <h3>Watch the Archive: Our Sound, Our Stage</h3>
+    <h3>Watch the Archive</h3>
     <div class="video-grid">
-      <!-- Search Link 1 -->
-      <a href="https://www.youtube.com/results?search_query=Orange+and+Lemons+Pinoy+Ako+official+music+video" target="_blank" class="video-card" style="text-decoration:none;">
+      <div class="video-card" onclick="openVideoModal('Pinoy Rock Renaissance')">
         <div class="video-thumb"><div class="play-icon">▶</div></div>
-        <div class="video-info">
-          <h4>Orange & Lemons - "Pinoy Ako"</h4>
-          <p>OPM, television, and mainstream entertainment.</p>
-          <div class="video-source">Source: YouTube Search</div>
-        </div>
-      </a>
-      <!-- Search Link 2 -->
-      <a href="https://www.youtube.com/results?search_query=2000s+OPM+rock+music+videos+Hale+Sponge+Cola+Kamikazee" target="_blank" class="video-card" style="text-decoration:none;">
-        <div class="video-thumb"><div class="play-icon">▶</div></div>
-        <div class="video-info">
-          <h4>Pinoy Rock Music Videos</h4>
-          <p>Retrospectives on Hale, Sponge Cola, Kamikazee, and more.</p>
-          <div class="video-source">Source: YouTube Search</div>
-        </div>
-      </a>
-      <!-- Search Link 3 -->
-      <a href="https://www.youtube.com/results?search_query=Philippines+2000s+novelty+dance+TV+performance" target="_blank" class="video-card" style="text-decoration:none;">
-        <div class="video-thumb"><div class="play-icon">▶</div></div>
-        <div class="video-info">
-          <h4>Filipino Novelty Dances</h4>
-          <p>Period-appropriate TV performances and retrospectives.</p>
-          <div class="video-source">Source: YouTube Search</div>
-        </div>
-      </a>
+        <div class="video-info"><h4>OPM Rock Renaissance</h4><p>Hale, Sponge Cola, Kamikazee.</p></div>
+      </div>
     </div>
   </div>
 </section>
@@ -298,57 +199,22 @@
 <!-- ROOM 03 -->
 <section id="room-tech" class="section">
   <button class="back-btn" onclick="showSection('lobby')">← Back to Lobby</button>
-  <div class="room-header">
-    <h2>Room 03 — Technology & Digital Culture</h2>
-    <p class="room-desc">Dial-up internet, internet cafés, PC gaming, Friendster, and the texting revolution.</p>
-  </div>
-  <div class="artifact-grid">
-    <div class="artifact-card" onclick="openModal('Internet Café Culture', 'Gaming', 'Internet cafés, or comp shops, became the third space for Filipino youth, used for research, gaming, and socializing.')">
-      <div class="artifact-tag">Gaming</div><h4>Internet Café Culture</h4>
-    </div>
-    <div class="artifact-card" onclick="document.getElementById('friendster-demo').scrollIntoView({behavior: 'smooth'})">
-      <div class="artifact-tag">Social Media</div><h4>Friendster Profile</h4>
-      <p style="font-size:0.8rem;color:#aaa;margin-top:8px;">Click to try the simulator below.</p>
-    </div>
-    <div class="artifact-card" onclick="document.getElementById('sms-demo').scrollIntoView({behavior: 'smooth'})">
-      <div class="artifact-tag">Mobile</div><h4>Texting Culture</h4>
-      <p style="font-size:0.8rem;color:#aaa;margin-top:8px;">Click to try the simulator below.</p>
-    </div>
-  </div>
-
-  <h3 style="color:var(--electric-blue); margin-top: 40px; margin-bottom: 16px;">Interactive Simulators</h3>
+  <h2 class="section-title">Room 03 — Technology</h2>
   
-  <div id="friendster-demo" class="friendster-sim">
-    <div class="fs-header">
-      <div class="fs-avatar">J</div>
-      <div>
-        <div class="fs-name">Jasmine (Educational Recreation)</div>
-        <div class="fs-bio">"Chill lang, rock on! 🤘"</div>
-      </div>
-    </div>
+  <!-- Simulators -->
+  <div class="friendster-sim">
+    <h3>Friendster Profile</h3>
     <div class="fs-tabs">
-      <button class="fs-tab active" onclick="switchTab(event, 'fs-about')">About Me</button>
+      <button class="fs-tab active" onclick="switchTab(event, 'fs-about')">About</button>
       <button class="fs-tab" onclick="switchTab(event, 'fs-testi')">Testimonials</button>
     </div>
-    <div id="fs-about" class="fs-content active">
-      <p><strong>Status:</strong> Single</p>
-      <p><strong>Hometown:</strong> Manila</p>
-      <p><strong>Interests:</strong> OPM Rock, Friendster, Counter-Strike, Texting</p>
-    </div>
-    <div id="fs-testi" class="fs-content">
-      <ul>
-        <li>"Thanks for the add! Ganda ng profile mo." - <em>Mark</em></li>
-        <li>"Wala lang, drop by lang." - <em>Sarah</em></li>
-      </ul>
-    </div>
-    <p style="font-size:0.7rem; color:#888; margin-top:12px; font-style:italic;">*This is an educational recreation. No real data is used.</p>
+    <div id="fs-about" class="fs-content active"><p>Status: Single | Interests: OPM, CS 1.6</p></div>
+    <div id="fs-testi" class="fs-content"><p>"Thanks for the add!" - Mark</p></div>
   </div>
 
-  <div id="sms-demo" class="sms-sim">
-    <div class="sms-header">SMS - Globe / Smart (Simulation)</div>
+  <div class="sms-sim">
     <div class="sms-messages" id="sms-container">
-      <div class="sms-bubble received">Uy, san ka? Tambay tayo comp shop mamaya.</div>
-      <div class="sms-bubble sent">Sige! Mga 6pm. Dala ako ng CD ng CS 1.6.</div>
+      <div class="sms-bubble received">Uy, san ka? Tambay tayo comp shop.</div>
     </div>
     <div class="sms-input-row">
       <input type="text" id="sms-input" placeholder="Type a message..." onkeypress="handleSmsEnter(event)">
@@ -357,35 +223,12 @@
   </div>
 
   <div class="video-section">
-    <h3>Watch the Archive: Connected Before Social Media</h3>
+    <h3>Watch the Archive</h3>
     <div class="video-grid">
-      <!-- Search Link 1 -->
-      <a href="https://www.youtube.com/results?search_query=Philippines+internet+cafe+2000s+nostalgia" target="_blank" class="video-card" style="text-decoration:none;">
+      <div class="video-card" onclick="openVideoModal('Internet Cafe Culture')">
         <div class="video-thumb"><div class="play-icon">▶</div></div>
-        <div class="video-info">
-          <h4>Internet Cafés in the Philippines</h4>
-          <p>Shared computers, online chatting, and gaming.</p>
-          <div class="video-source">Source: YouTube Search</div>
-        </div>
-      </a>
-      <!-- Search Link 2 -->
-      <a href="https://www.youtube.com/results?search_query=Friendster+Philippines+2000s+Top+8+testimonials" target="_blank" class="video-card" style="text-decoration:none;">
-        <div class="video-thumb"><div class="play-icon">▶</div></div>
-        <div class="video-info">
-          <h4>Friendster Nostalgia</h4>
-          <p>Top 8 friends, testimonials, and online self-expression.</p>
-          <div class="video-source">Source: YouTube Search</div>
-        </div>
-      </a>
-      <!-- Search Link 3 -->
-      <a href="https://www.youtube.com/results?search_query=Counter+Strike+1.6+Philippines+internet+cafe+2000s" target="_blank" class="video-card" style="text-decoration:none;">
-        <div class="video-thumb"><div class="play-icon">▶</div></div>
-        <div class="video-info">
-          <h4>Counter-Strike and PC Gaming</h4>
-          <p>CS 1.6 footage and early PC gaming retrospectives.</p>
-          <div class="video-source">Source: YouTube Search</div>
-        </div>
-      </a>
+        <div class="video-info"><h4>Internet Cafe Culture</h4><p>Comp shops and early gaming.</p></div>
+      </div>
     </div>
   </div>
 </section>
@@ -393,254 +236,135 @@
 <!-- ROOM 04 -->
 <section id="room-themes" class="section">
   <button class="back-btn" onclick="showSection('lobby')">← Back to Lobby</button>
-  <div class="room-header">
-    <h2>Room 04 — Intersecting Themes</h2>
-    <p class="room-desc">How celebrity, globalization, youth identity, and nostalgia reinforced one another.</p>
-  </div>
-  <div class="rel-map">
-    <div class="rel-node" onclick="showRelDetail('rel1', this)">
-      <h4>Celebrity & Digital Culture</h4>
-      <p>Idols go online.</p>
-    </div>
-    <div class="rel-node" onclick="showRelDetail('rel2', this)">
-      <h4>Globalization</h4>
-      <p>Asianovelas & Anime.</p>
-    </div>
-    <div class="rel-node" onclick="showRelDetail('rel3', this)">
-      <h4>Youth Identity</h4>
-      <p>Local meets global.</p>
-    </div>
-  </div>
-  <div id="rel1" class="rel-detail">
-    <h3>Celebrity & Digital Culture</h3>
-    <p>Fan communities grew rapidly through Friendster and text voting, making celebrities feel more accessible and interactive.</p>
-  </div>
-  <div id="rel2" class="rel-detail">
-    <h3>Globalization & Transnational Media</h3>
-    <p>Asianovelas like Meteor Garden and anime shaped local fashion, slang, and television programming.</p>
-  </div>
-  <div id="rel3" class="rel-detail">
-    <h3>Youth Identity Formation</h3>
-    <p>Filipino youth combined foreign trends (like low-rise jeans) with local values (like barkada culture) to create a unique 2000s identity.</p>
-  </div>
-
-  <div class="video-section">
-    <h3>Watch the Archive: Global Influences, Local Voices</h3>
-    <div class="video-grid">
-      <!-- Search Link 1 -->
-      <a href="https://www.youtube.com/results?search_query=Orange+and+Lemons+Pinoy+Ako+story+Pinoy+Big+Brother" target="_blank" class="video-card" style="text-decoration:none;">
-        <div class="video-thumb"><div class="play-icon">▶</div></div>
-        <div class="video-info">
-          <h4>"Pinoy Ako" and Celebrity Culture</h4>
-          <p>Music, television, popularity, and commercial celebrity culture.</p>
-          <div class="video-source">Source: YouTube Search</div>
-        </div>
-      </a>
-      <!-- Search Link 2 -->
-      <a href="https://www.youtube.com/results?search_query=Asianovela+Philippines+2000s+history+nostalgia" target="_blank" class="video-card" style="text-decoration:none;">
-        <div class="video-thumb"><div class="play-icon">▶</div></div>
-        <div class="video-info">
-          <h4>Asianovelas in the Philippines</h4>
-          <p>Korean and Taiwanese dramas and their influence on Filipinos.</p>
-          <div class="video-source">Source: YouTube Search</div>
-        </div>
-      </a>
-      <!-- Search Link 3 -->
-      <a href="https://www.youtube.com/results?search_query=MYX+Philippines+2000s+music+television+nostalgia" target="_blank" class="video-card" style="text-decoration:none;">
-        <div class="video-thumb"><div class="play-icon">▶</div></div>
-        <div class="video-info">
-          <h4>MYX and the Music Video Era</h4>
-          <p>Music television, artists, fashion, and fans.</p>
-          <div class="video-source">Source: YouTube Search</div>
-        </div>
-      </a>
-    </div>
-  </div>
+  <h2 class="section-title">Room 04 — Intersecting Themes</h2>
+  <p style="color:#bbb; margin-bottom:20px;">Click the themes to see how they connect.</p>
+  <!-- Map logic can go here -->
 </section>
 
 <!-- ROOM 05 -->
 <section id="room-forms" class="section">
   <button class="back-btn" onclick="showSection('lobby')">← Back to Lobby</button>
-  <div class="room-header">
-    <h2>Room 05 — Forms of Pop Culture</h2>
-    <p class="room-desc">The formats and platforms through which pop culture was experienced.</p>
-  </div>
-  <p style="color:#bbb; margin-bottom:20px;">Popular culture in the 2000s was experienced primarily through broadcast media (TV and Radio), print (Magazines), and the rapidly emerging internet (Friendster, early blogs).</p>
-  
-  <div class="video-section">
-    <h3>Watch the Archive: Platforms of the Decade</h3>
-    <div class="video-grid">
-      <a href="https://www.youtube.com/results?search_query=Philippine+TV+shows+2000s+nostalgia+archival+clips" target="_blank" class="video-card" style="text-decoration:none;">
-        <div class="video-thumb"><div class="play-icon">▶</div></div>
-        <div class="video-info">
-          <h4>Philippine TV Shows of the 2000s</h4>
-          <p>Entertainment and variety programming archival clips.</p>
-          <div class="video-source">Source: YouTube Search</div>
-        </div>
-      </a>
-      <a href="https://www.youtube.com/results?search_query=Star+in+a+Million+Pinoy+Idol+Philippines+2000s+clips" target="_blank" class="video-card" style="text-decoration:none;">
-        <div class="video-thumb"><div class="play-icon">▶</div></div>
-        <div class="video-info">
-          <h4>Reality Singing Competitions</h4>
-          <p>Star in a Million, Pinoy Idol, and the creation of celebrities.</p>
-          <div class="video-source">Source: YouTube Search</div>
-        </div>
-      </a>
-    </div>
-  </div>
+  <h2 class="section-title">Room 05 — Forms of Pop Culture</h2>
+  <p style="color:#bbb;">The platforms of the decade: TV, radio, print, and the early internet.</p>
 </section>
 
 <!-- ROOM 06 -->
 <section id="room-patterns" class="section">
   <button class="back-btn" onclick="showSection('lobby')">← Back to Lobby</button>
-  <div class="room-header">
-    <h2>Room 06 — Patterns, Continuity & Change</h2>
-    <p class="room-desc">The bridge to the 2010s.</p>
-  </div>
-  <p style="color:#bbb; margin-bottom:20px;">The 2000s served as a transitional bridge. The patterns of youth expression and foreign influence remained, but the emergence of SMS and social networking began shifting the culture from broadcast-centered to networked.</p>
-  
-  <div class="video-section">
-    <h3>Watch the Archive: Growing Up in the 2000s</h3>
-    <div class="video-grid">
-      <a href="https://www.youtube.com/results?search_query=growing+up+in+the+Philippines+2000s+nostalgia" target="_blank" class="video-card" style="text-decoration:none;">
-        <div class="video-thumb"><div class="play-icon">▶</div></div>
-        <div class="video-info">
-          <h4>Growing Up in the Philippines</h4>
-          <p>Childhood, entertainment, school life, and technology.</p>
-          <div class="video-source">Source: YouTube Search</div>
-        </div>
-      </a>
-      <a href="https://www.youtube.com/results?search_query=Philippines+2000s+texting+Nokia+cellphone+nostalgia" target="_blank" class="video-card" style="text-decoration:none;">
-        <div class="video-thumb"><div class="play-icon">▶</div></div>
-        <div class="video-info">
-          <h4>Texting and Mobile Phones</h4>
-          <p>The transition toward mobile and connected communication.</p>
-          <div class="video-source">Source: YouTube Search</div>
-        </div>
-      </a>
-      <a href="https://www.youtube.com/results?search_query=Philippine+pop+culture+2000s+retrospective" target="_blank" class="video-card" style="text-decoration:none;">
-        <div class="video-thumb"><div class="play-icon">▶</div></div>
-        <div class="video-info">
-          <h4>Philippine Pop Culture Retrospectives</h4>
-          <p>Connecting music, TV, fashion, Friendster, and gaming.</p>
-          <div class="video-source">Source: YouTube Search</div>
-        </div>
-      </a>
-    </div>
-  </div>
+  <h2 class="section-title">Room 06 — Patterns & Change</h2>
+  <p style="color:#bbb;">The 2000s were a transitional bridge from broadcast to networked culture.</p>
 </section>
 
-<!-- OTHER SECTIONS -->
+<!-- TIMELINE -->
 <section id="timeline-section" class="section">
   <h2 class="section-title">Historical Timeline</h2>
-  <p class="section-subtitle">Key moments from 2000 to 2010.</p>
   <p style="color:#bbb; padding: 20px; border-left: 3px solid var(--electric-blue); background: var(--window-bg);">
-    <strong>2000-2002:</strong> The peak of Y2K fashion, the rise of SMS texting, and the early days of internet cafés.<br><br>
-    <strong>2003-2006:</strong> The OPM rock renaissance, the explosion of Friendster, and the dominance of Asianovelas on TV.<br><br>
-    <strong>2007-2010:</strong> The rise of competitive gaming (DotA, CS), and the gradual shift toward the social media landscape of the 2010s.
+    <strong>2000-2002:</strong> Peak of Y2K fashion and early internet cafés.<br><br>
+    <strong>2003-2006:</strong> OPM rock renaissance, Friendster explosion, Asianovelas.<br><br>
+    <strong>2007-2010:</strong> Competitive gaming rises, shift toward modern social media.
   </p>
 </section>
 
-<section id="themes-section" class="section">
-  <h2 class="section-title">Themes Overview</h2>
-  <p class="section-subtitle">Please visit Room 04 in the museum for the interactive relationship map.</p>
-  <button class="btn btn-primary" onclick="showSection('room-themes')">Go to Room 04</button>
-</section>
-
-<section id="about" class="section">
-  <h2 class="section-title">About the Project</h2>
-  <p style="color:#bbb; max-width: 800px;">
-    <strong>Tracing the Pop: A Decade in PH Pop Culture (2000–2010)</strong> is an interactive virtual museum. It explores how Philippine popular culture served as a transitional bridge between broadcast-centered culture and the increasingly networked culture of the 2010s.
-  </p>
-</section>
-
+<!-- REFERENCES & COPYRIGHT -->
 <section id="references" class="section">
-  <h2 class="section-title">References</h2>
-  <p class="section-subtitle">Sources and credits.</p>
-  <ul class="ref-list">
+  <h2 class="section-title">References & Copyright</h2>
+  <ul style="color:#bbb; line-height: 2;">
     <li>Original presentation: "Tracing the Pop: A Decade in PH Pop Culture (2000–2010)".</li>
-    <li>Historical context: General knowledge regarding Y2K aesthetics, OPM, and early Philippine internet culture.</li>
-    <li>Interface inspiration: Early 2000s desktop environments and Friendster UI.</li>
+    <li>Historical context: Y2K aesthetics, OPM history, and early Philippine internet culture.</li>
+    <li><strong>Copyright Notice:</strong> All video content, music, and archival footage displayed in these exhibits belong to their respective copyright holders. Videos are embedded or searched via YouTube's public API for educational and historical purposes under fair use. This website does not claim ownership of any third-party media.</li>
   </ul>
 </section>
 
-<!-- MODAL OVERLAY -->
+<footer>
+  <p>&copy; 2026 Tracing the Pop. Educational Project. All Rights Reserved.</p>
+  <p style="margin-top: 10px; font-size: 0.75rem;">Media copyrights belong to their respective owners.</p>
+</footer>
+
+<!-- ARTIFACT MODAL -->
 <div id="artifact-modal" class="modal-overlay">
   <div class="modal-box">
-    <button class="close-modal" onclick="closeModal()">×</button>
-    <div class="modal-tag" id="modal-tag">Tag</div>
+    <button class="close-modal" onclick="closeArtifactModal()">×</button>
     <h3 id="modal-title">Title</h3>
     <p id="modal-desc">Description</p>
   </div>
 </div>
 
-<!-- JAVASCRIPT -->
+<!-- VIDEO PLAYER MODAL (This keeps it on the page) -->
+<div id="video-modal" class="modal-overlay">
+  <div class="video-modal-box">
+    <button class="close-modal" onclick="closeVideoModal()">×</button>
+    
+    <div class="video-player-wrapper">
+      <!-- 🛑 TO ADD A REAL VIDEO: Replace the <div> below with an <iframe> from YouTube -->
+      <div class="video-placeholder-text">
+        <h3 id="video-title" style="color: white; margin-bottom: 10px;">Video Title</h3>
+        <p>To play a video here, find a YouTube video, click "Share" -> "Embed", and paste the iframe code in the HTML file where this text is.</p>
+      </div>
+      
+      <!-- EXAMPLE OF HOW TO EMBED (Remove the comments to use):
+      <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe> 
+      -->
+    </div>
+    
+    <p style="color: #888; font-size: 0.85rem; text-align: center;">Video content belongs to its original copyright holder.</p>
+  </div>
+</div>
+
 <script>
-  // 1. Navigation / Show Section
+  // Navigation
   function showSection(sectionId) {
-    document.querySelectorAll('.section').forEach(sec => {
-      sec.classList.remove('active');
-    });
-    const target = document.getElementById(sectionId);
-    if(target) target.classList.add('active');
-    document.querySelectorAll('nav ul li a').forEach(a => a.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+    document.getElementById(sectionId).classList.add('active');
     window.scrollTo(0,0);
   }
 
-  // 2. Modal functions
-  function openModal(title, tag, desc) {
+  // Artifact Modal
+  function openArtifactModal(title, desc) {
     document.getElementById('modal-title').innerText = title;
-    document.getElementById('modal-tag').innerText = tag;
     document.getElementById('modal-desc').innerText = desc;
     document.getElementById('artifact-modal').classList.add('open');
   }
-
-  function closeModal() {
+  function closeArtifactModal() {
     document.getElementById('artifact-modal').classList.remove('open');
   }
 
-  document.getElementById('artifact-modal').addEventListener('click', function(e) {
-    if(e.target === this) closeModal();
-  });
+  // Video Modal
+  function openVideoModal(title) {
+    document.getElementById('video-title').innerText = title;
+    document.getElementById('video-modal').classList.add('open');
+  }
+  function closeVideoModal() {
+    document.getElementById('video-modal').classList.remove('open');
+    // This ensures the video stops playing when closed
+    const wrapper = document.querySelector('.video-player-wrapper');
+    const iframe = wrapper.querySelector('iframe');
+    if(iframe) {
+      const iframeSrc = iframe.src;
+      iframe.src = iframeSrc; // Reloads iframe to stop video
+    }
+  }
 
-  // 3. Friendster Tabs
+  // Friendster Tabs
   function switchTab(event, tabId) {
     const sim = event.target.closest('.friendster-sim');
     sim.querySelectorAll('.fs-content').forEach(c => c.classList.remove('active'));
     sim.querySelectorAll('.fs-tab').forEach(t => t.classList.remove('active'));
-    
     document.getElementById(tabId).classList.add('active');
     event.target.classList.add('active');
   }
 
-  // 4. SMS Simulator
+  // SMS
   function sendSms() {
     const input = document.getElementById('sms-input');
-    const text = input.value.trim();
-    if(!text) return;
-
+    if(!input.value.trim()) return;
     const container = document.getElementById('sms-container');
     const bubble = document.createElement('div');
     bubble.className = 'sms-bubble sent';
-    bubble.innerText = text;
+    bubble.innerText = input.value;
     container.appendChild(bubble);
-    
     input.value = '';
-    container.scrollTop = container.scrollHeight;
   }
-
-  function handleSmsEnter(e) {
-    if(e.key === 'Enter') sendSms();
-  }
-
-  // 5. Relationship Map
-  function showRelDetail(relId, element) {
-    document.querySelectorAll('.rel-detail').forEach(d => d.classList.remove('active'));
-    document.querySelectorAll('.rel-node').forEach(n => n.classList.remove('active'));
-    
-    document.getElementById(relId).classList.add('active');
-    element.classList.add('active');
-  }
+  function handleSmsEnter(e) { if(e.key === 'Enter') sendSms(); }
 </script>
 
 </body>
