@@ -10,7 +10,7 @@
        THE HINGE — Filipino Y2K Archive
     ======================================== */
 
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800;900&family=Inter:wght@400;500;600;700;800&family=VT323&display=swap');
 
     :root {
       --hinge-pink: #ff00a8;
@@ -19,6 +19,8 @@
       --hinge-navy: #071326;
       --hinge-white: #f8f9ff;
       --hinge-muted: #c5c9d9;
+      --bg-card: #12132d;
+      --win-border: #4a4a6a;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -34,7 +36,46 @@
       flex-direction: column;
     }
 
-    /* Main hero background */
+    /* =========================================
+       Y2K ANIMATIONS & KEYFRAMES
+       ========================================= */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes floatY2K {
+      0% { transform: translateY(0px) rotate(var(--rot)); }
+      50% { transform: translateY(-20px) rotate(calc(var(--rot) + 3deg)); }
+      100% { transform: translateY(0px) rotate(var(--rot)); }
+    }
+
+    @keyframes glitch {
+      0% { text-shadow: 4px 4px 0 #152c52, 8px 8px 0 rgba(0, 217, 255, 0.2); }
+      2% { text-shadow: -4px -4px 0 #152c52, -8px -8px 0 rgba(255, 0, 168, 0.2); }
+      4% { text-shadow: 4px 4px 0 #152c52, 8px 8px 0 rgba(0, 217, 255, 0.2); }
+      100% { text-shadow: 4px 4px 0 #152c52, 8px 8px 0 rgba(0, 217, 255, 0.2); }
+    }
+
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 20px rgba(255, 0, 168, 0.25), 0 0 35px rgba(0, 217, 255, 0.12); }
+      50% { box-shadow: 0 0 30px rgba(255, 0, 168, 0.5), 0 0 50px rgba(0, 217, 255, 0.3); }
+      100% { box-shadow: 0 0 20px rgba(255, 0, 168, 0.25), 0 0 35px rgba(0, 217, 255, 0.12); }
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+
+    .section.active, .hero.active {
+      display: block;
+      animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* =========================================
+       HERO SECTION
+       ========================================= */
     .hero {
       position: relative;
       min-height: 100vh;
@@ -56,7 +97,6 @@
       background-repeat: no-repeat;
     }
 
-    /* Vintage film texture */
     .hero::before {
       content: "";
       position: absolute;
@@ -69,7 +109,7 @@
     }
 
     /* =========================================
-       COLLAGE IMAGES
+       COLLAGE IMAGES (Floating Animation)
        ========================================= */
     .collage-item {
       position: absolute;
@@ -79,35 +119,36 @@
       background-position: center;
       filter: drop-shadow(5px 15px 15px rgba(0,0,0,0.6));
       pointer-events: none;
+      animation: floatY2K 8s ease-in-out infinite;
     }
 
     .item-jeepney { 
       bottom: 15%; left: 2%; width: 350px; height: 300px; 
-      transform: rotate(-5deg); 
+      --rot: -5deg; animation-delay: 0s;
       background-image: url('https://images.unsplash.com/photo-1583273086045-15275b2e2c8f?q=80&w=800&auto=format&fit=crop'); 
     }
 
     .item-tv { 
       bottom: 0%; left: 2%; width: 350px; height: 300px; 
-      transform: rotate(3deg); 
+      --rot: 3deg; animation-delay: -2s;
       background-image: url('https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?q=80&w=800&auto=format&fit=crop'); 
     }
 
     .item-phone { 
       top: 25%; right: 2%; width: 200px; height: 400px; 
-      transform: rotate(12deg); 
+      --rot: 12deg; animation-delay: -4s;
       background-image: url('https://images.unsplash.com/photo-1580910051074-3eb694886505?q=80&w=800&auto=format&fit=crop'); 
     }
 
     .item-mag { 
       bottom: 0%; right: 10%; width: 320px; height: 220px; 
-      transform: rotate(-8deg); 
+      --rot: -8deg; animation-delay: -1s;
       background-image: url('https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?q=80&w=800&auto=format&fit=crop'); 
     }
 
     .item-cd { 
       bottom: 2%; left: 28%; width: 160px; height: 160px; 
-      transform: rotate(-15deg); 
+      --rot: -15deg; animation-delay: -3s;
       border-radius: 50%;
       background-image: url('https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=800&auto=format&fit=crop'); 
     }
@@ -152,7 +193,7 @@
       text-decoration: none;
       font-size: 13px;
       font-weight: 700;
-      transition: 0.25s ease;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       cursor: pointer;
     }
 
@@ -161,6 +202,7 @@
       border-color: rgba(255, 0, 168, 0.55);
       background: linear-gradient(110deg, rgba(255, 0, 168, 0.28), rgba(0, 217, 255, 0.24));
       box-shadow: 0 0 20px rgba(255, 0, 168, 0.18);
+      transform: translateY(-2px);
     }
 
     /* Hero content */
@@ -173,10 +215,10 @@
       z-index: 3;
     }
 
+    .hero-title-wrapper { position: relative; display: inline-block; margin-bottom: 26px; }
+
     .hero-title {
       position: relative;
-      display: inline-block;
-      margin-bottom: 26px;
       font-family: 'Orbitron', sans-serif;
       font-size: clamp(48px, 8vw, 112px);
       font-weight: 900;
@@ -185,21 +227,20 @@
       line-height: 1.05;
       color: #fff;
       text-transform: uppercase;
-      text-shadow: 4px 4px 0 #152c52, 8px 8px 0 rgba(0, 217, 255, 0.2), 0 0 35px rgba(0, 217, 255, 0.15);
+      animation: glitch 4s infinite;
+      z-index: 2;
     }
 
-    .hero-title::after {
-      content: "";
+    /* Y2K Stars */
+    .star {
       position: absolute;
-      left: 8%;
-      right: -5%;
-      bottom: -12px;
-      height: 5px;
-      border-radius: 100%;
-      transform: rotate(-4deg);
-      background: linear-gradient(90deg, var(--hinge-pink), var(--hinge-yellow), var(--hinge-blue));
-      box-shadow: 0 0 18px rgba(0, 217, 255, 0.45);
+      color: var(--hinge-yellow);
+      animation: twinkle 2s infinite;
+      z-index: 1;
     }
+    .star-1 { top: -20px; left: -30px; font-size: 2rem; animation-delay: 0s; }
+    .star-2 { bottom: 10px; right: -40px; font-size: 3rem; animation-delay: 0.5s; color: var(--hinge-blue); }
+    .star-3 { top: 40px; right: -60px; font-size: 1.5rem; animation-delay: 1s; }
 
     .hero-description {
       max-width: 820px;
@@ -220,13 +261,7 @@
     }
 
     /* Buttons */
-    .hero-buttons {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 18px;
-    }
+    .hero-buttons { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 18px; }
 
     .btn {
       min-width: 230px;
@@ -244,35 +279,31 @@
       letter-spacing: 0.6px;
       background: rgba(15, 16, 39, 0.72);
       backdrop-filter: blur(12px);
-      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
       cursor: pointer;
+      position: relative;
+      overflow: hidden;
     }
+
+    .btn::after {
+      content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+      background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
+      transform: skewX(-25deg); transition: 0.5s;
+    }
+    .btn:hover::after { left: 150%; }
 
     .btn-primary {
-      color: white;
       border: 2px solid transparent;
       background: linear-gradient(#12132d, #12132d) padding-box, linear-gradient(110deg, var(--hinge-pink), #853dff, var(--hinge-blue)) border-box;
-      box-shadow: 0 0 20px rgba(255, 0, 168, 0.25), 0 0 35px rgba(0, 217, 255, 0.12);
+      animation: pulseGlow 3s infinite;
     }
 
-    .btn-secondary:hover {
-      border-color: var(--hinge-blue);
-      box-shadow: 0 0 25px rgba(0, 217, 255, 0.2);
-    }
-
-    .btn:hover { transform: translateY(-4px); }
-
-    .btn-primary:hover {
-      box-shadow: 0 0 25px rgba(255, 0, 168, 0.45), 0 0 40px rgba(0, 217, 255, 0.25);
-    }
+    .btn-secondary:hover { border-color: var(--hinge-blue); box-shadow: 0 0 25px rgba(0, 217, 255, 0.2); }
+    .btn:hover { transform: translateY(-6px) scale(1.02); }
 
     .hero-ribbon {
       position: absolute;
-      left: -5%;
-      right: -5%;
-      bottom: -35px;
-      height: 85px;
-      z-index: 1;
+      left: -5%; right: -5%; bottom: -35px; height: 85px; z-index: 1;
       transform: rotate(-2deg);
       background: linear-gradient(180deg, var(--hinge-yellow) 0 12%, #164baf 12% 42%, #f8f5ed 42% 48%, #d92c43 48% 78%, #ffd43b 78% 100%);
       opacity: 0.85;
@@ -280,185 +311,197 @@
     }
 
     /* =========================================
-       SECTIONS (Lobby, Rooms, Timeline, Refs)
+       SECTIONS
        ========================================= */
     .section { display: none; padding: 120px 24px 60px; max-width: 1200px; margin: 0 auto; min-height: 100vh; }
-    .section.active { display: block; }
-    
     .section-title { font-family: 'Orbitron', sans-serif; font-size: 3rem; color: white; margin-bottom: 10px; }
     .section-subtitle { color: var(--hinge-muted); margin-bottom: 40px; font-size: 1.1rem; line-height: 1.6; }
     
+    /* Room Details */
     .room-details {
-      background: rgba(18, 19, 45, 0.6);
-      border-left: 4px solid var(--hinge-blue);
-      padding: 24px 32px;
-      border-radius: 0 12px 12px 0;
-      margin-bottom: 40px;
-      backdrop-filter: blur(10px);
+      background: rgba(18, 19, 45, 0.6); border-left: 4px solid var(--hinge-blue);
+      padding: 24px 32px; border-radius: 0 12px 12px 0; margin-bottom: 40px;
+      backdrop-filter: blur(10px); transition: transform 0.3s;
     }
-    .room-details p {
-      margin-bottom: 12px;
-      font-size: 1.05rem;
-      color: #e2e8f0;
-      line-height: 1.7;
-    }
-    .room-details h4 {
-      color: var(--hinge-pink);
-      font-family: 'Orbitron', sans-serif;
-      margin: 20px 0 10px;
-      font-size: 1.1rem;
-    }
-    .room-details ul {
-      margin-left: 20px;
-      color: var(--hinge-muted);
-      font-size: 0.95rem;
-      line-height: 1.8;
-    }
+    .room-details:hover { transform: translateX(5px); }
+    .room-details p { margin-bottom: 12px; font-size: 1.05rem; color: #e2e8f0; line-height: 1.7; }
+    .room-details h4 { color: var(--hinge-pink); font-family: 'Orbitron', sans-serif; margin: 20px 0 10px; font-size: 1.1rem; }
+    .room-details ul { margin-left: 20px; color: var(--hinge-muted); font-size: 0.95rem; line-height: 1.8; }
 
-    /* Lobby */
+    /* =========================================
+       Y2K OS STYLE CARDS (Lobby & Video)
+       ========================================= */
     .lobby-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
-    .room-card { background: #12132d; border: 1px solid #2a2a3c; border-radius: 16px; padding: 32px; cursor: pointer; color: white; transition: 0.3s; display: flex; flex-direction: column; }
-    .room-card:hover { transform: translateY(-5px); border-color: var(--hinge-blue); box-shadow: 0 10px 20px rgba(0, 217, 255, 0.1); }
-    .room-card h3 { font-family: 'Orbitron', sans-serif; margin-bottom: 10px; font-size: 1.3rem; color: var(--hinge-blue); }
-    .room-card p { color: var(--hinge-muted); font-size: 0.95rem; flex-grow: 1; }
+    
+    .room-card { 
+      background: #0a0a14; 
+      border: 2px solid var(--win-border); 
+      border-radius: 8px; 
+      cursor: pointer; 
+      color: white; 
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+      display: flex; 
+      flex-direction: column; 
+      overflow: hidden;
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.5);
+    }
+    .room-card:hover { 
+      transform: translateY(-8px); 
+      border-color: var(--hinge-blue); 
+      box-shadow: 6px 6px 0 rgba(0, 217, 255, 0.3); 
+    }
+    
+    /* Window Title Bar */
+    .win-bar {
+      background: linear-gradient(90deg, #2a2a5a, #12132d);
+      padding: 8px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--win-border);
+    }
+    .win-title { font-family: 'VT323', monospace; font-size: 1.2rem; color: #fff; letter-spacing: 1px; }
+    .win-controls { display: flex; gap: 4px; }
+    .win-btn { width: 16px; height: 16px; background: #a0a0a0; border: 1px solid #fff; display: flex; align-items: center; justify-content: center; font-size: 10px; color: black; font-weight: bold; }
+    .win-btn.close { background: #ff4a4a; }
+    
+    .win-content { padding: 24px; flex-grow: 1; background: #12132d; display: flex; flex-direction: column; }
+    .win-content h3 { font-family: 'Orbitron', sans-serif; margin-bottom: 10px; font-size: 1.2rem; color: var(--hinge-blue); }
+    .win-content p { color: var(--hinge-muted); font-size: 0.9rem; flex-grow: 1; }
 
     /* Back Button */
-    .back-btn { background: #12132d; color: var(--hinge-muted); border: 1px solid #2a2a3c; padding: 12px 24px; border-radius: 50px; margin-bottom: 32px; cursor: pointer; font-weight: 600; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px; }
-    .back-btn:hover { color: white; border-color: var(--hinge-blue); }
+    .back-btn { 
+      background: #0a0a14; color: var(--hinge-white); border: 2px solid var(--win-border); 
+      padding: 12px 24px; border-radius: 8px; margin-bottom: 32px; cursor: pointer; 
+      font-family: 'VT323', monospace; font-size: 1.2rem; transition: all 0.3s; 
+      display: inline-flex; align-items: center; gap: 8px; box-shadow: 3px 3px 0 rgba(0,0,0,0.5);
+    }
+    .back-btn:hover { border-color: var(--hinge-blue); transform: translateX(-5px); box-shadow: 5px 5px 0 rgba(0,217,255,0.3); }
 
-    /* Videos & Posters */
+    /* Video Cards */
     .video-section { margin-top: 40px; }
     .video-section h3 { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; margin-bottom: 20px; color: var(--hinge-yellow); }
     .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-    .video-card { background: #12132d; border: 1px solid #2a2a3c; border-radius: 12px; overflow: hidden; cursor: pointer; transition: 0.3s; }
-    .video-card:hover { border-color: var(--hinge-blue); transform: translateY(-5px); }
     
-    .video-thumb { height: 250px; background: #000; display: flex; align-items: center; justify-content: center; position: relative; background-size: contain; background-position: center; background-repeat: no-repeat; }
+    .video-card { 
+      background: #0a0a14; border: 2px solid var(--win-border); border-radius: 8px; 
+      overflow: hidden; cursor: pointer; transition: all 0.3s; box-shadow: 4px 4px 0 rgba(0,0,0,0.5);
+      display: flex; flex-direction: column;
+    }
+    .video-card:hover { border-color: var(--hinge-blue); transform: translateY(-5px); box-shadow: 6px 6px 0 rgba(0,217,255,0.3); }
     
-    .play-icon { width: 50px; height: 50px; background: rgba(255,255,255,0.2); border: 2px solid white; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: 0.3s; }
-    .video-card:hover .play-icon { background: var(--hinge-blue); border-color: var(--hinge-blue); color: black; transform: scale(1.1); }
+    .video-thumb { 
+      height: 220px; background: #000; display: flex; align-items: center; justify-content: center; 
+      position: relative; background-size: cover; background-position: center; border-bottom: 2px solid var(--win-border);
+    }
     
-    .video-info { padding: 20px; }
-    .video-info h4 { font-size: 1rem; margin-bottom: 5px; }
-    .video-info p { font-size: 0.85rem; color: var(--hinge-muted); }
+    .play-icon { 
+      width: 60px; height: 60px; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(4px);
+      border: 2px solid white; border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+      color: white; transition: all 0.3s; 
+    }
+    .video-card:hover .play-icon { background: var(--hinge-pink); border-color: var(--hinge-pink); transform: scale(1.1); }
+    
+    .video-info { padding: 16px; background: #12132d; flex-grow: 1; }
+    .video-info h4 { font-size: 0.95rem; margin-bottom: 5px; font-weight: 700; }
+    .video-info p { font-family: 'VT323', monospace; font-size: 1rem; color: var(--hinge-blue); }
 
     /* =========================================
        TIMELINE UI
        ========================================= */
-    .timeline-container {
-      position: relative;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 40px 0;
-    }
+    .timeline-container { position: relative; max-width: 800px; margin: 0 auto; padding: 40px 0; }
     .timeline-container::before {
-      content: '';
-      position: absolute;
-      top: 0; bottom: 0; left: 50%;
-      width: 4px;
-      background: linear-gradient(to bottom, var(--hinge-pink), var(--hinge-blue));
-      transform: translateX(-50%);
-      border-radius: 2px;
+      content: ''; position: absolute; top: 0; bottom: 0; left: 50%;
+      width: 4px; background: linear-gradient(to bottom, var(--hinge-pink), var(--hinge-blue));
+      transform: translateX(-50%); border-radius: 2px;
     }
-    .timeline-item {
-      position: relative;
-      width: 50%;
-      padding: 20px 40px;
-      margin-bottom: 20px;
-    }
+    .timeline-item { position: relative; width: 50%; padding: 20px 40px; margin-bottom: 20px; transition: transform 0.3s; }
+    .timeline-item:hover { transform: scale(1.02); }
     .timeline-item:nth-child(odd) { left: 0; text-align: right; }
     .timeline-item:nth-child(even) { left: 50%; text-align: left; }
     
     .timeline-item::after {
-      content: '';
-      position: absolute;
-      top: 30px;
-      width: 20px; height: 20px;
-      background: var(--hinge-navy);
-      border: 4px solid var(--hinge-yellow);
-      border-radius: 50%;
-      z-index: 1;
-      box-shadow: 0 0 10px var(--hinge-yellow);
+      content: ''; position: absolute; top: 30px; width: 20px; height: 20px;
+      background: var(--hinge-navy); border: 4px solid var(--hinge-yellow);
+      border-radius: 50%; z-index: 1; box-shadow: 0 0 10px var(--hinge-yellow);
+      transition: background 0.3s;
     }
+    .timeline-item:hover::after { background: var(--hinge-yellow); }
     .timeline-item:nth-child(odd)::after { right: -12px; }
     .timeline-item:nth-child(even)::after { left: -12px; }
 
     .timeline-content {
-      background: #12132d;
-      padding: 24px;
-      border-radius: 12px;
-      border: 1px solid #2a2a3c;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-      position: relative;
+      background: var(--bg-card); padding: 24px; border-radius: 12px;
+      border: 1px solid var(--win-border); box-shadow: 0 5px 15px rgba(0,0,0,0.3); position: relative;
+      transition: border-color 0.3s;
     }
-    .timeline-content h4 {
-      font-family: 'Orbitron', sans-serif;
-      color: var(--hinge-pink);
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-    }
+    .timeline-item:hover .timeline-content { border-color: var(--hinge-blue); }
+    .timeline-content h4 { font-family: 'Orbitron', sans-serif; color: var(--hinge-pink); font-size: 1.5rem; margin-bottom: 10px; }
     .timeline-content p { color: var(--hinge-muted); font-size: 0.95rem; }
 
     /* =========================================
-       REFERENCES & COPYRIGHT UI
+       REFERENCES
        ========================================= */
-    .ref-list {
-      list-style: none;
-      background: #12132d;
-      border: 1px solid #2a2a3c;
-      border-radius: 12px;
-      padding: 32px;
-    }
-    .ref-list li {
-      padding: 15px 0;
-      border-bottom: 1px solid #2a2a3c;
-      color: var(--hinge-muted);
-      font-size: 0.95rem;
-    }
+    .ref-list { list-style: none; background: var(--bg-card); border: 1px solid var(--win-border); border-radius: 8px; padding: 32px; box-shadow: 4px 4px 0 rgba(0,0,0,0.5); }
+    .ref-list li { padding: 15px 0; border-bottom: 1px solid var(--win-border); color: var(--hinge-muted); font-size: 0.95rem; }
     .ref-list li:last-child { border-bottom: none; }
     .ref-list li strong { color: var(--hinge-white); }
-    
-    .copyright-box {
-      margin-top: 24px;
-      padding: 24px;
-      background: rgba(255, 0, 168, 0.1);
-      border-left: 4px solid var(--hinge-pink);
-      border-radius: 0 12px 12px 0;
-      color: var(--hinge-white);
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
+    .copyright-box { margin-top: 24px; padding: 24px; background: rgba(255, 0, 168, 0.1); border-left: 4px solid var(--hinge-pink); border-radius: 0 8px 8px 0; color: var(--hinge-white); font-size: 0.95rem; line-height: 1.6; }
 
     /* =========================================
        MODALS
        ========================================= */
-    .modal-overlay { display: none; position: fixed; inset: 0; z-index: 2000; background: rgba(0,0,0,0.9); backdrop-filter: blur(8px); align-items: center; justify-content: center; padding: 24px; }
-    .modal-overlay.open { display: flex; }
-    .modal-box { background: #12132d; border: 2px solid #2a2a3c; border-radius: 16px; max-width: 800px; width: 100%; padding: 40px; position: relative; }
-    .close-modal { position: absolute; top: -15px; right: -15px; background: var(--hinge-pink); color: #fff; border: 2px solid #fff; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer; font-weight: bold; }
+    .modal-overlay { 
+      display: none; position: fixed; inset: 0; z-index: 2000; 
+      background: rgba(0,0,0,0.9); backdrop-filter: blur(10px); 
+      align-items: center; justify-content: center; padding: 24px; 
+      opacity: 0; transition: opacity 0.3s ease; 
+    }
+    .modal-overlay.open { display: flex; opacity: 1; }
+    
+    .modal-box { 
+      background: #0a0a14; border: 2px solid var(--win-border); 
+      border-radius: 8px; max-width: 800px; width: 100%; 
+      padding: 0; position: relative; 
+      transform: translateY(30px) scale(0.95); 
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+      box-shadow: 8px 8px 0 rgba(0,0,0,0.8);
+      overflow: hidden;
+    }
+    .modal-overlay.open .modal-box { transform: translateY(0) scale(1); }
+    
+    .modal-content-padding { padding: 32px; }
+    
+    .close-modal { 
+      position: absolute; top: 8px; right: 8px; 
+      background: #ff4a4a; color: #fff; 
+      border: 1px solid #fff; border-radius: 2px; 
+      width: 24px; height: 24px; display: flex; 
+      align-items: center; justify-content: center; 
+      font-size: 14px; cursor: pointer; font-weight: bold; 
+      transition: all 0.2s;
+    }
     .close-modal:hover { background: #ff0000; transform: scale(1.1); }
     
-    .modal-img-container { width: 100%; margin-bottom: 24px; display: none; }
-    .modal-img-container img { width: 100%; border-radius: 12px; }
+    .modal-img-container { width: 100%; display: none; background: #000; border-bottom: 2px solid var(--win-border); }
+    .modal-img-container img { width: 100%; display: block; }
 
-    .video-modal-box { max-width: 900px; width: 100%; background: #000; padding: 24px; border-radius: 16px; position: relative; }
+    .video-modal-box { 
+      max-width: 900px; width: 100%; background: #0a0a14; border: 2px solid var(--win-border);
+      padding: 0; border-radius: 8px; position: relative; box-shadow: 8px 8px 0 rgba(0,0,0,0.8);
+      transform: scale(0.9); opacity: 0; transition: transform 0.4s ease, opacity 0.3s ease;
+    }
+    .modal-overlay.open .video-modal-box { transform: scale(1); opacity: 1; }
     .video-player-wrapper { position: relative; padding-bottom: 56.25%; height: 0; }
     .video-player-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
     /* =========================================
        FOOTER
        ========================================= */
-    footer {
-      text-align: center;
-      padding: 40px 24px;
-      border-top: 1px solid #2a2a3c;
-      color: var(--hinge-muted);
-      font-size: 0.9rem;
-      margin-top: auto;
-    }
+    footer { text-align: center; padding: 40px 24px; border-top: 1px solid var(--win-border); color: var(--hinge-muted); font-size: 0.9rem; margin-top: auto; background: #080719; }
     footer p { margin-bottom: 8px; }
-    footer a { color: var(--hinge-blue); text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
+    footer a { color: var(--hinge-blue); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: white; text-decoration: underline; }
 
     /* =========================================
        RESPONSIVE
@@ -506,7 +549,13 @@
     </nav>
 
     <div class="hero-content">
-      <h1 class="hero-title">THE HINGE</h1>
+      <div class="hero-title-wrapper">
+        <div class="star star-1">✦</div>
+        <div class="star star-2">★</div>
+        <div class="star star-3">✦</div>
+        <h1 class="hero-title">THE HINGE</h1>
+      </div>
+      
       <p class="hero-description">
         Philippine popular culture in 2000-2010 was a transitional "hinge" period between broadcast-centered culture and the increasingly networked culture of the 2010s.
       </p>
@@ -531,30 +580,79 @@
     <h2 class="section-title">Museum Lobby</h2>
     <p class="section-subtitle">Six exhibition rooms await.</p>
     <div class="lobby-grid">
+      
+      <!-- Room 1 -->
       <div class="room-card" onclick="showSection('room-body')">
-        <h3>Room 01 — Body & Self-Image</h3>
-        <p>Low-rise jeans, side-swept bangs, chunky skate shoes, and the celebrity-driven beauty ideals that shaped youth identity.</p>
+        <div class="win-bar">
+          <div class="win-title">Room_01.exe</div>
+          <div class="win-controls"><div class="win-btn">_</div><div class="win-btn">□</div><div class="win-btn close">×</div></div>
+        </div>
+        <div class="win-content">
+          <h3>Body & Self-Image</h3>
+          <p>Low-rise jeans, side-swept bangs, chunky skate shoes, and the celebrity-driven beauty ideals that shaped youth identity.</p>
+        </div>
       </div>
+
+      <!-- Room 2 -->
       <div class="room-card" onclick="showSection('room-music')">
-        <h3>Room 02 — Music & Performance</h3>
-        <p>OPM rock renaissance, novelty dances, reality talent searches, and the commercialization of celebrity culture.</p>
+        <div class="win-bar">
+          <div class="win-title">Room_02.exe</div>
+          <div class="win-controls"><div class="win-btn">_</div><div class="win-btn">□</div><div class="win-btn close">×</div></div>
+        </div>
+        <div class="win-content">
+          <h3>Music & Performance</h3>
+          <p>OPM rock renaissance, novelty dances, reality talent searches, and the commercialization of celebrity culture.</p>
+        </div>
       </div>
+
+      <!-- Room 3 -->
       <div class="room-card" onclick="showSection('room-tech')">
-        <h3>Room 03 — Technology & Digital Culture</h3>
-        <p>Dial-up internet, internet cafés, Counter-Strike, Friendster, and the rise of mobile texting.</p>
+        <div class="win-bar">
+          <div class="win-title">Room_03.exe</div>
+          <div class="win-controls"><div class="win-btn">_</div><div class="win-btn">□</div><div class="win-btn close">×</div></div>
+        </div>
+        <div class="win-content">
+          <h3>Technology & Digital Culture</h3>
+          <p>Dial-up internet, internet cafés, Counter-Strike, Friendster, and the rise of mobile texting.</p>
+        </div>
       </div>
+
+      <!-- Room 4 -->
       <div class="room-card" onclick="showSection('room-themes')">
-        <h3>Room 04 — Intersecting Themes</h3>
-        <p>How celebrity, globalization, youth identity, and nostalgia reinforced one another across the decade.</p>
+        <div class="win-bar">
+          <div class="win-title">Room_04.exe</div>
+          <div class="win-controls"><div class="win-btn">_</div><div class="win-btn">□</div><div class="win-btn close">×</div></div>
+        </div>
+        <div class="win-content">
+          <h3>Intersecting Themes</h3>
+          <p>How celebrity, globalization, youth identity, and nostalgia reinforced one another across the decade.</p>
+        </div>
       </div>
+
+      <!-- Room 5 -->
       <div class="room-card" onclick="showSection('room-forms')">
-        <h3>Room 05 — Forms of Pop Culture</h3>
-        <p>The formats and platforms—television, music, fashion, and gaming—through which pop culture was experienced.</p>
+        <div class="win-bar">
+          <div class="win-title">Room_05.exe</div>
+          <div class="win-controls"><div class="win-btn">_</div><div class="win-btn">□</div><div class="win-btn close">×</div></div>
+        </div>
+        <div class="win-content">
+          <h3>Forms of Pop Culture</h3>
+          <p>The formats and platforms—television, music, fashion, and gaming—through which pop culture was experienced.</p>
+        </div>
       </div>
+
+      <!-- Room 6 -->
       <div class="room-card" onclick="showSection('room-patterns')">
-        <h3>Room 06 — Patterns, Continuity & Change</h3>
-        <p>What continued from earlier decades, what shifted, and how the 2000s became a bridge to the 2010s.</p>
+        <div class="win-bar">
+          <div class="win-title">Room_06.exe</div>
+          <div class="win-controls"><div class="win-btn">_</div><div class="win-btn">□</div><div class="win-btn close">×</div></div>
+        </div>
+        <div class="win-content">
+          <h3>Patterns, Continuity & Change</h3>
+          <p>What continued from earlier decades, what shifted, and how the 2000s became a bridge to the 2010s.</p>
+        </div>
       </div>
+
     </div>
   </section>
 
@@ -747,17 +845,25 @@
   <!-- ARTIFACT MODAL -->
   <div id="artifact-modal" class="modal-overlay">
     <div class="modal-box">
-      <button class="close-modal" onclick="closeArtifactModal()">×</button>
+      <div class="win-bar" style="border-bottom: 2px solid var(--win-border);">
+        <div class="win-title">Image_Viewer.exe</div>
+        <div class="win-controls"><div class="win-btn">_</div><div class="win-btn">□</div><div class="win-btn close" onclick="closeArtifactModal()">×</div></div>
+      </div>
       <div id="modal-img-container" class="modal-img-container"><img id="modal-img" src=""></div>
-      <h3 id="modal-title">Title</h3>
-      <p id="modal-desc" style="color:var(--hinge-muted); margin-top:10px;">Description</p>
+      <div class="modal-content-padding">
+        <h3 id="modal-title">Title</h3>
+        <p id="modal-desc" style="color:var(--hinge-muted); margin-top:10px;">Description</p>
+      </div>
     </div>
   </div>
 
   <!-- VIDEO MODAL -->
   <div id="video-modal" class="modal-overlay">
     <div class="video-modal-box">
-      <button class="close-modal" onclick="closeVideoModal()">×</button>
+      <div class="win-bar" style="border-bottom: 2px solid var(--win-border);">
+        <div class="win-title">Media_Player.exe</div>
+        <div class="win-controls"><div class="win-btn">_</div><div class="win-btn">□</div><div class="win-btn close" onclick="closeVideoModal()">×</div></div>
+      </div>
       <div class="video-player-wrapper" id="video-iframe-container"></div>
     </div>
   </div>
@@ -813,10 +919,17 @@
             card.onclick = () => openArtifactModal(video.title, video.desc, video.img);
           }
 
-          card.innerHTML = thumbHTML + `
+          let winBarHTML = `
+            <div class="win-bar">
+              <div class="win-title">${video.type === 'video' ? 'Video_File.avi' : 'Poster_Image.jpg'}</div>
+              <div class="win-controls"><div class="win-btn">_</div><div class="win-btn">□</div><div class="win-btn close">×</div></div>
+            </div>
+          `;
+
+          card.innerHTML = winBarHTML + thumbHTML + `
             <div class="video-info">
               <h4>${video.title}</h4>
-              <p>${video.type === 'video' ? 'Plays in website' : 'Visual Archive'}</p>
+              <p>${video.type === 'video' ? '▶ Play Media' : '🖼️ View Image'}</p>
             </div>
           `;
           container.appendChild(card);
@@ -830,10 +943,7 @@
     function showSection(id) {
       document.querySelectorAll('.section, .hero').forEach(sec => sec.classList.remove('active'));
       document.getElementById(id).classList.add('active');
-      
-      // Update navbar active state
       document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-      
       window.scrollTo(0,0);
     }
 
