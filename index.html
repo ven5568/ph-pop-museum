@@ -78,7 +78,6 @@
     
     .hinge-title { position: relative; font-size: clamp(4rem, 10vw, 8rem); font-weight: 900; color: var(--white); line-height: 1.1; margin-bottom: 16px; letter-spacing: -2px; text-transform: uppercase; }
     
-    /* Split Glitch for Hinge */
     .hinge-title::before, .hinge-title::after { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
     .hinge-title::before { left: 3px; text-shadow: -3px 0 var(--era-past); clip: rect(44px, 1000px, 90px, 0); animation: glitchPast 4s infinite linear alternate-reverse; }
     .hinge-title::after { left: -3px; text-shadow: 3px 0 var(--era-future); clip: rect(85px, 1000px, 140px, 0); animation: glitchFuture 3.5s infinite linear alternate-reverse; }
@@ -167,14 +166,37 @@
     .video-info p { font-size: 0.85rem; color: var(--gray); }
 
     /* MODALS */
-    .modal-overlay { display: none; position: fixed; inset: 0; z-index: 2000; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); align-items: center; justify-content: center; padding: 24px; opacity: 0; transition: opacity 0.3s; }
+    .modal-overlay { display: none; position: fixed; inset: 0; z-index: 2000; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); align-items: center; justify-content: center; padding: 24px; opacity: 0; transition: opacity 0.3s; }
     .modal-overlay.open { display: flex; opacity: 1; }
-    .modal-box { background: var(--window-bg); border: 1px solid var(--window-border); border-radius: 16px; max-width: 800px; width: 100%; padding: 40px; position: relative; transform: translateY(20px) scale(0.95); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
+    .modal-box { background: var(--window-bg); border: 2px solid var(--window-border); border-radius: 16px; max-width: 800px; width: 100%; padding: 40px; position: relative; transform: translateY(20px) scale(0.95); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
     .modal-overlay.open .modal-box { transform: translateY(0) scale(1); }
     .modal-box h3 { font-size: 1.8rem; margin-bottom: 8px; color: var(--era-future); }
     .modal-box p { color: var(--silver); font-size: 1.05rem; line-height: 1.8; }
-    .close-modal { position: absolute; top: 16px; right: 20px; background: none; border: none; color: var(--gray); font-size: 2rem; transition: 0.3s; }
-    .close-modal:hover { color: var(--era-past); transform: rotate(90deg); }
+    
+    /* HIGHLY VISIBLE CLOSE BUTTON */
+    .close-modal { 
+      position: absolute; 
+      top: -15px; 
+      right: -15px; 
+      background: var(--era-past); 
+      color: var(--white); 
+      border: 2px solid var(--white); 
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem; 
+      font-weight: bold;
+      transition: 0.3s; 
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      z-index: 10;
+    }
+    .close-modal:hover { 
+      background: #ff0000; 
+      transform: scale(1.1) rotate(90deg); 
+    }
 
     /* IMAGE INSIDE MODAL */
     .modal-img-container {
@@ -192,7 +214,7 @@
     }
 
     /* VIDEO PLAYER MODAL */
-    .video-modal-box { max-width: 900px; width: 100%; background: var(--black); padding: 24px; border-radius: 16px; border: 1px solid var(--window-border); position: relative; transform: scale(0.95); transition: 0.4s; }
+    .video-modal-box { max-width: 900px; width: 100%; background: var(--black); padding: 24px; border-radius: 16px; border: 2px solid var(--window-border); position: relative; transform: scale(0.95); transition: 0.4s; }
     .modal-overlay.open .video-modal-box { transform: scale(1); }
     .video-player-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-bottom: 16px; background: #000; border-radius: 8px; border: 1px solid var(--window-border); }
     .video-player-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
@@ -236,6 +258,7 @@
       .video-grid { grid-template-columns: 1fr; }
       .section-title { font-size: 2rem; }
       .hinge-title { font-size: 3.5rem; }
+      .close-modal { top: 10px; right: 10px; }
     }
   </style>
 </head>
@@ -450,8 +473,8 @@
     { room: 4, title: "Asianovela Theme Songs", type: "video", url: "https://www.youtube.com/watch?v=q4qdG57QufE" },
     { room: 4, title: "Global Influences", type: "poster", img: "room%204.jpeg", tag: "GLOBAL", desc: "Global influences shaping local tastes." },
     { room: 5, title: "Star In A Million Season 2", type: "video", url: "https://www.youtube.com/live/oJ-7LmWmr0o" },
-    // FIXED LINK: The previous one was removed by YouTube. This is the SexBomb Girls vs. EB Babes showdown.
-    { room: 5, title: "Itaktak Mo (SexBomb Girls)", type: "video", url: "https://www.youtube.com/watch?v=U4sQwgzgNlE" },
+    // UPDATED ITAKTAK MO LINK
+    { room: 5, title: "Itaktak Mo (Joey De Leon)", type: "video", url: "https://www.youtube.com/watch?v=nDKfY_DqmSo" },
     { room: 5, title: "Philippine TV & Reality Shows", type: "poster", img: "room%205.jpeg", tag: "TV", desc: "Reality talent searches and prime-time dramas." },
     { room: 6, title: "Analog to Digital Podcast", type: "external", url: "https://music.youtube.com/podcast/pUmj1GQBwKs", tag: "TALK", desc: "TiToTeaTime discusses the 2000s transition (opens externally)." },
     { room: 6, title: "Nostalgia & Change", type: "poster", img: "room%206.jpeg", tag: "RETRO", desc: "How the 2000s bridged broadcast to networked culture." }
@@ -593,6 +616,14 @@
       glow.style.top = e.clientY + 'px';
     });
   }
+
+  // CLICK OUTSIDE TO CLOSE MODALS
+  document.getElementById('artifact-modal').addEventListener('click', function(e) {
+    if(e.target === this) closeArtifactModal();
+  });
+  document.getElementById('video-modal').addEventListener('click', function(e) {
+    if(e.target === this) closeVideoModal();
+  });
 
   // Initialize
   renderVideos();
