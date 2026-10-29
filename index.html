@@ -283,15 +283,43 @@
     .section { display: none; padding: 120px 24px 60px; max-width: 1200px; margin: 0 auto; min-height: 100vh; }
     .section.active { display: block; }
     
-    .section-title { font-family: 'Orbitron', sans-serif; font-size: 3rem; color: white; margin-bottom: 20px; }
-    .section-subtitle { color: var(--hinge-muted); margin-bottom: 40px; font-size: 1.1rem; }
+    .section-title { font-family: 'Orbitron', sans-serif; font-size: 3rem; color: white; margin-bottom: 10px; }
+    .section-subtitle { color: var(--hinge-muted); margin-bottom: 40px; font-size: 1.1rem; line-height: 1.6; }
+    
+    /* NEW: Room Details Styling */
+    .room-details {
+      background: rgba(18, 19, 45, 0.6);
+      border-left: 4px solid var(--hinge-blue);
+      padding: 24px 32px;
+      border-radius: 0 12px 12px 0;
+      margin-bottom: 40px;
+      backdrop-filter: blur(10px);
+    }
+    .room-details p {
+      margin-bottom: 12px;
+      font-size: 1.05rem;
+      color: #e2e8f0;
+      line-height: 1.7;
+    }
+    .room-details h4 {
+      color: var(--hinge-pink);
+      font-family: 'Orbitron', sans-serif;
+      margin: 20px 0 10px;
+      font-size: 1.1rem;
+    }
+    .room-details ul {
+      margin-left: 20px;
+      color: var(--hinge-muted);
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
 
     /* Lobby */
     .lobby-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
-    .room-card { background: #12132d; border: 1px solid #2a2a3c; border-radius: 16px; padding: 32px; cursor: pointer; color: white; transition: 0.3s; }
+    .room-card { background: #12132d; border: 1px solid #2a2a3c; border-radius: 16px; padding: 32px; cursor: pointer; color: white; transition: 0.3s; display: flex; flex-direction: column; }
     .room-card:hover { transform: translateY(-5px); border-color: var(--hinge-blue); box-shadow: 0 10px 20px rgba(0, 217, 255, 0.1); }
     .room-card h3 { font-family: 'Orbitron', sans-serif; margin-bottom: 10px; font-size: 1.3rem; color: var(--hinge-blue); }
-    .room-card p { color: var(--hinge-muted); font-size: 0.95rem; }
+    .room-card p { color: var(--hinge-muted); font-size: 0.95rem; flex-grow: 1; }
 
     /* Back Button */
     .back-btn { background: #12132d; color: var(--hinge-muted); border: 1px solid #2a2a3c; padding: 12px 24px; border-radius: 50px; margin-bottom: 32px; cursor: pointer; font-weight: 600; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px; }
@@ -299,6 +327,7 @@
 
     /* Videos & Posters */
     .video-section { margin-top: 40px; }
+    .video-section h3 { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; margin-bottom: 20px; color: var(--hinge-yellow); }
     .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
     .video-card { background: #12132d; border: 1px solid #2a2a3c; border-radius: 12px; overflow: hidden; cursor: pointer; transition: 0.3s; }
     .video-card:hover { border-color: var(--hinge-blue); transform: translateY(-5px); }
@@ -488,27 +517,27 @@
     <div class="lobby-grid">
       <div class="room-card" onclick="showSection('room-body')">
         <h3>Room 01 — Body & Self-Image</h3>
-        <p>Y2K fashion, side-swept bangs, and celebrity-driven beauty.</p>
+        <p>Low-rise jeans, side-swept bangs, chunky skate shoes, and the celebrity-driven beauty ideals that shaped youth identity.</p>
       </div>
       <div class="room-card" onclick="showSection('room-music')">
         <h3>Room 02 — Music & Performance</h3>
-        <p>OPM rock renaissance, novelty dances, and reality talent searches.</p>
+        <p>OPM rock renaissance, novelty dances, reality talent searches, and the commercialization of celebrity culture.</p>
       </div>
       <div class="room-card" onclick="showSection('room-tech')">
         <h3>Room 03 — Technology & Digital Culture</h3>
-        <p>Internet cafés, Counter-Strike, Friendster, and texting.</p>
+        <p>Dial-up internet, internet cafés, Counter-Strike, Friendster, and the rise of mobile texting.</p>
       </div>
       <div class="room-card" onclick="showSection('room-themes')">
         <h3>Room 04 — Intersecting Themes</h3>
-        <p>Celebrity, globalization, youth identity, and nostalgia.</p>
+        <p>How celebrity, globalization, youth identity, and nostalgia reinforced one another across the decade.</p>
       </div>
       <div class="room-card" onclick="showSection('room-forms')">
         <h3>Room 05 — Forms of Pop Culture</h3>
-        <p>TV, music, fashion, and gaming platforms.</p>
+        <p>The formats and platforms—television, music, fashion, and gaming—through which pop culture was experienced.</p>
       </div>
       <div class="room-card" onclick="showSection('room-patterns')">
-        <h3>Room 06 — Patterns & Change</h3>
-        <p>How the 2000s bridged broadcast and networked culture.</p>
+        <h3>Room 06 — Patterns, Continuity & Change</h3>
+        <p>What continued from earlier decades, what shifted, and how the 2000s became a bridge to the 2010s.</p>
       </div>
     </div>
   </section>
@@ -517,45 +546,138 @@
   <section id="room-body" class="section">
     <button class="back-btn" onclick="showSection('lobby')">← Return to Lobby</button>
     <h2 class="section-title">Room 01 — Body & Self-Image</h2>
-    <div class="video-section"><div class="video-grid" id="videos-room-1"></div></div>
+    
+    <div class="room-details">
+      <p><strong>Exhibition Purpose:</strong> Explore celebrity-driven beauty, fashion, and youth self-expression during 2000–2010.</p>
+      <h4>Featured Topics:</h4>
+      <ul>
+        <li>Low-rise jeans, side-swept bangs, and chunky skate shoes.</li>
+        <li>Y2K-inspired fashion and celebrity-driven beauty standards.</li>
+        <li>Youth identity, confidence, and belonging.</li>
+      </ul>
+    </div>
+
+    <div class="video-section">
+      <h3>Watch the Archive</h3>
+      <div class="video-grid" id="videos-room-1"></div>
+    </div>
   </section>
 
   <!-- ROOM 02 -->
   <section id="room-music" class="section">
     <button class="back-btn" onclick="showSection('lobby')">← Return to Lobby</button>
     <h2 class="section-title">Room 02 — Music & Performance</h2>
-    <div class="video-section"><div class="video-grid" id="videos-room-2"></div></div>
+    
+    <div class="room-details">
+      <p><strong>Exhibition Purpose:</strong> Explore popular music and entertainment in the Philippines during the 2000s.</p>
+      <h4>Featured Topics:</h4>
+      <ul>
+        <li>OPM rock renaissance and novelty dances.</li>
+        <li>Reality talent searches and Pinoy pop dreams.</li>
+        <li>Celebrity commercialization and music as youth expression.</li>
+      </ul>
+    </div>
+
+    <div class="video-section">
+      <h3>Watch the Archive</h3>
+      <div class="video-grid" id="videos-room-2"></div>
+    </div>
   </section>
 
   <!-- ROOM 03 -->
   <section id="room-tech" class="section">
     <button class="back-btn" onclick="showSection('lobby')">← Return to Lobby</button>
-    <h2 class="section-title">Room 03 — Technology</h2>
-    <div class="video-section"><div class="video-grid" id="videos-room-3"></div></div>
+    <h2 class="section-title">Room 03 — Technology & Digital Culture</h2>
+    
+    <div class="room-details">
+      <p><strong>Exhibition Purpose:</strong> Explore the early digital experiences that influenced communication, gaming, and online identity during 2000–2010.</p>
+      <h4>Featured Topics:</h4>
+      <ul>
+        <li>Dial-up internet and internet cafés.</li>
+        <li>PC gaming and Counter-Strike.</li>
+        <li>Friendster, mobile texting, and early online identity.</li>
+      </ul>
+    </div>
+
+    <div class="video-section">
+      <h3>Watch the Archive</h3>
+      <div class="video-grid" id="videos-room-3"></div>
+    </div>
   </section>
 
   <!-- ROOM 04 -->
   <section id="room-themes" class="section">
     <button class="back-btn" onclick="showSection('lobby')">← Return to Lobby</button>
     <h2 class="section-title">Room 04 — Intersecting Themes</h2>
-    <div class="video-section"><div class="video-grid" id="videos-room-4"></div></div>
+    
+    <div class="room-details">
+      <p><strong>Exhibition Purpose:</strong> Explain how different aspects of Philippine popular culture influenced and reinforced one another.</p>
+      <h4>Featured Topics:</h4>
+      <ul>
+        <li>Celebrity & Digital Culture (Idols go online, fan communities grow).</li>
+        <li>Globalization & Transnational Media (Asianovelas, anime, global music).</li>
+        <li>Youth Identity Formation (Combining local and global influences).</li>
+        <li>Affective & Nostalgic Attachments (Media experiences creating lasting memories).</li>
+      </ul>
+    </div>
+
+    <div class="video-section">
+      <h3>Watch the Archive</h3>
+      <div class="video-grid" id="videos-room-4"></div>
+    </div>
   </section>
 
   <!-- ROOM 05 -->
   <section id="room-forms" class="section">
     <button class="back-btn" onclick="showSection('lobby')">← Return to Lobby</button>
     <h2 class="section-title">Room 05 — Forms of Pop Culture</h2>
-    <div class="video-section"><div class="video-grid" id="videos-room-5"></div></div>
+    
+    <div class="room-details">
+      <p><strong>Exhibition Purpose:</strong> Explore the formats and platforms—television, music, fashion, and gaming—through which pop culture was experienced.</p>
+      <h4>Featured Topics:</h4>
+      <ul>
+        <li>Music, television, and performance arts.</li>
+        <li>Digital culture and gaming.</li>
+        <li>Fashion and personal style.</li>
+        <li>The relationship between traditional media and emerging digital platforms.</li>
+      </ul>
+    </div>
+
+    <div class="video-section">
+      <h3>Watch the Archive</h3>
+      <div class="video-grid" id="videos-room-5"></div>
+    </div>
   </section>
 
   <!-- ROOM 06 -->
   <section id="room-patterns" class="section">
     <button class="back-btn" onclick="showSection('lobby')">← Return to Lobby</button>
-    <h2 class="section-title">Room 06 — Patterns & Change</h2>
-    <div class="video-section"><div class="video-grid" id="videos-room-6"></div></div>
+    <h2 class="section-title">Room 06 — Patterns, Continuity & Change</h2>
+    
+    <div class="room-details">
+      <p><strong>Exhibition Purpose:</strong> What continued from earlier decades, what shifted, and how the 2000s became a bridge to the 2010s.</p>
+      <h4>Three Recurring Patterns:</h4>
+      <ul>
+        <li>Youth subcultures, identity, and cultural continuity.</li>
+        <li>Transnational media consumption and local indigenization.</li>
+        <li>Commercialization of celebrity culture and performance.</li>
+      </ul>
+      <h4>Four Major Changes:</h4>
+      <ul>
+        <li>Youth identity moved partly online through Friendster and texting.</li>
+        <li>Foreign influences diversified through East Asian dramas and anime.</li>
+        <li>Media access became more self-directed through internet cafés.</li>
+        <li>Reality television created additional pathways to fame.</li>
+      </ul>
+    </div>
+
+    <div class="video-section">
+      <h3>Watch the Archive</h3>
+      <div class="video-grid" id="videos-room-6"></div>
+    </div>
   </section>
 
-  <!-- TIMELINE (RESTORED & UPGRADED) -->
+  <!-- TIMELINE -->
   <section id="timeline-section" class="section">
     <h2 class="section-title">The Hinge Timeline</h2>
     <p class="section-subtitle">Tracing the shift from broadcast to network.</p>
@@ -582,7 +704,7 @@
     </div>
   </section>
 
-  <!-- REFERENCES (RESTORED) -->
+  <!-- REFERENCES -->
   <section id="references" class="section">
     <h2 class="section-title">References & Copyright</h2>
     <p class="section-subtitle">Sources, credits, and fair use notice.</p>
