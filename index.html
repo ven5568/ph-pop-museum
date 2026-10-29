@@ -9,6 +9,9 @@
       --black: #070709; --charcoal: #121217; --silver: #d1d5db;
       --electric-blue: #00a8ff; --purple: #8b5cf6; --pink: #ff6b9d;
       --white: #ffffff; --gray: #9ca3af; --window-bg: #161622; --window-border: #2a2a3c;
+      
+      /* PDF Poster Colors */
+      --ppt-pink: #ff007f; --ppt-lime: #b8ff00; --ppt-cyan: #00e5ff;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     
@@ -134,40 +137,11 @@
     .video-thumb .play-icon { width: 54px; height: 54px; border-radius: 50%; background: rgba(255,255,255,0.1); backdrop-filter: blur(4px); border: 2px solid var(--white); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: white; transition: all 0.3s; z-index: 3; }
     .video-card:hover .play-icon { transform: scale(1.1); background: var(--electric-blue); border-color: var(--electric-blue); color: var(--black); box-shadow: 0 0 20px var(--electric-blue); }
     
-    /* CUSTOM CSS POSTERS (No more emojis) */
-    .poster-art { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1; overflow: hidden; }
-    .poster-art::before { content: ''; position: absolute; inset: 0; opacity: 0.8; }
-    
-    /* Poster 1: Emo/Y2K Stripes */
-    .art-emo::before { background: repeating-linear-gradient(45deg, #1a1a1a, #1a1a1a 10px, #2a2a2a 10px, #2a2a2a 20px); }
-    .art-emo .shape { width: 80px; height: 80px; border: 4px solid var(--pink); border-radius: 50%; position: relative; z-index: 2; box-shadow: 0 0 15px var(--pink); }
-    .art-emo .shape::after { content: ''; position: absolute; top: 50%; left: -20px; width: 120px; height: 4px; background: var(--pink); transform: rotate(-45deg); }
-    
-    /* Poster 2: Skate/Y2K Grid */
-    .art-skate::before { background: linear-gradient(135deg, #0a0a0a, #1a1a2e); }
-    .art-skate .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; z-index: 2; opacity: 0.6; }
-    .art-skate .grid div { width: 20px; height: 20px; background: var(--electric-blue); }
-    
-    /* Poster 3: Friendster UI */
-    .art-friendster::before { background: #e8e0d8; }
-    .art-friendster .window { background: white; width: 80%; height: 60%; border-radius: 4px; border: 2px solid #ccc; z-index: 2; display: flex; flex-direction: column; overflow: hidden; }
-    .art-friendster .window-header { background: #d0c8c0; height: 20px; width: 100%; }
-    .art-friendster .window-body { display: flex; padding: 8px; gap: 8px; align-items: center; }
-    .art-friendster .window-avatar { width: 30px; height: 30px; border-radius: 50%; background: #ff6b9d; }
-    .art-friendster .window-lines { flex: 1; display: flex; flex-direction: column; gap: 4px; }
-    .art-friendster .window-lines div { height: 4px; background: #ccc; width: 100%; }
-    .art-friendster .window-lines div:last-child { width: 60%; }
-
-    /* Poster 4: MYX TV */
-    .art-myx::before { background: linear-gradient(135deg, #ec4899, #8b5cf6); }
-    .art-myx .tv-screen { width: 80%; height: 60%; background: #111; border-radius: 12px; border: 4px solid #333; z-index: 2; position: relative; display: flex; align-items: center; justify-content: center; }
-    .art-myx .tv-screen::after { content: ''; width: 40px; height: 40px; border-radius: 50%; background: var(--electric-blue); box-shadow: 0 0 20px var(--electric-blue); }
-
-    /* Poster 5: Cassette (Nostalgia) */
-    .art-tape::before { background: linear-gradient(135deg, #6366f1, #8b5cf6); }
-    .art-tape .cassette { width: 100px; height: 60px; background: #222; border-radius: 8px; border: 2px solid #555; z-index: 2; position: relative; display: flex; justify-content: center; align-items: center; gap: 20px; }
-    .art-tape .reel { width: 24px; height: 24px; background: #444; border-radius: 50%; border: 2px solid #888; }
-    .art-tape .label { position: absolute; bottom: 4px; width: 80%; height: 10px; background: #fff; border-radius: 2px; opacity: 0.8; }
+    /* PDF-STYLE COLLAGE POSTERS */
+    .poster-art { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1; overflow: hidden; background-size: cover; background-position: center; }
+    .poster-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); z-index: 2; }
+    .poster-text { position: absolute; bottom: 15px; left: 15px; z-index: 3; font-size: 1.2rem; font-weight: 900; color: var(--white); text-transform: uppercase; letter-spacing: 1px; text-shadow: 2px 2px 0px var(--ppt-pink); }
+    .poster-sticker { position: absolute; top: 15px; right: 15px; z-index: 3; background: var(--ppt-lime); color: #000; padding: 4px 12px; border-radius: 20px; font-weight: 800; font-size: 0.75rem; transform: rotate(5deg); border: 2px solid #000; box-shadow: 3px 3px 0px #000; }
 
     .video-info { padding: 20px; position: relative; z-index: 3; background: var(--window-bg); }
     .video-info h4 { font-size: 1rem; margin-bottom: 6px; }
@@ -429,32 +403,34 @@
 </div>
 
 <script>
-  // 1. MUSEUM DATA: Real Videos & Custom Art Posters
+  // 1. MUSEUM DATA: Real Videos & PDF-Style Collage Posters
   const museumVideos = [
-    // ROOM 1: Posters
-    { room: 1, title: "2000s Pinoy Emo Fashion", type: "poster", posterClass: "art-emo", desc: "Visual exploration of side-swept bangs and emo aesthetics." },
-    { room: 1, title: "Filipino Y2K & Skate Style", type: "poster", posterClass: "art-skate", desc: "Chunky shoes, low-rise jeans, and mall culture." },
+    // ROOM 1: Posters using image from your PDF (trends)
+    { room: 1, title: "Y2K Fashion Trends", type: "poster", img: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=600&auto=format&fit=crop", tag: "CHIC", desc: "Low-rise jeans, side-swept bangs, and chunky skate shoes." },
+    { room: 1, title: "Emo & Skater Culture", type: "poster", img: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=600&auto=format&fit=crop", tag: "VIBES", desc: "The influence of OPM rock fandom on youth fashion." },
     
-    // ROOM 2: Verified Videos
+    // ROOM 2: Verified Videos & Eraserheads/Rivermaya Poster
     { room: 2, title: "Hale — Broken Sonnet", type: "video", url: "https://www.youtube.com/watch?v=WurY8WdS8Fw" },
     { room: 2, title: "Sponge Cola — Jeepney", type: "video", url: "https://www.youtube.com/watch?v=KgxvglVEylo" },
-    { room: 2, title: "OPM Rock Playlist", type: "external", url: "https://music.youtube.com/playlist?list=PL6Y3Nje4JRGVHZ5zlxPZ6K9MniXP-ukOd", posterClass: "art-emo", desc: "Full playlist of 2000s OPM hits (opens externally)." },
+    { room: 2, title: "OPM Rock Renaissance", type: "poster", img: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=600&auto=format&fit=crop", tag: "OPM", desc: "Eraserheads, Rivermaya, and Kamikazee defined the era." },
     
-    // ROOM 3: Verified Videos & Posters
+    // ROOM 3: Verified Videos & Friendster/PC Gaming Poster
     { room: 3, title: "Counter-Strike 1.6 Internet Cafe", type: "video", url: "https://www.youtube.com/watch?v=j5MvwIokLiw" },
-    { room: 3, title: "Friendster & Top 8 Nostalgia", type: "poster", posterClass: "art-friendster", desc: "A visual deep dive into early social networking profiles." },
+    { room: 3, title: "Dial-Up & PC Gaming", type: "poster", img: "https://images.unsplash.com/photo-1552820728-8b83bb6b773f?q=80&w=600&auto=format&fit=crop", tag: "TECH", desc: "Internet cafes, Counter-Strike, and dial-up internet." },
+    { room: 3, title: "Friendster Top 8", type: "poster", img: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=600&auto=format&fit=crop", tag: "SOCIAL", desc: "Testimonials, Top 8 friends, and early online identity." },
     
-    // ROOM 4: Verified Videos & Posters
+    // ROOM 4: Verified Videos & Asianovela Poster
     { room: 4, title: "Asianovela Theme Songs", type: "video", url: "https://www.youtube.com/watch?v=q4qdG57QufE" },
-    { room: 4, title: "MYX & Music Television", type: "poster", posterClass: "art-myx", desc: "The golden era of music videos and VJ culture." },
+    { room: 4, title: "Global Influences", type: "poster", img: "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?q=80&w=600&auto=format&fit=crop", tag: "GLOBAL", desc: "Meteor Garden and the rise of Asianovelas." },
     
-    // ROOM 5: Verified Videos (FIXED ITAKTAK MO LINK)
+    // ROOM 5: Verified Videos & TV Poster
     { room: 5, title: "Star In A Million Season 2", type: "video", url: "https://www.youtube.com/live/oJ-7LmWmr0o" },
-    { room: 5, title: "Itaktak Mo (Starstruck Version)", type: "video", url: "https://www.youtube.com/watch?v=wZ3jex4kZ7E" },
+    { room: 5, title: "Itaktak Mo (Starstruck)", type: "video", url: "https://www.youtube.com/watch?v=wZ3jex4kZ7E" },
+    { room: 5, title: "Philippine TV & Reality Shows", type: "poster", img: "https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=80&w=600&auto=format&fit=crop", tag: "TV", desc: "Reality talent searches and prime-time dramas." },
     
-    // ROOM 6: Posters & External Podcast
-    { room: 6, title: "TiToTeaTime: Analog to Digital", type: "external", url: "https://music.youtube.com/podcast/pUmj1GQBwKs", posterClass: "art-tape", desc: "Podcast discussing the 2000s transition (opens externally)." },
-    { room: 6, title: "Growing Up in the 2000s", type: "poster", posterClass: "art-tape", desc: "Nostalgic look at childhood, school life, and technology." }
+    // ROOM 6: Verified Podcast & Retrospective Poster
+    { room: 6, title: "Analog to Digital Podcast", type: "external", url: "https://music.youtube.com/podcast/pUmj1GQBwKs", tag: "TALK", desc: "TiToTeaTime discusses the 2000s transition (opens externally)." },
+    { room: 6, title: "Nostalgia & Change", type: "poster", img: "https://images.unsplash.com/photo-1516245834210-c4c142787335?q=80&w=600&auto=format&fit=crop", tag: "RETRO", desc: "How the 2000s bridged broadcast to networked culture." }
   ];
 
   // 2. RENDER CARDS
@@ -475,36 +451,35 @@
           thumbHTML = `<div class="video-thumb"><div class="play-icon">▶</div></div>`;
           card.onclick = () => openVideoModal(video.title, video.url);
         } else if (video.type === 'external') {
-          // External link with CSS art
+          // External link with PDF-style poster
           thumbHTML = `
             <div class="video-thumb">
-              <div class="poster-art ${video.posterClass}">
-                ${video.posterClass === 'art-emo' ? '<div class="shape"></div>' : ''}
-                ${video.posterClass === 'art-tape' ? '<div class="cassette"><div class="reel"></div><div class="reel"></div><div class="label"></div></div>' : ''}
+              <div class="poster-art" style="background-image: url('${video.img || "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=600&auto=format&fit=crop"}');">
+                <div class="poster-overlay"></div>
+                <div class="poster-sticker">${video.tag}</div>
+                <div class="poster-text">${video.title}</div>
               </div>
               <div class="play-icon">↗</div>
             </div>`;
           card.onclick = () => window.open(video.url, '_blank');
         } else if (video.type === 'poster') {
-          // Pure CSS art poster
+          // PDF-style visual poster
           thumbHTML = `
             <div class="video-thumb">
-              <div class="poster-art ${video.posterClass}">
-                ${video.posterClass === 'art-emo' ? '<div class="shape"></div>' : ''}
-                ${video.posterClass === 'art-skate' ? '<div class="grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>' : ''}
-                ${video.posterClass === 'art-friendster' ? '<div class="window"><div class="window-header"></div><div class="window-body"><div class="window-avatar"></div><div class="window-lines"><div></div><div></div></div></div></div>' : ''}
-                ${video.posterClass === 'art-myx' ? '<div class="tv-screen"></div>' : ''}
-                ${video.posterClass === 'art-tape' ? '<div class="cassette"><div class="reel"></div><div class="reel"></div><div class="label"></div></div>' : ''}
+              <div class="poster-art" style="background-image: url('${video.img}');">
+                <div class="poster-overlay"></div>
+                <div class="poster-sticker">${video.tag}</div>
+                <div class="poster-text">${video.title}</div>
               </div>
             </div>`;
-          card.onclick = () => alert(video.desc || "Visual archive exhibit.");
+          card.onclick = () => openArtifactModal(video.title, video.desc);
         }
 
         // Setup text info
         let infoHTML = `
           <div class="video-info">
             <h4>${video.title}</h4>
-            <p>${video.type === 'video' ? 'Plays in website' : video.type === 'external' ? 'Opens externally' : 'Visual Poster'}</p>
+            <p>${video.type === 'video' ? 'Plays in website' : video.type === 'external' ? 'Opens externally' : 'Visual Archive'}</p>
           </div>
         `;
 
