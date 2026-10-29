@@ -47,7 +47,7 @@
       background:
         linear-gradient(90deg, rgba(8, 5, 22, 0.45), rgba(8, 5, 22, 0.78) 35%, rgba(8, 5, 22, 0.72) 65%, rgba(8, 5, 22, 0.42)),
         linear-gradient(0deg, rgba(5, 9, 27, 0.88), rgba(8, 5, 22, 0.12)),
-        url('https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?q=80&w=2500&auto=format&fit=crop'); /* City Background */
+        url('https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?q=80&w=2500&auto=format&fit=crop'); 
 
       background-size: cover;
       background-position: center;
@@ -67,7 +67,7 @@
     }
 
     /* =========================================
-       COLLAGE IMAGES (LINKS PROVIDED)
+       COLLAGE IMAGES
        ========================================= */
     .collage-item {
       position: absolute;
@@ -79,35 +79,30 @@
       pointer-events: none;
     }
 
-    /* 1. JEEPNEY */
     .item-jeepney { 
       bottom: 15%; left: 2%; width: 350px; height: 300px; 
       transform: rotate(-5deg); 
       background-image: url('https://images.unsplash.com/photo-1583273086045-15275b2e2c8f?q=80&w=800&auto=format&fit=crop'); 
     }
 
-    /* 2. TV */
     .item-tv { 
       bottom: 0%; left: 2%; width: 350px; height: 300px; 
       transform: rotate(3deg); 
       background-image: url('https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?q=80&w=800&auto=format&fit=crop'); 
     }
 
-    /* 3. NOKIA PHONE */
     .item-phone { 
       top: 25%; right: 2%; width: 200px; height: 400px; 
       transform: rotate(12deg); 
       background-image: url('https://images.unsplash.com/photo-1580910051074-3eb694886505?q=80&w=800&auto=format&fit=crop'); 
     }
 
-    /* 4. MAGAZINE */
     .item-mag { 
       bottom: 0%; right: 10%; width: 320px; height: 220px; 
       transform: rotate(-8deg); 
       background-image: url('https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?q=80&w=800&auto=format&fit=crop'); 
     }
 
-    /* 5. CDs */
     .item-cd { 
       bottom: 2%; left: 28%; width: 160px; height: 160px; 
       transform: rotate(-15deg); 
@@ -284,13 +279,47 @@
     }
 
     /* Sections */
-    .section { display: none; padding: 120px 24px; max-width: 1200px; margin: 0 auto; min-height: 100vh; }
+    .section { display: none; padding: 120px 24px 60px; max-width: 1200px; margin: 0 auto; min-height: 100vh; }
     .section.active { display: block; }
     .section-title { font-family: 'Orbitron', sans-serif; font-size: 3rem; color: white; margin-bottom: 20px; }
     
-    .lobby-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+    .lobby-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 40px; }
     .room-card { background: #12132d; border: 1px solid #2a2a3c; border-radius: 16px; padding: 32px; cursor: pointer; color: white; transition: 0.3s; }
     .room-card:hover { transform: translateY(-5px); border-color: var(--hinge-blue); }
+    .room-card h3 { font-family: 'Orbitron', sans-serif; margin-bottom: 10px; font-size: 1.3rem; }
+    .room-card p { color: var(--hinge-muted); font-size: 0.95rem; }
+
+    .back-btn { background: #12132d; color: var(--hinge-muted); border: 1px solid #2a2a3c; padding: 12px 24px; border-radius: 50px; margin-bottom: 32px; cursor: pointer; font-weight: 600; transition: 0.3s; }
+    .back-btn:hover { color: white; border-color: var(--hinge-blue); }
+
+    /* Videos & Posters */
+    .video-section { margin-top: 40px; }
+    .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .video-card { background: #12132d; border: 1px solid #2a2a3c; border-radius: 12px; overflow: hidden; cursor: pointer; transition: 0.3s; }
+    .video-card:hover { border-color: var(--hinge-blue); transform: translateY(-5px); }
+    
+    .video-thumb { height: 250px; background: #000; display: flex; align-items: center; justify-content: center; position: relative; background-size: contain; background-position: center; background-repeat: no-repeat; }
+    
+    .play-icon { width: 50px; height: 50px; background: rgba(255,255,255,0.2); border: 2px solid white; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: 0.3s; }
+    .video-card:hover .play-icon { background: var(--hinge-blue); border-color: var(--hinge-blue); color: black; transform: scale(1.1); }
+    
+    .video-info { padding: 20px; }
+    .video-info h4 { font-size: 1rem; margin-bottom: 5px; }
+    .video-info p { font-size: 0.85rem; color: var(--hinge-muted); }
+
+    /* Modals */
+    .modal-overlay { display: none; position: fixed; inset: 0; z-index: 2000; background: rgba(0,0,0,0.9); backdrop-filter: blur(8px); align-items: center; justify-content: center; padding: 24px; }
+    .modal-overlay.open { display: flex; }
+    .modal-box { background: #12132d; border: 2px solid #2a2a3c; border-radius: 16px; max-width: 800px; width: 100%; padding: 40px; position: relative; }
+    .close-modal { position: absolute; top: -15px; right: -15px; background: var(--hinge-pink); color: #fff; border: 2px solid #fff; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer; font-weight: bold; }
+    .close-modal:hover { background: #ff0000; transform: scale(1.1); }
+    
+    .modal-img-container { width: 100%; margin-bottom: 24px; display: none; }
+    .modal-img-container img { width: 100%; border-radius: 12px; }
+
+    .video-modal-box { max-width: 900px; width: 100%; background: #000; padding: 24px; border-radius: 16px; position: relative; }
+    .video-player-wrapper { position: relative; padding-bottom: 56.25%; height: 0; }
+    .video-player-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
     @media (max-width: 1024px) {
       .collage-item { opacity: 0.15; }
@@ -308,16 +337,12 @@
       .btn { width: min(100%, 320px); }
       .collage-item { display: none; }
     }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
-    }
   </style>
 </head>
 <body>
 
+  <!-- HERO SECTION -->
   <section id="hero" class="hero active">
-    
     <div class="collage-item item-jeepney"></div>
     <div class="collage-item item-tv"></div>
     <div class="collage-item item-phone"></div>
@@ -336,11 +361,9 @@
 
     <div class="hero-content">
       <h1 class="hero-title">THE HINGE</h1>
-      
       <p class="hero-description">
         Philippine popular culture in 2000-2010 was a transitional "hinge" period between broadcast-centered culture and the increasingly networked culture of the 2010s.
       </p>
-      
       <p class="hero-quote">"Memories. Moments. Movements. We Lived It."</p>
       
       <div class="hero-buttons">
@@ -354,36 +377,242 @@
         </a>
       </div>
     </div>
-
     <div class="hero-ribbon"></div>
   </section>
 
+  <!-- MUSEUM LOBBY -->
   <section id="lobby" class="section">
     <h2 class="section-title">Museum Lobby</h2>
+    <p style="color: var(--hinge-muted);">Six exhibition rooms await.</p>
     <div class="lobby-grid">
-      <div class="room-card" onclick="alert('Room 1 Opening soon!')"><h3>Room 01 — Body & Self-Image</h3></div>
-      <div class="room-card" onclick="alert('Room 2 Opening soon!')"><h3>Room 02 — Music & Performance</h3></div>
-      <div class="room-card" onclick="alert('Room 3 Opening soon!')"><h3>Room 03 — Technology</h3></div>
+      <div class="room-card" onclick="showSection('room-body')">
+        <h3>Room 01 — Body & Self-Image</h3>
+        <p>Y2K fashion, side-swept bangs, and celebrity-driven beauty.</p>
+      </div>
+      <div class="room-card" onclick="showSection('room-music')">
+        <h3>Room 02 — Music & Performance</h3>
+        <p>OPM rock renaissance, novelty dances, and reality talent searches.</p>
+      </div>
+      <div class="room-card" onclick="showSection('room-tech')">
+        <h3>Room 03 — Technology & Digital Culture</h3>
+        <p>Internet cafés, Counter-Strike, Friendster, and texting.</p>
+      </div>
+      <div class="room-card" onclick="showSection('room-themes')">
+        <h3>Room 04 — Intersecting Themes</h3>
+        <p>Celebrity, globalization, youth identity, and nostalgia.</p>
+      </div>
+      <div class="room-card" onclick="showSection('room-forms')">
+        <h3>Room 05 — Forms of Pop Culture</h3>
+        <p>TV, music, fashion, and gaming platforms.</p>
+      </div>
+      <div class="room-card" onclick="showSection('room-patterns')">
+        <h3>Room 06 — Patterns & Change</h3>
+        <p>How the 2000s bridged broadcast and networked culture.</p>
+      </div>
     </div>
   </section>
 
+  <!-- ROOM 01 -->
+  <section id="room-body" class="section">
+    <button class="back-btn" onclick="showSection('lobby')">← Return to Lobby</button>
+    <h2 class="section-title">Room 01 — Body & Self-Image</h2>
+    <div class="video-section"><div class="video-grid" id="videos-room-1"></div></div>
+  </section>
+
+  <!-- ROOM 02 -->
+  <section id="room-music" class="section">
+    <button class="back-btn" onclick="showSection('lobby')">← Return to Lobby</button>
+    <h2 class="section-title">Room 02 — Music & Performance</h2>
+    <div class="video-section"><div class="video-grid" id="videos-room-2"></div></div>
+  </section>
+
+  <!-- ROOM 03 -->
+  <section id="room-tech" class="section">
+    <button class="back-btn" onclick="showSection('lobby')">← Return to Lobby</button>
+    <h2 class="section-title">Room 03 — Technology</h2>
+    <div class="video-section"><div class="video-grid" id="videos-room-3"></div></div>
+  </section>
+
+  <!-- ROOM 04 -->
+  <section id="room-themes" class="section">
+    <button class="back-btn" onclick="showSection('lobby')">← Return to Lobby</button>
+    <h2 class="section-title">Room 04 — Intersecting Themes</h2>
+    <div class="video-section"><div class="video-grid" id="videos-room-4"></div></div>
+  </section>
+
+  <!-- ROOM 05 -->
+  <section id="room-forms" class="section">
+    <button class="back-btn" onclick="showSection('lobby')">← Return to Lobby</button>
+    <h2 class="section-title">Room 05 — Forms of Pop Culture</h2>
+    <div class="video-section"><div class="video-grid" id="videos-room-5"></div></div>
+  </section>
+
+  <!-- ROOM 06 -->
+  <section id="room-patterns" class="section">
+    <button class="back-btn" onclick="showSection('lobby')">← Return to Lobby</button>
+    <h2 class="section-title">Room 06 — Patterns & Change</h2>
+    <div class="video-section"><div class="video-grid" id="videos-room-6"></div></div>
+  </section>
+
+  <!-- TIMELINE -->
   <section id="timeline-section" class="section">
     <h2 class="section-title">Timeline</h2>
     <p style="color: white;">2000-2010 Timeline</p>
   </section>
 
+  <!-- REFERENCES -->
   <section id="references" class="section">
     <h2 class="section-title">References</h2>
     <p style="color: white;">Copyright info here.</p>
   </section>
 
+  <!-- ARTIFACT MODAL -->
+  <div id="artifact-modal" class="modal-overlay">
+    <div class="modal-box">
+      <button class="close-modal" onclick="closeArtifactModal()">×</button>
+      <div id="modal-img-container" class="modal-img-container"><img id="modal-img" src=""></div>
+      <h3 id="modal-title">Title</h3>
+      <p id="modal-desc" style="color:var(--hinge-muted); margin-top:10px;">Description</p>
+    </div>
+  </div>
+
+  <!-- VIDEO MODAL -->
+  <div id="video-modal" class="modal-overlay">
+    <div class="video-modal-box">
+      <button class="close-modal" onclick="closeVideoModal()">×</button>
+      <div class="video-player-wrapper" id="video-iframe-container"></div>
+    </div>
+  </div>
+
   <script>
+    // ==========================================
+    // 1. THE DATA (POSTERS & VIDEOS RESTORED)
+    // ==========================================
+    const museumVideos = [
+      // ROOM 1
+      { room: 1, title: "Y2K Fashion & Emo/Skater Culture", type: "poster", img: "room%201.jpeg", desc: "Low-rise jeans, side-swept bangs, and chunky skate shoes." },
+      
+      // ROOM 2
+      { room: 2, title: "Hale — Broken Sonnet", type: "video", url: "https://www.youtube.com/watch?v=WurY8WdS8Fw" },
+      { room: 2, title: "Sponge Cola — Jeepney", type: "video", url: "https://www.youtube.com/watch?v=KgxvglVEylo" },
+      { room: 2, title: "OPM Rock Renaissance", type: "poster", img: "room%202.jpeg", desc: "Eraserheads, Rivermaya, and Kamikazee defined the era." },
+      
+      // ROOM 3
+      { room: 3, title: "Counter-Strike 1.6 Internet Cafe", type: "video", url: "https://www.youtube.com/watch?v=j5MvwIokLiw" },
+      { room: 3, title: "Dial-Up, PC Gaming, Friendster", type: "poster", img: "room%203.jpeg", desc: "The transition to digital culture." },
+      
+      // ROOM 4
+      { room: 4, title: "Asianovela Theme Songs", type: "video", url: "https://www.youtube.com/watch?v=q4qdG57QufE" },
+      { room: 4, title: "Global Influences", type: "poster", img: "room%204.jpeg", desc: "Global influences shaping local tastes." },
+      
+      // ROOM 5
+      { room: 5, title: "Star In A Million Season 2", type: "video", url: "https://www.youtube.com/live/oJ-7LmWmr0o" },
+      { room: 5, title: "Itaktak Mo (Joey De Leon)", type: "video", url: "https://www.youtube.com/watch?v=nDKfY_DqmSo" },
+      { room: 5, title: "Philippine TV & Reality Shows", type: "poster", img: "room%205.jpeg", desc: "Reality talent searches and prime-time dramas." },
+      
+      // ROOM 6
+      { room: 6, title: "Nostalgia & Change", type: "poster", img: "room%206.jpeg", desc: "How the 2000s bridged broadcast to networked culture." }
+    ];
+
+    // ==========================================
+    // 2. RENDER THE CARDS
+    // ==========================================
+    function renderVideos() {
+      for (let i = 1; i <= 6; i++) {
+        const container = document.getElementById(`videos-room-${i}`);
+        if (!container) continue;
+        
+        // Filter videos for this specific room
+        museumVideos.filter(v => v.room === i).forEach(video => {
+          const card = document.createElement('div');
+          card.className = 'video-card';
+          
+          let thumbHTML = '';
+          if (video.type === 'video') {
+            // Render Video Card
+            thumbHTML = `<div class="video-thumb"><div class="play-icon">▶</div></div>`;
+            card.onclick = () => openVideoModal(video.title, video.url);
+          } else if (video.type === 'poster') {
+            // Render Poster Card
+            thumbHTML = `
+              <div class="video-thumb" style="background-image: url('${video.img}');">
+              </div>`;
+            card.onclick = () => openArtifactModal(video.title, video.desc, video.img);
+          }
+
+          card.innerHTML = thumbHTML + `
+            <div class="video-info">
+              <h4>${video.title}</h4>
+              <p>${video.type === 'video' ? 'Plays in website' : 'Visual Archive'}</p>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+      }
+    }
+
+    // ==========================================
+    // 3. NAVIGATION
+    // ==========================================
     function showSection(id) {
+      // Hide all sections
       document.querySelectorAll('.section, .hero').forEach(sec => sec.classList.remove('active'));
+      // Show target
       document.getElementById(id).classList.add('active');
-      document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+      // Scroll to top
       window.scrollTo(0,0);
     }
+
+    // ==========================================
+    // 4. MODALS
+    // ==========================================
+    function openArtifactModal(title, desc, imgUrl) {
+      document.getElementById('modal-title').innerText = title;
+      document.getElementById('modal-desc').innerText = desc;
+      
+      const imgContainer = document.getElementById('modal-img-container');
+      const imgElement = document.getElementById('modal-img');
+      
+      if (imgUrl) {
+        imgElement.src = imgUrl;
+        imgContainer.style.display = 'block';
+      } else {
+        imgContainer.style.display = 'none';
+      }
+      
+      document.getElementById('artifact-modal').classList.add('open');
+    }
+
+    function closeArtifactModal() {
+      document.getElementById('artifact-modal').classList.remove('open');
+    }
+
+    function openVideoModal(title, url) {
+      let videoId = '';
+      if (url.includes('watch?v=')) videoId = url.split('watch?v=')[1].split('&')[0];
+      else if (url.includes('live/')) videoId = url.split('live/')[1].split('?')[0];
+      
+      if (videoId) {
+        document.getElementById('video-iframe-container').innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+      }
+      document.getElementById('video-modal').classList.add('open');
+    }
+
+    function closeVideoModal() {
+      document.getElementById('video-modal').classList.remove('open');
+      document.getElementById('video-iframe-container').innerHTML = '';
+    }
+
+    // Close modals when clicking outside
+    document.getElementById('artifact-modal').addEventListener('click', function(e) {
+      if(e.target === this) closeArtifactModal();
+    });
+    document.getElementById('video-modal').addEventListener('click', function(e) {
+      if(e.target === this) closeVideoModal();
+    });
+
+    // Initialize
+    renderVideos();
   </script>
 </body>
 </html>
