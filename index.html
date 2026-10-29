@@ -131,16 +131,15 @@
     .video-card { background: var(--window-bg); border: 1px solid var(--window-border); border-radius: 12px; overflow: hidden; cursor: pointer; transition: all 0.3s; }
     .video-card:hover { border-color: var(--pink); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(255,107,157,0.1); }
     
-    /* UPDATED THUMBNAIL HEIGHT & BACKGROUND FOR POSTERS */
-    .video-thumb { background: #000; height: 260px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .video-thumb { background: #0a0a0a; height: 260px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
     .video-thumb::after { content: ''; position: absolute; inset: 0; background: linear-gradient(45deg, rgba(139,92,246,0.2), rgba(0,168,255,0.2)); opacity: 0; transition: 0.3s; }
     .video-card:hover .video-thumb::after { opacity: 1; }
     .video-thumb .play-icon { width: 54px; height: 54px; border-radius: 50%; background: rgba(255,255,255,0.1); backdrop-filter: blur(4px); border: 2px solid var(--white); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: white; transition: all 0.3s; z-index: 3; }
     .video-card:hover .play-icon { transform: scale(1.1); background: var(--electric-blue); border-color: var(--electric-blue); color: var(--black); box-shadow: 0 0 20px var(--electric-blue); }
     
-    /* PDF-STYLE COLLAGE POSTERS (UPDATED TO SHOW FULL IMAGE) */
-    .poster-art { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1; overflow: hidden; background-color: #0a0a0a; background-size: contain; background-position: center; background-repeat: no-repeat; }
-    .poster-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.95), transparent); z-index: 2; }
+    /* PDF-STYLE COLLAGE POSTERS */
+    .poster-art { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1; overflow: hidden; background-size: contain; background-position: center; background-repeat: no-repeat; }
+    .poster-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); z-index: 2; }
     .poster-text { position: absolute; bottom: 15px; left: 15px; z-index: 3; font-size: 1.1rem; font-weight: 900; color: var(--white); text-transform: uppercase; letter-spacing: 1px; text-shadow: 2px 2px 0px var(--ppt-pink); }
     .poster-sticker { position: absolute; top: 15px; right: 15px; z-index: 3; background: var(--ppt-lime); color: #000; padding: 4px 12px; border-radius: 20px; font-weight: 800; font-size: 0.75rem; transform: rotate(5deg); border: 2px solid #000; box-shadow: 3px 3px 0px #000; }
 
@@ -151,12 +150,27 @@
     /* MODALS */
     .modal-overlay { display: none; position: fixed; inset: 0; z-index: 2000; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); align-items: center; justify-content: center; padding: 24px; opacity: 0; transition: opacity 0.3s; }
     .modal-overlay.open { display: flex; opacity: 1; }
-    .modal-box { background: var(--window-bg); border: 1px solid var(--window-border); border-radius: 16px; max-width: 600px; width: 100%; padding: 40px; position: relative; transform: translateY(20px) scale(0.95); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
+    .modal-box { background: var(--window-bg); border: 1px solid var(--window-border); border-radius: 16px; max-width: 800px; width: 100%; padding: 40px; position: relative; transform: translateY(20px) scale(0.95); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
     .modal-overlay.open .modal-box { transform: translateY(0) scale(1); }
     .modal-box h3 { font-size: 1.8rem; margin-bottom: 8px; color: var(--electric-blue); }
     .modal-box p { color: var(--silver); font-size: 1.05rem; line-height: 1.8; }
     .close-modal { position: absolute; top: 16px; right: 20px; background: none; border: none; color: var(--gray); font-size: 2rem; transition: 0.3s; }
     .close-modal:hover { color: var(--pink); transform: rotate(90deg); }
+
+    /* IMAGE INSIDE MODAL */
+    .modal-img-container {
+      width: 100%;
+      margin-bottom: 24px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--window-border);
+      display: none; /* Hidden by default */
+    }
+    .modal-img-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
 
     /* VIDEO PLAYER MODAL */
     .video-modal-box { max-width: 900px; width: 100%; background: var(--black); padding: 24px; border-radius: 16px; border: 1px solid var(--window-border); position: relative; transform: scale(0.95); transition: 0.4s; }
@@ -385,10 +399,14 @@
   <p style="font-size: 0.75rem;">Media copyrights belong to their respective owners.</p>
 </footer>
 
-<!-- ARTIFACT MODAL -->
+<!-- ARTIFACT MODAL (UPDATED TO INCLUDE IMAGE) -->
 <div id="artifact-modal" class="modal-overlay">
   <div class="modal-box">
     <button class="close-modal" onclick="closeArtifactModal()">×</button>
+    <!-- Image container -->
+    <div id="modal-img-container" class="modal-img-container">
+      <img id="modal-img" src="" alt="Poster Image">
+    </div>
     <h3 id="modal-title">Title</h3>
     <p id="modal-desc">Description</p>
   </div>
@@ -405,7 +423,6 @@
 
 <script>
   // 1. MUSEUM DATA
-  // Using the exact names of the files you uploaded to GitHub
   const museumVideos = [
     { room: 1, title: "Y2K Fashion & Emo/Skater Culture", type: "poster", img: "room%201.jpeg", tag: "CHIC", desc: "Low-rise jeans, side-swept bangs, and chunky skate shoes." },
     { room: 2, title: "Hale — Broken Sonnet", type: "video", url: "https://www.youtube.com/watch?v=WurY8WdS8Fw" },
@@ -458,7 +475,8 @@
                 <div class="poster-text">${video.title}</div>
               </div>
             </div>`;
-          card.onclick = () => openArtifactModal(video.title, video.desc);
+          // Updated to pass the image URL to the modal
+          card.onclick = () => openArtifactModal(video.title, video.desc, video.img);
         }
 
         let infoHTML = `
@@ -483,11 +501,25 @@
   }
 
   // 4. MODALS
-  function openArtifactModal(title, desc) {
+  function openArtifactModal(title, desc, imgUrl) {
     document.getElementById('modal-title').innerText = title;
     document.getElementById('modal-desc').innerText = desc;
+    
+    const imgContainer = document.getElementById('modal-img-container');
+    const imgElement = document.getElementById('modal-img');
+    
+    // If there's an image URL, show the image container. Otherwise, hide it.
+    if (imgUrl) {
+      imgElement.src = imgUrl;
+      imgContainer.style.display = 'block';
+    } else {
+      imgElement.src = '';
+      imgContainer.style.display = 'none';
+    }
+    
     document.getElementById('artifact-modal').classList.add('open');
   }
+  
   function closeArtifactModal() {
     document.getElementById('artifact-modal').classList.remove('open');
   }
