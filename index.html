@@ -15,6 +15,7 @@
     h1, h2, h3, h4 { font-weight: 800; letter-spacing: -0.02em; }
     button { cursor: pointer; font-family: inherit; }
 
+    /* NAV */
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10,10,10,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--window-border); padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 60px; }
     nav .logo { font-weight: 900; font-size: 1.1rem; color: var(--silver); letter-spacing: 0.1em; }
     nav ul { list-style: none; display: flex; gap: 4px; flex-wrap: wrap; }
@@ -22,6 +23,7 @@
     nav ul li a:hover, nav ul li a.active { color: var(--white); background: var(--charcoal); }
     .hamburger { display: none; background: none; border: none; color: var(--white); font-size: 1.5rem; }
 
+    /* HERO */
     #hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 24px 80px; background: radial-gradient(ellipse at 20% 50%, rgba(139,92,246,0.15) 0%, transparent 50%), radial-gradient(ellipse at 80% 30%, rgba(0,168,255,0.1) 0%, transparent 50%), linear-gradient(180deg, var(--black) 0%, #111122 100%); position: relative; overflow: hidden; }
     #hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.02) 2px, rgba(255,255,255,0.02) 4px); pointer-events: none; }
     #hero h1 { font-size: clamp(2.8rem, 8vw, 5.5rem); background: linear-gradient(135deg, var(--silver), var(--electric-blue), var(--purple), var(--pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.1; margin-bottom: 16px; position: relative; z-index: 1; }
@@ -36,13 +38,14 @@
     .btn-primary:hover { box-shadow: 0 6px 30px rgba(0,168,255,0.5); }
     .btn-secondary:hover { border-color: var(--silver); }
 
+    /* SECTIONS */
     .section { display: none; padding: 100px 24px 60px; max-width: 1200px; margin: 0 auto; }
     .section.active { display: block; animation: fadeIn 0.4s ease-in-out; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    
     .section-title { font-size: 2rem; margin-bottom: 8px; background: linear-gradient(135deg, var(--silver), var(--electric-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .section-subtitle { color: var(--gray); margin-bottom: 36px; font-size: 0.95rem; }
 
+    /* LOBBY */
     .lobby-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 32px; }
     .room-card { background: var(--window-bg); border: 1px solid var(--window-border); border-radius: 12px; padding: 28px; cursor: pointer; transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; position: relative; overflow: hidden; }
     .room-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--electric-blue), var(--purple)); opacity: 0; transition: 0.2s; }
@@ -53,6 +56,7 @@
     .room-card p { color: var(--gray); font-size: 0.9rem; margin-bottom: 16px; }
     .room-card .explore-link { color: var(--electric-blue); font-weight: 600; font-size: 0.9rem; }
 
+    /* ROOM CONTENT */
     .room-header { margin-bottom: 36px; }
     .room-header h2 { font-size: 2rem; color: var(--white); margin-bottom: 4px; }
     .room-header .room-desc { color: var(--gray); font-size: 0.95rem; max-width: 700px; }
@@ -65,6 +69,7 @@
     .artifact-card h4 { font-size: 1rem; margin-bottom: 6px; color: var(--white); }
     .artifact-card .artifact-tag { font-size: 0.75rem; color: var(--purple); text-transform: uppercase; letter-spacing: 0.08em; }
 
+    /* MODAL */
     .modal-overlay { display: none; position: fixed; inset: 0; z-index: 2000; background: rgba(0,0,0,0.85); backdrop-filter: blur(6px); align-items: center; justify-content: center; padding: 24px; }
     .modal-overlay.open { display: flex; }
     .modal-box { background: var(--window-bg); border: 1px solid var(--window-border); border-radius: 14px; max-width: 560px; width: 100%; padding: 32px; max-height: 80vh; overflow-y: auto; position: relative; }
@@ -74,6 +79,7 @@
     .close-modal { position: absolute; top: 12px; right: 16px; background: none; border: none; color: var(--gray); font-size: 1.5rem; }
     .close-modal:hover { color: var(--white); }
 
+    /* VIDEOS */
     .video-section { margin-top: 40px; }
     .video-section h3 { font-size: 1.3rem; color: var(--electric-blue); margin-bottom: 16px; }
     .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
@@ -87,6 +93,7 @@
     .video-info p { font-size: 0.8rem; color: var(--gray); margin-bottom: 6px; }
     .video-info .video-source { font-size: 0.7rem; color: var(--electric-blue); }
 
+    /* SIMULATORS */
     .friendster-sim { background: #e8e0d8; border-radius: 10px; padding: 20px; color: #333; max-width: 500px; margin: 24px 0; border: 2px solid #ccc; }
     .friendster-sim .fs-header { display: flex; gap: 16px; align-items: center; margin-bottom: 16px; }
     .friendster-sim .fs-avatar { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, #ff6b9d, #8b5cf6); display: flex; align-items: center; justify-content: center; font-size: 2rem; color: white; font-weight: 900; }
@@ -95,7 +102,8 @@
     .friendster-sim .fs-tabs { display: flex; gap: 4px; margin-bottom: 12px; flex-wrap: wrap; }
     .friendster-sim .fs-tab { padding: 6px 14px; background: #d0c8c0; border: none; border-radius: 4px 4px 0 0; font-size: 0.8rem; font-weight: 600; color: #555; cursor: pointer; }
     .friendster-sim .fs-tab.active { background: white; color: #222; }
-    .friendster-sim .fs-content { background: white; padding: 16px; border-radius: 0 4px 4px 4px; min-height: 100px; font-size: 0.85rem; }
+    .friendster-sim .fs-content { background: white; padding: 16px; border-radius: 0 4px 4px 4px; min-height: 100px; font-size: 0.85rem; display: none; }
+    .friendster-sim .fs-content.active { display: block; }
     .friendster-sim .fs-content ul { list-style: none; }
     .friendster-sim .fs-content ul li { padding: 4px 0; border-bottom: 1px solid #eee; }
 
@@ -110,27 +118,15 @@
     .sms-input-row input:focus { border-color: var(--electric-blue); }
     .sms-input-row button { padding: 10px 18px; border-radius: 20px; border: none; background: var(--purple); color: white; font-weight: 700; font-size: 0.85rem; }
 
+    /* RELATIONSHIP MAP */
     .rel-map { position: relative; display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin: 32px 0; }
     .rel-node { padding: 20px 24px; border-radius: 12px; border: 2px solid var(--window-border); background: var(--window-bg); cursor: pointer; text-align: center; transition: 0.2s; min-width: 180px; flex: 1; }
-    .rel-node:hover, .rel-node.active { border-color: var(--electric-blue); box-shadow: 0 0 20px rgba(0,168,255,0.2); }
-    .rel-node.active { background: rgba(0,168,255,0.08); }
+    .rel-node:hover, .rel-node.active { border-color: var(--electric-blue); box-shadow: 0 0 20px rgba(0,168,255,0.2); background: rgba(0,168,255,0.08); }
     .rel-node h4 { font-size: 1rem; color: var(--white); margin-bottom: 4px; }
     .rel-detail { background: var(--window-bg); border: 1px solid var(--window-border); border-radius: 12px; padding: 24px; margin-top: 16px; display: none; }
-    .rel-detail.open { display: block; }
+    .rel-detail.active { display: block; }
     .rel-detail h3 { color: var(--electric-blue); margin-bottom: 8px; }
     .rel-detail p { color: #bbb; font-size: 0.9rem; margin-bottom: 12px; }
-
-    .quiz-container { max-width: 700px; margin: 0 auto; }
-    .quiz-question { background: var(--window-bg); border: 1px solid var(--window-border); border-radius: 12px; padding: 24px; margin-bottom: 16px; }
-    .quiz-question h4 { font-size: 1rem; margin-bottom: 12px; color: var(--white); }
-    .quiz-option { display: block; width: 100%; text-align: left; padding: 12px 16px; margin-bottom: 8px; background: var(--charcoal); border: 1px solid var(--window-border); border-radius: 8px; color: var(--silver); font-size: 0.9rem; transition: 0.2s; }
-    .quiz-option:hover { border-color: var(--electric-blue); color: var(--white); }
-    .quiz-option.correct { border-color: #22c55e; background: rgba(34,197,94,0.15); color: #22c55e; }
-    .quiz-option.wrong { border-color: #ef4444; background: rgba(239,68,68,0.15); color: #ef4444; }
-    
-    .ref-list { list-style: none; }
-    .ref-list li { padding: 12px 0; border-bottom: 1px solid var(--window-border); color: var(--gray); font-size: 0.85rem; }
-    .ref-list li a { color: var(--electric-blue); }
 
     @media (max-width: 768px) {
       nav ul { display: none; }
@@ -227,7 +223,7 @@
     <h3>Watch the Archive: The Looks We Copied</h3>
     <div class="video-grid">
       <div class="video-card">
-        <div class="video-thumb" onclick="alert('Video placeholder: Replace this with an iframe embedding a YouTube video about 2000s fashion.')"><div class="play-icon">▶</div></div>
+        <div class="video-thumb" onclick="alert('Video placeholder: You can replace this div with a YouTube iframe later!')"><div class="play-icon">▶</div></div>
         <div class="video-info"><h4>2000s Filipino Street Fashion</h4><p>The barkada look.</p></div>
       </div>
     </div>
@@ -245,7 +241,7 @@
     <div class="artifact-card" onclick="openModal('OPM Rock Renaissance', 'Music', 'Bands like Hale, Sponge Cola, and Kamikazee brought alternative rock to the mainstream, creating anthems for Filipino youth navigating love and angst.')">
       <div class="artifact-tag">Music</div><h4>OPM Rock Renaissance</h4>
     </div>
-    <div class="artifact-card" onclick="openModal('Novelty Dance Culture', 'Dance', 'Groups like the SexBomb Girls popularized dance crazes like the "Spaghetti Dance" that swept through barangays and school programs.')">
+    <div class="artifact-card" onclick="openModal('Novelty Dance Culture', 'Dance', 'Groups like the SexBomb Girls popularized dance crazes like the Spaghetti Dance that swept through barangays and school programs.')">
       <div class="artifact-tag">Dance</div><h4>Novelty Dance Culture</h4>
     </div>
   </div>
@@ -259,7 +255,7 @@
     <p class="room-desc">Dial-up internet, internet cafés, PC gaming, Friendster, and the texting revolution.</p>
   </div>
   <div class="artifact-grid">
-    <div class="artifact-card" onclick="openModal('Internet Café Culture', 'Gaming', 'Internet cafés, or "comp shops," became the "third space" for Filipino youth, used for research, gaming, and socializing.')">
+    <div class="artifact-card" onclick="openModal('Internet Café Culture', 'Gaming', 'Internet cafés, or comp shops, became the third space for Filipino youth, used for research, gaming, and socializing.')">
       <div class="artifact-tag">Gaming</div><h4>Internet Café Culture</h4>
     </div>
     <div class="artifact-card" onclick="document.getElementById('friendster-demo').scrollIntoView({behavior: 'smooth'})">
@@ -274,7 +270,6 @@
 
   <h3 style="color:var(--electric-blue); margin-top: 40px; margin-bottom: 16px;">Interactive Simulators</h3>
   
-  <!-- Friendster Simulator -->
   <div id="friendster-demo" class="friendster-sim">
     <div class="fs-header">
       <div class="fs-avatar">J</div>
@@ -284,15 +279,15 @@
       </div>
     </div>
     <div class="fs-tabs">
-      <button class="fs-tab active" onclick="switchTab(this, 'fs-about')">About Me</button>
-      <button class="fs-tab" onclick="switchTab(this, 'fs-testi')">Testimonials</button>
+      <button class="fs-tab active" onclick="switchTab(event, 'fs-about')">About Me</button>
+      <button class="fs-tab" onclick="switchTab(event, 'fs-testi')">Testimonials</button>
     </div>
-    <div id="fs-about" class="fs-content" style="display:block;">
+    <div id="fs-about" class="fs-content active">
       <p><strong>Status:</strong> Single</p>
       <p><strong>Hometown:</strong> Manila</p>
       <p><strong>Interests:</strong> OPM Rock, Friendster, Counter-Strike, Texting</p>
     </div>
-    <div id="fs-testi" class="fs-content" style="display:none;">
+    <div id="fs-testi" class="fs-content">
       <ul>
         <li>"Thanks for the add! Ganda ng profile mo." - <em>Mark</em></li>
         <li>"Wala lang, drop by lang." - <em>Sarah</em></li>
@@ -301,7 +296,6 @@
     <p style="font-size:0.7rem; color:#888; margin-top:12px; font-style:italic;">*This is an educational recreation. No real data is used.</p>
   </div>
 
-  <!-- SMS Simulator -->
   <div id="sms-demo" class="sms-sim">
     <div class="sms-header">SMS - Globe / Smart (Simulation)</div>
     <div class="sms-messages" id="sms-container">
@@ -313,7 +307,6 @@
       <button onclick="sendSms()">Send</button>
     </div>
   </div>
-
 </section>
 
 <!-- ROOM 04 -->
@@ -337,14 +330,13 @@
       <p>Local meets global.</p>
     </div>
   </div>
-  
   <div id="rel1" class="rel-detail">
     <h3>Celebrity & Digital Culture</h3>
     <p>Fan communities grew rapidly through Friendster and text voting, making celebrities feel more accessible and interactive.</p>
   </div>
   <div id="rel2" class="rel-detail">
     <h3>Globalization & Transnational Media</h3>
-    <p>Asianovelas like <em>Meteor Garden</em> and anime shaped local fashion, slang, and television programming.</p>
+    <p>Asianovelas like Meteor Garden and anime shaped local fashion, slang, and television programming.</p>
   </div>
   <div id="rel3" class="rel-detail">
     <h3>Youth Identity Formation</h3>
@@ -364,4 +356,25 @@
 
 <!-- ROOM 06 -->
 <section id="room-patterns" class="section">
-  <button class="back-btn" onclick
+  <button class="back-btn" onclick="showSection('lobby')">← Back to Lobby</button>
+  <div class="room-header">
+    <h2>Room 06 — Patterns, Continuity & Change</h2>
+    <p class="room-desc">The bridge to the 2010s.</p>
+  </div>
+  <p style="color:#bbb; margin-bottom:20px;">The 2000s served as a transitional bridge. The patterns of youth expression and foreign influence remained, but the emergence of SMS and social networking began shifting the culture from broadcast-centered to networked.</p>
+</section>
+
+<!-- OTHER SECTIONS -->
+<section id="timeline-section" class="section">
+  <h2 class="section-title">Historical Timeline</h2>
+  <p class="section-subtitle">Key moments from 2000 to 2010.</p>
+  <p style="color:#bbb; padding: 20px; border-left: 3px solid var(--electric-blue); background: var(--window-bg);">
+    <strong>2000-2002:</strong> The peak of Y2K fashion, the rise of SMS texting, and the early days of internet cafés.<br><br>
+    <strong>2003-2006:</strong> The OPM rock renaissance, the explosion of Friendster, and the dominance of Asianovelas on TV.<br><br>
+    <strong>2007-2010:</strong> The rise of competitive gaming (DotA, CS), and the gradual shift toward the social media landscape of the 2010s.
+  </p>
+</section>
+
+<section id="themes-section" class="section">
+  <h2 class="section-title">Themes Overview</h2>
+  <p class="section-subtitle">Please
