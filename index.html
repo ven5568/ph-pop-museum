@@ -414,3 +414,78 @@
 
   // 2. Scroll Reveal Animation Logic
   function revealElements() {
+    const reveals = document.querySelectorAll('.reveal');
+    for (let i = 0; i < reveals.length; i++) {
+      const windowHeight = window.innerHeight;
+      const elementTop = reveals[i].getBoundingClientRect().top;
+      const elementVisible = 100;
+      if (elementTop < windowHeight - elementVisible) {
+        reveals[i].classList.add('visible');
+      }
+    }
+  }
+  window.addEventListener('scroll', revealElements);
+  revealElements(); // Trigger on load
+
+  // 3. Navigation
+  function showSection(sectionId) {
+    document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+    document.getElementById(sectionId).classList.add('active');
+    window.scrollTo(0,0);
+    
+    // Reset reveals for the new section
+    document.querySelectorAll('.reveal').forEach(el => el.classList.remove('visible'));
+    setTimeout(revealElements, 100);
+  }
+
+  // 4. Artifact Modal
+  function openArtifactModal(title, desc) {
+    document.getElementById('modal-title').innerText = title;
+    document.getElementById('modal-desc').innerText = desc;
+    document.getElementById('artifact-modal').classList.add('open');
+  }
+  function closeArtifactModal() {
+    document.getElementById('artifact-modal').classList.remove('open');
+  }
+
+  // 5. Video Modal
+  function openVideoModal(title) {
+    document.getElementById('video-title').innerText = title;
+    document.getElementById('video-modal').classList.add('open');
+  }
+  function closeVideoModal() {
+    document.getElementById('video-modal').classList.remove('open');
+    // Stop video if playing by resetting src
+    const wrapper = document.querySelector('.video-player-wrapper');
+    const iframe = wrapper.querySelector('iframe');
+    if(iframe) {
+      const iframeSrc = iframe.src;
+      iframe.src = iframeSrc; 
+    }
+  }
+
+  // 6. Friendster Tabs
+  function switchTab(event, tabId) {
+    const sim = event.target.closest('.friendster-sim');
+    sim.querySelectorAll('.fs-content').forEach(c => c.classList.remove('active'));
+    sim.querySelectorAll('.fs-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  // 7. SMS
+  function sendSms() {
+    const input = document.getElementById('sms-input');
+    if(!input.value.trim()) return;
+    const container = document.getElementById('sms-container');
+    const bubble = document.createElement('div');
+    bubble.className = 'sms-bubble sent';
+    bubble.innerText = input.value;
+    container.appendChild(bubble);
+    input.value = '';
+  }
+  function handleSmsEnter(e) { if(e.key === 'Enter') sendSms(); }
+</script>
+
+</body>
+</html>
