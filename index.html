@@ -85,13 +85,13 @@
     .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
     .video-card { background: var(--window-bg); border: 1px solid var(--window-border); border-radius: 10px; overflow: hidden; transition: 0.2s; }
     .video-card:hover { border-color: var(--purple); }
-    .video-thumb { background: #111; height: 150px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer; }
+    .video-thumb { background: #111; height: 150px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer; text-decoration: none; }
     .video-thumb .play-icon { width: 48px; height: 48px; border-radius: 50%; background: rgba(0,168,255,0.9); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: white; transition: 0.2s; }
     .video-thumb:hover .play-icon { transform: scale(1.1); background: var(--purple); }
     .video-info { padding: 16px; }
     .video-info h4 { font-size: 0.95rem; color: var(--white); margin-bottom: 4px; }
     .video-info p { font-size: 0.8rem; color: var(--gray); margin-bottom: 6px; }
-    .video-info .video-source { font-size: 0.7rem; color: var(--electric-blue); }
+    .video-info .video-source { font-size: 0.7rem; color: var(--pink); }
 
     /* SIMULATORS */
     .friendster-sim { background: #e8e0d8; border-radius: 10px; padding: 20px; color: #333; max-width: 500px; margin: 24px 0; border: 2px solid #ccc; }
@@ -157,7 +157,7 @@
   <h1>TRACING THE POP</h1>
   <div class="subtitle">A Decade in PH Pop Culture, 2000–2010</div>
   <div class="tagline">"Memories. Moments. Movements. We Lived It."</div>
-  <p class="intro-text">Step inside a digital archive of Philippine popular culture from 2000 to 2010. Explore the fashion, music, technology, and shared experiences that bridged broadcast-era culture and the networked world of the 2010s.</p>
+  <p class="intro-text">Step inside the digital archive of a vibrant era. Explore the music, television, fashion, technology, and everyday experiences that shaped Philippine popular culture from 2000 to 2010.</p>
   <div class="hero-buttons">
     <button class="btn btn-primary" onclick="showSection('lobby')">Enter the Archive</button>
     <button class="btn btn-secondary" onclick="showSection('timeline-section')">Explore the Timeline</button>
@@ -219,13 +219,28 @@
       <div class="artifact-tag">Footwear</div><h4>Chunky Skate Shoes</h4>
     </div>
   </div>
+  
   <div class="video-section">
     <h3>Watch the Archive: The Looks We Copied</h3>
     <div class="video-grid">
-      <div class="video-card">
-        <div class="video-thumb" onclick="alert('Video placeholder: You can replace this div with a YouTube iframe later!')"><div class="play-icon">▶</div></div>
-        <div class="video-info"><h4>2000s Filipino Street Fashion</h4><p>The barkada look.</p></div>
-      </div>
+      <!-- Search Link 1 -->
+      <a href="https://www.youtube.com/results?search_query=2000s+Pinoy+emo+fashion+Philippines" target="_blank" class="video-card" style="text-decoration:none;">
+        <div class="video-thumb"><div class="play-icon">▶</div></div>
+        <div class="video-info">
+          <h4>2000s Pinoy Emo & Fashion</h4>
+          <p>Side-swept bangs, skinny jeans, and youth identity.</p>
+          <div class="video-source">Source: YouTube Search</div>
+        </div>
+      </a>
+      <!-- Search Link 2 -->
+      <a href="https://www.youtube.com/results?search_query=2000s+Filipino+Y2K+fashion+skater+style" target="_blank" class="video-card" style="text-decoration:none;">
+        <div class="video-thumb"><div class="play-icon">▶</div></div>
+        <div class="video-info">
+          <h4>2000s Filipino Y2K & Skate</h4>
+          <p>Chunky shoes, mall culture, and everyday fashion.</p>
+          <div class="video-source">Source: YouTube Search</div>
+        </div>
+      </a>
     </div>
   </div>
 </section>
@@ -243,6 +258,39 @@
     </div>
     <div class="artifact-card" onclick="openModal('Novelty Dance Culture', 'Dance', 'Groups like the SexBomb Girls popularized dance crazes like the Spaghetti Dance that swept through barangays and school programs.')">
       <div class="artifact-tag">Dance</div><h4>Novelty Dance Culture</h4>
+    </div>
+  </div>
+  
+  <div class="video-section">
+    <h3>Watch the Archive: Our Sound, Our Stage</h3>
+    <div class="video-grid">
+      <!-- Search Link 1 -->
+      <a href="https://www.youtube.com/results?search_query=Orange+and+Lemons+Pinoy+Ako+official+music+video" target="_blank" class="video-card" style="text-decoration:none;">
+        <div class="video-thumb"><div class="play-icon">▶</div></div>
+        <div class="video-info">
+          <h4>Orange & Lemons - "Pinoy Ako"</h4>
+          <p>OPM, television, and mainstream entertainment.</p>
+          <div class="video-source">Source: YouTube Search</div>
+        </div>
+      </a>
+      <!-- Search Link 2 -->
+      <a href="https://www.youtube.com/results?search_query=2000s+OPM+rock+music+videos+Hale+Sponge+Cola+Kamikazee" target="_blank" class="video-card" style="text-decoration:none;">
+        <div class="video-thumb"><div class="play-icon">▶</div></div>
+        <div class="video-info">
+          <h4>Pinoy Rock Music Videos</h4>
+          <p>Retrospectives on Hale, Sponge Cola, Kamikazee, and more.</p>
+          <div class="video-source">Source: YouTube Search</div>
+        </div>
+      </a>
+      <!-- Search Link 3 -->
+      <a href="https://www.youtube.com/results?search_query=Philippines+2000s+novelty+dance+TV+performance" target="_blank" class="video-card" style="text-decoration:none;">
+        <div class="video-thumb"><div class="play-icon">▶</div></div>
+        <div class="video-info">
+          <h4>Filipino Novelty Dances</h4>
+          <p>Period-appropriate TV performances and retrospectives.</p>
+          <div class="video-source">Source: YouTube Search</div>
+        </div>
+      </a>
     </div>
   </div>
 </section>
@@ -307,6 +355,39 @@
       <button onclick="sendSms()">Send</button>
     </div>
   </div>
+
+  <div class="video-section">
+    <h3>Watch the Archive: Connected Before Social Media</h3>
+    <div class="video-grid">
+      <!-- Search Link 1 -->
+      <a href="https://www.youtube.com/results?search_query=Philippines+internet+cafe+2000s+nostalgia" target="_blank" class="video-card" style="text-decoration:none;">
+        <div class="video-thumb"><div class="play-icon">▶</div></div>
+        <div class="video-info">
+          <h4>Internet Cafés in the Philippines</h4>
+          <p>Shared computers, online chatting, and gaming.</p>
+          <div class="video-source">Source: YouTube Search</div>
+        </div>
+      </a>
+      <!-- Search Link 2 -->
+      <a href="https://www.youtube.com/results?search_query=Friendster+Philippines+2000s+Top+8+testimonials" target="_blank" class="video-card" style="text-decoration:none;">
+        <div class="video-thumb"><div class="play-icon">▶</div></div>
+        <div class="video-info">
+          <h4>Friendster Nostalgia</h4>
+          <p>Top 8 friends, testimonials, and online self-expression.</p>
+          <div class="video-source">Source: YouTube Search</div>
+        </div>
+      </a>
+      <!-- Search Link 3 -->
+      <a href="https://www.youtube.com/results?search_query=Counter+Strike+1.6+Philippines+internet+cafe+2000s" target="_blank" class="video-card" style="text-decoration:none;">
+        <div class="video-thumb"><div class="play-icon">▶</div></div>
+        <div class="video-info">
+          <h4>Counter-Strike and PC Gaming</h4>
+          <p>CS 1.6 footage and early PC gaming retrospectives.</p>
+          <div class="video-source">Source: YouTube Search</div>
+        </div>
+      </a>
+    </div>
+  </div>
 </section>
 
 <!-- ROOM 04 -->
@@ -342,6 +423,39 @@
     <h3>Youth Identity Formation</h3>
     <p>Filipino youth combined foreign trends (like low-rise jeans) with local values (like barkada culture) to create a unique 2000s identity.</p>
   </div>
+
+  <div class="video-section">
+    <h3>Watch the Archive: Global Influences, Local Voices</h3>
+    <div class="video-grid">
+      <!-- Search Link 1 -->
+      <a href="https://www.youtube.com/results?search_query=Orange+and+Lemons+Pinoy+Ako+story+Pinoy+Big+Brother" target="_blank" class="video-card" style="text-decoration:none;">
+        <div class="video-thumb"><div class="play-icon">▶</div></div>
+        <div class="video-info">
+          <h4>"Pinoy Ako" and Celebrity Culture</h4>
+          <p>Music, television, popularity, and commercial celebrity culture.</p>
+          <div class="video-source">Source: YouTube Search</div>
+        </div>
+      </a>
+      <!-- Search Link 2 -->
+      <a href="https://www.youtube.com/results?search_query=Asianovela+Philippines+2000s+history+nostalgia" target="_blank" class="video-card" style="text-decoration:none;">
+        <div class="video-thumb"><div class="play-icon">▶</div></div>
+        <div class="video-info">
+          <h4>Asianovelas in the Philippines</h4>
+          <p>Korean and Taiwanese dramas and their influence on Filipinos.</p>
+          <div class="video-source">Source: YouTube Search</div>
+        </div>
+      </a>
+      <!-- Search Link 3 -->
+      <a href="https://www.youtube.com/results?search_query=MYX+Philippines+2000s+music+television+nostalgia" target="_blank" class="video-card" style="text-decoration:none;">
+        <div class="video-thumb"><div class="play-icon">▶</div></div>
+        <div class="video-info">
+          <h4>MYX and the Music Video Era</h4>
+          <p>Music television, artists, fashion, and fans.</p>
+          <div class="video-source">Source: YouTube Search</div>
+        </div>
+      </a>
+    </div>
+  </div>
 </section>
 
 <!-- ROOM 05 -->
@@ -349,9 +463,31 @@
   <button class="back-btn" onclick="showSection('lobby')">← Back to Lobby</button>
   <div class="room-header">
     <h2>Room 05 — Forms of Pop Culture</h2>
-    <p class="room-desc">The mediums of the decade.</p>
+    <p class="room-desc">The formats and platforms through which pop culture was experienced.</p>
   </div>
   <p style="color:#bbb; margin-bottom:20px;">Popular culture in the 2000s was experienced primarily through broadcast media (TV and Radio), print (Magazines), and the rapidly emerging internet (Friendster, early blogs).</p>
+  
+  <div class="video-section">
+    <h3>Watch the Archive: Platforms of the Decade</h3>
+    <div class="video-grid">
+      <a href="https://www.youtube.com/results?search_query=Philippine+TV+shows+2000s+nostalgia+archival+clips" target="_blank" class="video-card" style="text-decoration:none;">
+        <div class="video-thumb"><div class="play-icon">▶</div></div>
+        <div class="video-info">
+          <h4>Philippine TV Shows of the 2000s</h4>
+          <p>Entertainment and variety programming archival clips.</p>
+          <div class="video-source">Source: YouTube Search</div>
+        </div>
+      </a>
+      <a href="https://www.youtube.com/results?search_query=Star+in+a+Million+Pinoy+Idol+Philippines+2000s+clips" target="_blank" class="video-card" style="text-decoration:none;">
+        <div class="video-thumb"><div class="play-icon">▶</div></div>
+        <div class="video-info">
+          <h4>Reality Singing Competitions</h4>
+          <p>Star in a Million, Pinoy Idol, and the creation of celebrities.</p>
+          <div class="video-source">Source: YouTube Search</div>
+        </div>
+      </a>
+    </div>
+  </div>
 </section>
 
 <!-- ROOM 06 -->
@@ -362,6 +498,36 @@
     <p class="room-desc">The bridge to the 2010s.</p>
   </div>
   <p style="color:#bbb; margin-bottom:20px;">The 2000s served as a transitional bridge. The patterns of youth expression and foreign influence remained, but the emergence of SMS and social networking began shifting the culture from broadcast-centered to networked.</p>
+  
+  <div class="video-section">
+    <h3>Watch the Archive: Growing Up in the 2000s</h3>
+    <div class="video-grid">
+      <a href="https://www.youtube.com/results?search_query=growing+up+in+the+Philippines+2000s+nostalgia" target="_blank" class="video-card" style="text-decoration:none;">
+        <div class="video-thumb"><div class="play-icon">▶</div></div>
+        <div class="video-info">
+          <h4>Growing Up in the Philippines</h4>
+          <p>Childhood, entertainment, school life, and technology.</p>
+          <div class="video-source">Source: YouTube Search</div>
+        </div>
+      </a>
+      <a href="https://www.youtube.com/results?search_query=Philippines+2000s+texting+Nokia+cellphone+nostalgia" target="_blank" class="video-card" style="text-decoration:none;">
+        <div class="video-thumb"><div class="play-icon">▶</div></div>
+        <div class="video-info">
+          <h4>Texting and Mobile Phones</h4>
+          <p>The transition toward mobile and connected communication.</p>
+          <div class="video-source">Source: YouTube Search</div>
+        </div>
+      </a>
+      <a href="https://www.youtube.com/results?search_query=Philippine+pop+culture+2000s+retrospective" target="_blank" class="video-card" style="text-decoration:none;">
+        <div class="video-thumb"><div class="play-icon">▶</div></div>
+        <div class="video-info">
+          <h4>Philippine Pop Culture Retrospectives</h4>
+          <p>Connecting music, TV, fashion, Friendster, and gaming.</p>
+          <div class="video-source">Source: YouTube Search</div>
+        </div>
+      </a>
+    </div>
+  </div>
 </section>
 
 <!-- OTHER SECTIONS -->
@@ -408,22 +574,16 @@
   </div>
 </div>
 
-<!-- JAVASCRIPT (The "Brain") -->
+<!-- JAVASCRIPT -->
 <script>
   // 1. Navigation / Show Section
   function showSection(sectionId) {
-    // Hide all sections
     document.querySelectorAll('.section').forEach(sec => {
       sec.classList.remove('active');
     });
-    // Show target section
     const target = document.getElementById(sectionId);
     if(target) target.classList.add('active');
-    
-    // Update nav active state
     document.querySelectorAll('nav ul li a').forEach(a => a.classList.remove('active'));
-    
-    // Scroll to top
     window.scrollTo(0,0);
   }
 
@@ -439,19 +599,16 @@
     document.getElementById('artifact-modal').classList.remove('open');
   }
 
-  // Close modal when clicking outside
   document.getElementById('artifact-modal').addEventListener('click', function(e) {
     if(e.target === this) closeModal();
   });
 
   // 3. Friendster Tabs
   function switchTab(event, tabId) {
-    // Hide all contents in this simulator
     const sim = event.target.closest('.friendster-sim');
     sim.querySelectorAll('.fs-content').forEach(c => c.classList.remove('active'));
     sim.querySelectorAll('.fs-tab').forEach(t => t.classList.remove('active'));
     
-    // Show selected
     document.getElementById(tabId).classList.add('active');
     event.target.classList.add('active');
   }
