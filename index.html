@@ -392,131 +392,16 @@
 </div>
 
 <script>
-  // 1. MUSEUM VIDEO DATA
+  // 1. MUSEUM VIDEO DATA (Direct links only - no search links)
   const museumVideos = [
-    { room: 1, title: "2000s Pinoy Emo Fashion", url: "https://www.youtube.com/results?search_query=2000s+Pinoy+emo+fashion+Philippines", type: "search" },
-    { room: 1, title: "Filipino Y2K and Skate Fashion", url: "https://www.youtube.com/results?search_query=2000s+Filipino+Y2K+fashion+skater+style", type: "search" },
-    { room: 1, title: "2000s Filipino Celebrity Fashion", url: "https://www.youtube.com/results?search_query=2000s+Filipino+celebrity+fashion+throwback", type: "search" },
-    { room: 2, title: "Orange & Lemons — Pinoy Ako", url: "https://www.youtube.com/results?search_query=Orange+and+Lemons+Pinoy+Ako+official+music+video", type: "search" },
+    // Room 1 - No direct video links verified in search results, leaving empty for now
+    // Room 2
     { room: 2, title: "Hale — Broken Sonnet", url: "https://www.youtube.com/watch?v=WurY8WdS8Fw", type: "video" },
     { room: 2, title: "Sponge Cola — Jeepney", url: "https://www.youtube.com/watch?v=KgxvglVEylo", type: "video" },
-    { room: 3, title: "Internet Cafe Culture in the Philippines", url: "https://www.youtube.com/watch?v=j5MvwIokLiw", type: "video" },
-    { room: 3, title: "Friendster and Top 8 Nostalgia", url: "https://www.youtube.com/results?search_query=Friendster+Philippines+2000s+Top+8+testimonials", type: "search" },
-    { room: 3, title: "Counter-Strike 1.6 Internet Cafe Gaming", url: "https://www.youtube.com/results?search_query=Counter+Strike+1.6+Philippines+internet+cafe+2000s", type: "search" },
-    { room: 4, title: "Pinoy Ako and Pinoy Big Brother", url: "https://www.youtube.com/results?search_query=Orange+and+Lemons+Pinoy+Ako+Pinoy+Big+Brother", type: "search" },
-    { room: 4, title: "Iconic Asianovela Theme Songs", url: "https://www.youtube.com/watch?v=q4qdG57QufE", type: "video" },
-    { room: 4, title: "MYX and 2000s Filipino Music Television", url: "https://www.youtube.com/results?search_query=MYX+Philippines+2000s+music+television+nostalgia", type: "search" },
-    { room: 5, title: "Philippine TV Shows of the 2000s", url: "https://www.youtube.com/results?search_query=Philippine+TV+shows+2000s+nostalgia+archival+clips", type: "search" },
-    { room: 5, title: "2000s Novelty Dances", url: "https://www.youtube.com/results?search_query=Philippines+2000s+novelty+dance+TV+performance", type: "search" },
-    { room: 5, title: "Star in a Million Performances", url: "https://www.youtube.com/results?search_query=Star+in+a+Million+Philippines+2000s+performances", type: "search" },
-    { room: 6, title: "Growing Up in the Philippines in the 2000s", url: "https://www.youtube.com/results?search_query=growing+up+in+the+Philippines+2000s+nostalgia", type: "search" },
-    { room: 6, title: "Nokia Phones and Texting Nostalgia", url: "https://www.youtube.com/results?search_query=Philippines+2000s+texting+Nokia+cellphone+nostalgia", type: "search" },
-    { room: 6, title: "Philippine Pop Culture Retrospective", url: "https://www.youtube.com/results?search_query=Philippine+pop+culture+2000s+retrospective", type: "search" }
-  ];
-
-  // 2. DYNAMICALLY BUILD VIDEO CARDS (Always opens in modal now)
-  function renderVideos() {
-    for (let i = 1; i <= 6; i++) {
-      const container = document.getElementById(`videos-room-${i}`);
-      if (!container) continue;
-      
-      const roomVideos = museumVideos.filter(v => v.room === i);
-      
-      roomVideos.forEach(video => {
-        const card = document.createElement('div');
-        card.className = 'video-card';
-        
-        // Force ALL links to open in the modal
-        card.onclick = () => openVideoModal(video.title, video.url);
-
-        card.innerHTML = `
-          <div class="video-thumb"><div class="play-icon">▶</div></div>
-          <div class="video-info">
-            <h4>${video.title}</h4>
-            <p>Plays in website</p>
-          </div>
-        `;
-        container.appendChild(card);
-      });
-    }
-  }
-
-  // 3. NAVIGATION (Fixes the scroll down bug)
-  function showSection(sectionId) {
-    document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
-    document.getElementById(sectionId).classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'instant' });
-    document.getElementById('nav-links').classList.remove('active');
-  }
-
-  // 4. MODALS & INTERACTIONS
-  function openArtifactModal(title, desc) {
-    document.getElementById('modal-title').innerText = title;
-    document.getElementById('modal-desc').innerText = desc;
-    document.getElementById('artifact-modal').classList.add('open');
-  }
-  function closeArtifactModal() {
-    document.getElementById('artifact-modal').classList.remove('open');
-  }
-
-  // 5. VIDEO PLAYER (Handles both direct videos and search links inside the iframe)
-  function openVideoModal(title, url) {
-    document.getElementById('video-credit').innerText = title;
-    const iframeContainer = document.getElementById('video-iframe-container');
-    
-    // Check if it's a direct video link
-    if (url.includes('watch?v=')) {
-      let videoId = url.split('watch?v=')[1].split('&')[0];
-      iframeContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
-    } 
-    // If it's a search link, embed the search page directly into the iframe
-    else {
-      // We use a special mobile-friendly embed for search pages
-      iframeContainer.innerHTML = `<iframe src="${url}" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
-    }
-    
-    document.getElementById('video-modal').classList.add('open');
-  }
-
-  function closeVideoModal() {
-    document.getElementById('video-modal').classList.remove('open');
-    document.getElementById('video-iframe-container').innerHTML = '';
-  }
-
-  // 6. SIMULATORS
-  function switchTab(event, tabId) {
-    const sim = event.target.closest('.friendster-sim');
-    sim.querySelectorAll('.fs-content').forEach(c => c.classList.remove('active'));
-    sim.querySelectorAll('.fs-tab').forEach(t => t.classList.remove('active'));
-    document.getElementById(tabId).classList.add('active');
-    event.target.classList.add('active');
-  }
-
-  function sendSms() {
-    const input = document.getElementById('sms-input');
-    if(!input.value.trim()) return;
-    const container = document.getElementById('sms-container');
-    const bubble = document.createElement('div');
-    bubble.className = 'sms-bubble sent';
-    bubble.innerText = input.value;
-    container.appendChild(bubble);
-    input.value = '';
-  }
-  function handleSmsEnter(e) { if(e.key === 'Enter') sendSms(); }
-
-  // 7. CURSOR GLOW
-  if (window.matchMedia("(pointer: fine)").matches) {
-    const glow = document.getElementById('cursorGlow');
-    glow.style.display = 'block';
-    document.addEventListener('mousemove', (e) => {
-      glow.style.left = e.clientX + 'px';
-      glow.style.top = e.clientY + 'px';
-    });
-  }
-
-  // Initialize
-  renderVideos();
-</script>
-
-</body>
-</html>
+    { room: 2, title: "Orange & Lemons — Pinoy Ako", url: "https://www.youtube.com/watch?v=J6mLBOj9YJ", type: "video" }, // Using ID from search result [citation:2]
+    // Room 3
+    { room: 3, title: "Counter-Strike 1.6 Internet Cafe", url: "https://www.youtube.com/watch?v=j5MvwIokLiw", type: "video" },
+    // Room 4
+    { room: 4, title: "Asianovela Theme Songs", url: "https://www.youtube.com/watch?v=q4qdG57QufE", type: "video" },
+    // Room 5
+    { room: 5, title: "Itaktak Mo Dance Craze", url: "https://www.youtube.com/watch?v=wZ3jex
