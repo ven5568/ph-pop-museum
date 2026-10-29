@@ -4,513 +4,386 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>THE HINGE: A Decade in PH Pop Culture (2000–2010)</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
   
   <style>
+    /* ========================================
+       THE HINGE — Filipino Y2K Archive
+    ======================================== */
+
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap');
+
     :root {
-      --bg-dark: #121421;
-      --window-bg: #161622; 
-      --window-border: #2a2a3c;
-      --white: #ffffff; 
-      --gray: #9ca3af; 
-      --blue: #00a8ff;
-      --purple: #8b5cf6;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    
-    body { 
-      font-family: 'Outfit', system-ui, sans-serif; 
-      background-color: var(--bg-dark); 
-      color: var(--white); 
-      line-height: 1.6; 
-      overflow-x: hidden; 
+      --hinge-pink: #ff00a8;
+      --hinge-blue: #00d9ff;
+      --hinge-yellow: #ffd43b;
+      --hinge-navy: #071326;
+      --hinge-white: #f8f9ff;
+      --hinge-muted: #c5c9d9;
     }
 
-    /* =========================================
-       HERO SECTION (EXACT REPLICA)
-       ========================================= */
-    #hero {
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
       min-height: 100vh;
+      font-family: 'Inter', sans-serif;
+      color: var(--hinge-white);
+      background-color: #080719;
+      overflow-x: hidden;
+    }
+
+    /* Main hero background */
+    .hero {
       position: relative;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 100px 20px;
+      padding: 120px 24px 100px;
+      isolation: isolate;
       overflow: hidden;
-      /* City/Mall Background */
-      background-image: url('https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?q=80&w=2500&auto=format&fit=crop'); 
+
+      background:
+        linear-gradient(90deg, rgba(8, 5, 22, 0.45), rgba(8, 5, 22, 0.78) 35%, rgba(8, 5, 22, 0.72) 65%, rgba(8, 5, 22, 0.42)),
+        linear-gradient(0deg, rgba(5, 9, 27, 0.88), rgba(8, 5, 22, 0.12)),
+        url('https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?q=80&w=2500&auto=format&fit=crop'); /* City Background */
+
       background-size: cover;
       background-position: center;
+      background-repeat: no-repeat;
     }
 
-    /* Dark overlay to match the vintage, desaturated look */
-    #hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: rgba(20, 25, 40, 0.65);
-      z-index: 1;
-    }
-
-    /* Top Navigation Bar (Floating) */
-    nav { 
-      position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
-      z-index: 1000; 
-      background: rgba(26, 29, 46, 0.85); 
-      backdrop-filter: blur(10px); 
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 50px;
-      padding: 8px 16px; 
-      display: flex; align-items: center; justify-content: space-between; 
-      width: 90%;
-      max-width: 900px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    }
-    nav .logo { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.2rem; color: var(--white); display: flex; align-items: center; gap: 10px; padding-left: 10px; }
-    nav .logo-icon { background: linear-gradient(135deg, #8b5cf6, #00a8ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 1.5rem; }
-    
-    nav ul { list-style: none; display: flex; gap: 4px; }
-    nav ul li a { 
-      padding: 10px 20px; 
-      border-radius: 30px; 
-      font-size: 0.85rem; 
-      font-weight: 600; 
-      color: #d1d5db; 
-      transition: all 0.3s; 
-      cursor: pointer; 
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    nav ul li a.active { 
-      color: var(--white); 
-      background: linear-gradient(90deg, #8b5cf6, #00a8ff); 
-      box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
-    }
-
-    /* --- COLLAGE ELEMENTS (Positioned exactly like the image) --- */
-    .collage-item {
+    /* Vintage film texture */
+    .hero::before {
+      content: "";
       position: absolute;
-      z-index: 2;
-      background-size: cover;
-      background-position: center;
-      box-shadow: 0 15px 30px rgba(0,0,0,0.5);
-    }
-
-    /* Jeepney (Left) */
-    .item-jeepney { bottom: 20%; left: -2%; width: 320px; height: 220px; transform: rotate(-5deg); background-image: url('https://images.unsplash.com/photo-1583273086045-15275b2e2c8f?q=80&w=800&auto=format&fit=crop'); border: 4px solid #fff; border-radius: 10px; }
-    /* ABS-CBN TV (Bottom Left) */
-    .item-tv { bottom: 2%; left: 0%; width: 300px; height: 260px; transform: rotate(2deg); background-image: url('https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?q=80&w=800&auto=format&fit=crop'); border: 8px solid #222; border-radius: 20px; }
-    /* Nokia Phone (Right) */
-    .item-phone { top: 25%; right: 2%; width: 160px; height: 340px; transform: rotate(10deg); background-image: url('https://images.unsplash.com/photo-1580910051074-3eb694886505?q=80&w=800&auto=format&fit=crop'); border: 8px solid #444; border-radius: 30px; }
-    /* Pinoy Magazine (Bottom Right) */
-    .item-mag { bottom: 0%; right: 15%; width: 280px; height: 200px; transform: rotate(-6deg); background-image: url('https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?q=80&w=800&auto=format&fit=crop'); border: 6px solid #f0f0f0; border-radius: 8px; }
-    /* CDs (Bottom Center) */
-    .item-cd { bottom: 5%; left: 25%; width: 140px; height: 140px; border-radius: 50%; transform: rotate(-15deg); background-image: url('https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=800&auto=format&fit=crop'); border: 2px solid #fff; }
-
-    /* The Wavy Flag */
-    .flag-wave {
-      position: absolute; bottom: 0; left: 0; width: 100%; height: 70px; z-index: 5;
-      background: linear-gradient(to bottom, #0038a8 0%, #0038a8 50%, #ce1126 50%, #ce1126 85%, #fcd116 85%);
-      clip-path: polygon(0 30%, 15% 10%, 30% 30%, 45% 10%, 60% 30%, 75% 10%, 90% 30%, 100% 10%, 100% 100%, 0 100%);
-    }
-
-    /* --- HERO CONTENT --- */
-    .hero-content {
-      position: relative;
-      z-index: 10;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      max-width: 1000px;
-    }
-
-    /* THE HINGE Title */
-    .title-wrapper { position: relative; margin-bottom: 30px; }
-    
-    .hero-title {
-      font-family: 'Montserrat', sans-serif;
-      font-size: clamp(4rem, 9vw, 8rem);
-      font-weight: 900;
-      color: #fff;
-      line-height: 1;
-      letter-spacing: -3px;
-      text-transform: uppercase;
-      /* Thick border and drop shadow to match the 3D text */
-      -webkit-text-stroke: 4px #111;
-      text-shadow: 
-        4px 4px 0px #111,
-        8px 8px 0px #1a233a,
-        12px 12px 20px rgba(0,0,0,0.7);
-    }
-
-    /* Yellow Swoosh */
-    .swoosh {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 110%; height: 120%;
-      border: 5px solid #fcd116;
-      border-radius: 50%;
-      clip-path: polygon(0 30%, 100% 0, 100% 60%, 0 100%);
+      inset: 0;
       z-index: -1;
-    }
-
-    /* Stars */
-    .star { position: absolute; color: #fff; font-size: 2rem; text-shadow: 2px 2px 0 #111; }
-    .s1 { top: -10px; left: -30px; transform: rotate(-15deg); }
-    .s2 { top: 10px; right: -40px; color: #fcd116; font-size: 3rem; transform: rotate(15deg); }
-    .s3 { bottom: 20px; right: -70px; font-size: 1.5rem; }
-    .s4 { bottom: -10px; left: -50px; font-size: 1.5rem; }
-
-    /* Subtitle Box */
-    .hero-subtitle {
-      font-size: 1.15rem;
-      color: #fff;
-      margin-bottom: 24px;
-      font-weight: 600;
-      max-width: 800px;
-      line-height: 1.5;
-      text-shadow: 1px 1px 4px rgba(0,0,0,0.9);
-    }
-
-    /* Divider */
-    .divider { display: flex; align-items: center; gap: 15px; margin-bottom: 24px; color: #fff; }
-    .divider::before, .divider::after { content: ''; width: 100px; height: 1px; background: rgba(255,255,255,0.3); }
-    .divider-icon { font-size: 1.2rem; }
-
-    .hero-tagline {
-      font-style: italic;
-      color: #ddd;
-      margin-bottom: 30px;
-      font-size: 1rem;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
-    }
-
-    /* Buttons */
-    .hero-buttons { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
-    
-    .btn { 
-      padding: 14px 32px; 
-      border-radius: 50px; 
-      font-weight: 700; 
-      font-size: 1rem; 
-      border: none; 
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      transition: transform 0.2s;
-    }
-    
-    .btn-primary { 
-      background: linear-gradient(90deg, #8b5cf6, #00a8ff); 
-      color: var(--white); 
-      box-shadow: 0 5px 20px rgba(0, 168, 255, 0.5);
-      border: 2px solid #fff;
-    }
-    .btn-primary:hover { transform: scale(1.05); }
-    
-    .btn-secondary { 
-      background: transparent; 
-      color: var(--white); 
-      border: 2px solid #fff; 
-    }
-    .btn-secondary:hover { background: rgba(255,255,255,0.1); transform: scale(1.05); }
-
-    /* Cursor Arrow (Decorative) */
-    .cursor-arrow {
-      position: absolute;
-      bottom: -20px; right: -20px;
-      width: 30px; height: 30px;
-      background: white;
-      clip-path: polygon(0 0, 100% 50%, 50% 60%, 60% 100%, 40% 80%, 20% 100%);
-      border: 2px solid #000;
-      z-index: 20;
+      pointer-events: none;
+      background:
+        repeating-linear-gradient(0deg, transparent 0px, rgba(255, 255, 255, 0.025) 1px, transparent 2px, transparent 4px),
+        linear-gradient(135deg, rgba(255, 0, 168, 0.13), transparent 40%, rgba(0, 217, 255, 0.12));
     }
 
     /* =========================================
-       OTHER SECTIONS (Museum, etc.)
+       COLLAGE IMAGES (LINKS PROVIDED)
        ========================================= */
-    .section { display: none; padding: 150px 24px 60px; max-width: 1200px; margin: 0 auto; min-height: 100vh; }
-    .section.active { display: block; }
-    .section-title { font-family: 'Montserrat', sans-serif; font-size: 3rem; margin-bottom: 8px; }
-    .section-subtitle { color: var(--gray); margin-bottom: 48px; }
-
-    .lobby-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
-    .room-card { background: var(--window-bg); border: 1px solid var(--window-border); border-radius: 16px; padding: 32px; cursor: pointer; transition: all 0.3s; }
-    .room-card:hover { transform: translateY(-8px); border-color: #00a8ff; }
-    .room-card .room-num { font-size: 0.8rem; color: #8b5cf6; font-weight: 800; text-transform: uppercase; }
-    .room-card h3 { font-size: 1.5rem; margin: 12px 0; }
-    .room-card p { color: var(--gray); font-size: 0.95rem; }
-
-    .back-btn { background: var(--window-bg); color: var(--gray); border: 1px solid var(--window-border); padding: 12px 24px; border-radius: 50px; margin-bottom: 32px; cursor: pointer; }
-    .back-btn:hover { color: var(--white); }
-
-    .video-section { margin-top: 48px; }
-    .video-section h3 { font-size: 1.5rem; margin-bottom: 24px; border-left: 4px solid #8b5cf6; padding-left: 16px; }
-    .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-    .video-card { background: var(--window-bg); border: 1px solid var(--window-border); border-radius: 12px; overflow: hidden; cursor: pointer; }
-    .video-thumb { background: #0a0a0a; height: 260px; display: flex; align-items: center; justify-content: center; position: relative; background-size: cover; background-position: center; }
-    .video-thumb .play-icon { width: 54px; height: 54px; border-radius: 50%; background: rgba(255,255,255,0.2); border: 2px solid #fff; display: flex; align-items: center; justify-content: center; color: white; }
-    .video-info { padding: 20px; }
-    .video-info h4 { font-size: 1rem; margin-bottom: 6px; }
-    .video-info p { font-size: 0.85rem; color: var(--gray); }
-
-    /* MODALS */
-    .modal-overlay { display: none; position: fixed; inset: 0; z-index: 2000; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); align-items: center; justify-content: center; padding: 24px; }
-    .modal-overlay.open { display: flex; }
-    .modal-box { background: var(--window-bg); border: 2px solid var(--window-border); border-radius: 16px; max-width: 800px; width: 100%; padding: 40px; position: relative; }
-    .close-modal { position: absolute; top: -15px; right: -15px; background: #ff007f; color: #fff; border: 2px solid #fff; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold; cursor: pointer; }
-    .close-modal:hover { background: #ff0000; }
-    .modal-img-container { width: 100%; margin-bottom: 24px; display: none; }
-    .modal-img-container img { width: 100%; border-radius: 12px; }
-
-    .video-modal-box { max-width: 900px; width: 100%; background: #000; padding: 24px; border-radius: 16px; position: relative; }
-    .video-player-wrapper { position: relative; padding-bottom: 56.25%; height: 0; }
-    .video-player-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-
-    footer { text-align: center; padding: 40px; border-top: 1px solid var(--window-border); color: var(--gray); background: var(--bg-dark); }
-
-    /* RESPONSIVE */
-    @media (max-width: 1024px) {
-      .collage-item { opacity: 0.3; } /* Fade out collage on smaller screens */
-      .item-tv, .item-mag { display: none; }
+    .collage-item {
+      position: absolute;
+      z-index: 2;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      filter: drop-shadow(5px 15px 15px rgba(0,0,0,0.6));
+      pointer-events: none;
     }
+
+    /* 1. JEEPNEY */
+    .item-jeepney { 
+      bottom: 15%; left: 2%; width: 350px; height: 300px; 
+      transform: rotate(-5deg); 
+      background-image: url('https://images.unsplash.com/photo-1583273086045-15275b2e2c8f?q=80&w=800&auto=format&fit=crop'); 
+    }
+
+    /* 2. TV */
+    .item-tv { 
+      bottom: 0%; left: 2%; width: 350px; height: 300px; 
+      transform: rotate(3deg); 
+      background-image: url('https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?q=80&w=800&auto=format&fit=crop'); 
+    }
+
+    /* 3. NOKIA PHONE */
+    .item-phone { 
+      top: 25%; right: 2%; width: 200px; height: 400px; 
+      transform: rotate(12deg); 
+      background-image: url('https://images.unsplash.com/photo-1580910051074-3eb694886505?q=80&w=800&auto=format&fit=crop'); 
+    }
+
+    /* 4. MAGAZINE */
+    .item-mag { 
+      bottom: 0%; right: 10%; width: 320px; height: 220px; 
+      transform: rotate(-8deg); 
+      background-image: url('https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?q=80&w=800&auto=format&fit=crop'); 
+    }
+
+    /* 5. CDs */
+    .item-cd { 
+      bottom: 2%; left: 28%; width: 160px; height: 160px; 
+      transform: rotate(-15deg); 
+      border-radius: 50%;
+      background-image: url('https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=800&auto=format&fit=crop'); 
+    }
+    /* ========================================= */
+
+    /* Navigation */
+    .navbar {
+      position: absolute;
+      top: 12px;
+      left: 2%;
+      right: 2%;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 14px 24px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 24px;
+      background: rgba(8, 12, 32, 0.78);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: 0 8px 35px rgba(0, 0, 0, 0.25), inset 0 1px rgba(255, 255, 255, 0.08);
+    }
+
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      white-space: nowrap;
+      color: white;
+      text-shadow: 0 0 14px rgba(0, 217, 255, 0.4);
+    }
+
+    .nav-links { display: flex; align-items: center; gap: 8px; }
+
+    .nav-links a {
+      padding: 12px 17px;
+      border: 1px solid transparent;
+      border-radius: 30px;
+      color: var(--hinge-muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      transition: 0.25s ease;
+      cursor: pointer;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      color: white;
+      border-color: rgba(255, 0, 168, 0.55);
+      background: linear-gradient(110deg, rgba(255, 0, 168, 0.28), rgba(0, 217, 255, 0.24));
+      box-shadow: 0 0 20px rgba(255, 0, 168, 0.18);
+    }
+
+    /* Hero content */
+    .hero-content {
+      width: 100%;
+      max-width: 1000px;
+      margin: auto;
+      text-align: center;
+      position: relative;
+      z-index: 3;
+    }
+
+    .hero-title {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 26px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(48px, 8vw, 112px);
+      font-weight: 900;
+      font-style: italic;
+      letter-spacing: -4px;
+      line-height: 1.05;
+      color: #fff;
+      text-transform: uppercase;
+      text-shadow: 4px 4px 0 #152c52, 8px 8px 0 rgba(0, 217, 255, 0.2), 0 0 35px rgba(0, 217, 255, 0.15);
+    }
+
+    .hero-title::after {
+      content: "";
+      position: absolute;
+      left: 8%;
+      right: -5%;
+      bottom: -12px;
+      height: 5px;
+      border-radius: 100%;
+      transform: rotate(-4deg);
+      background: linear-gradient(90deg, var(--hinge-pink), var(--hinge-yellow), var(--hinge-blue));
+      box-shadow: 0 0 18px rgba(0, 217, 255, 0.45);
+    }
+
+    .hero-description {
+      max-width: 820px;
+      margin: 20px auto 24px;
+      color: #f0efff;
+      font-size: clamp(15px, 1.6vw, 21px);
+      font-weight: 600;
+      line-height: 1.8;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    }
+
+    .hero-quote {
+      margin: 25px 0 35px;
+      color: #d2d5e7;
+      font-size: 15px;
+      font-style: italic;
+      letter-spacing: 0.5px;
+    }
+
+    /* Buttons */
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .btn {
+      min-width: 230px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 17px 26px;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 50px;
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      background: rgba(15, 16, 39, 0.72);
+      backdrop-filter: blur(12px);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      color: white;
+      border: 2px solid transparent;
+      background: linear-gradient(#12132d, #12132d) padding-box, linear-gradient(110deg, var(--hinge-pink), #853dff, var(--hinge-blue)) border-box;
+      box-shadow: 0 0 20px rgba(255, 0, 168, 0.25), 0 0 35px rgba(0, 217, 255, 0.12);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--hinge-blue);
+      box-shadow: 0 0 25px rgba(0, 217, 255, 0.2);
+    }
+
+    .btn:hover { transform: translateY(-4px); }
+
+    .btn-primary:hover {
+      box-shadow: 0 0 25px rgba(255, 0, 168, 0.45), 0 0 40px rgba(0, 217, 255, 0.25);
+    }
+
+    .hero-ribbon {
+      position: absolute;
+      left: -5%;
+      right: -5%;
+      bottom: -35px;
+      height: 85px;
+      z-index: 1;
+      transform: rotate(-2deg);
+      background: linear-gradient(180deg, var(--hinge-yellow) 0 12%, #164baf 12% 42%, #f8f5ed 42% 48%, #d92c43 48% 78%, #ffd43b 78% 100%);
+      opacity: 0.85;
+      filter: drop-shadow(0 -5px 15px rgba(0, 217, 255, 0.15));
+    }
+
+    /* Sections */
+    .section { display: none; padding: 120px 24px; max-width: 1200px; margin: 0 auto; min-height: 100vh; }
+    .section.active { display: block; }
+    .section-title { font-family: 'Orbitron', sans-serif; font-size: 3rem; color: white; margin-bottom: 20px; }
+    
+    .lobby-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+    .room-card { background: #12132d; border: 1px solid #2a2a3c; border-radius: 16px; padding: 32px; cursor: pointer; color: white; transition: 0.3s; }
+    .room-card:hover { transform: translateY(-5px); border-color: var(--hinge-blue); }
+
+    @media (max-width: 1024px) {
+      .collage-item { opacity: 0.15; }
+    }
+
     @media (max-width: 768px) {
-      nav { flex-direction: column; border-radius: 20px; padding: 15px; top: 10px; }
-      nav ul { margin-top: 10px; flex-wrap: wrap; justify-content: center; }
-      .hero-title { font-size: 3rem; -webkit-text-stroke: 2px #111; }
-      .hero-subtitle { font-size: 0.9rem; }
-      .collage-item { display: none; } /* Hide entirely on mobile */
+      .hero { min-height: 100svh; padding: 120px 20px 110px; background-position: center; }
+      .navbar { left: 12px; right: 12px; padding: 14px; flex-wrap: wrap; justify-content: center; }
+      .logo { width: 100%; text-align: center; font-size: 16px; }
+      .nav-links { width: 100%; justify-content: center; flex-wrap: wrap; gap: 3px; }
+      .nav-links a { padding: 9px 10px; font-size: 11px; }
+      .hero-title { font-size: clamp(40px, 10vw, 72px); letter-spacing: -2px; }
+      .hero-description { font-size: 15px; line-height: 1.7; }
+      .hero-buttons { flex-direction: column; gap: 12px; }
+      .btn { width: min(100%, 320px); }
+      .collage-item { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
     }
   </style>
 </head>
 <body>
 
-<!-- =========================================
-     HERO SECTION
-     ========================================= -->
-<section id="hero" class="section active">
-  
-  <!-- Navigation -->
-  <nav>
-    <div class="logo"><span class="logo-icon">H</span> THE HINGE</div>
-    <ul>
-      <li><a class="active">🏠 Home</a></li>
-      <li><a onclick="showSection('lobby')">🏛️ Museum</a></li>
-      <li><a onclick="showSection('timeline-section')">⏱️ Timeline</a></li>
-      <li><a onclick="showSection('references')">📑 References</a></li>
-    </ul>
-  </nav>
+  <section id="hero" class="hero active">
+    
+    <div class="collage-item item-jeepney"></div>
+    <div class="collage-item item-tv"></div>
+    <div class="collage-item item-phone"></div>
+    <div class="collage-item item-mag"></div>
+    <div class="collage-item item-cd"></div>
 
-  <!-- Collage Elements -->
-  <div class="collage-item item-jeepney"></div>
-  <div class="collage-item item-tv"></div>
-  <div class="collage-item item-phone"></div>
-  <div class="collage-item item-mag"></div>
-  <div class="collage-item item-cd"></div>
+    <nav class="navbar">
+      <div class="logo">H THE HINGE</div>
+      <div class="nav-links">
+        <a class="active" onclick="showSection('hero')">Home</a>
+        <a onclick="showSection('lobby')">Museum</a>
+        <a onclick="showSection('timeline-section')">Timeline</a>
+        <a onclick="showSection('references')">References</a>
+      </div>
+    </nav>
 
-  <!-- Main Content -->
-  <div class="hero-content">
-    <div class="title-wrapper">
-      <div class="swoosh"></div>
-      <div class="star s1">✦</div>
-      <div class="star s2">★</div>
-      <div class="star s3">✦</div>
-      <div class="star s4">★</div>
+    <div class="hero-content">
       <h1 class="hero-title">THE HINGE</h1>
-    </div>
-    
-    <div class="hero-subtitle">
-      Philippine popular culture in 2000-2010 was a transitional "hinge" period between broadcast-centered culture and the increasingly networked culture of the 2010s.
-    </div>
-
-    <div class="divider">
-      <span class="divider-icon">✦</span>
-    </div>
-    
-    <div class="hero-tagline">"Memories. Moments. Movements. We Lived It."</div>
-    
-    <div class="hero-buttons">
-      <button class="btn btn-primary" onclick="showSection('lobby')">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-        ENTER THE ARCHIVE
-        <div class="cursor-arrow"></div>
-      </button>
-      <button class="btn btn-secondary" onclick="showSection('timeline-section')">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-        EXPLORE TIMELINE
-      </button>
-    </div>
-  </div>
-
-  <!-- Wavy Flag Bottom -->
-  <div class="flag-wave"></div>
-</section>
-
-<!-- MUSEUM LOBBY -->
-<section id="lobby" class="section">
-  <h2 class="section-title">Museum Lobby</h2>
-  <p class="section-subtitle">Six exhibition rooms await.</p>
-  <div class="lobby-grid">
-    <div class="room-card" onclick="showSection('room-body')">
-      <div class="room-num">Room 01</div><h3>Body & Self-Image</h3>
-      <p>Y2K fashion, side-swept bangs, and celebrity-driven beauty.</p>
-    </div>
-    <div class="room-card" onclick="showSection('room-music')">
-      <div class="room-num">Room 02</div><h3>Music & Performance</h3>
-      <p>OPM rock renaissance, novelty dances, and reality talent searches.</p>
-    </div>
-    <div class="room-card" onclick="showSection('room-tech')">
-      <div class="room-num">Room 03</div><h3>Technology & Digital Culture</h3>
-      <p>Internet cafés, Counter-Strike, Friendster, and texting.</p>
-    </div>
-    <div class="room-card" onclick="showSection('room-themes')">
-      <div class="room-num">Room 04</div><h3>Intersecting Themes</h3>
-      <p>Celebrity, globalization, youth identity, and nostalgia.</p>
-    </div>
-    <div class="room-card" onclick="showSection('room-forms')">
-      <div class="room-num">Room 05</div><h3>Forms of Pop Culture</h3>
-      <p>TV, music, fashion, and gaming platforms.</p>
-    </div>
-    <div class="room-card" onclick="showSection('room-patterns')">
-      <div class="room-num">Room 06</div><h3>Patterns & Change</h3>
-      <p>How the 2000s bridged broadcast and networked culture.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ROOMS (Simplified for brevity, keeping your video structures) -->
-<section id="room-body" class="section">
-  <button class="back-btn" onclick="showSection('lobby')">← Return to Lobby</button>
-  <h2 class="section-title">Room 01 — Body & Self-Image</h2>
-  <div class="video-section"><div class="video-grid" id="videos-room-1"></div></div>
-</section>
-<section id="room-music" class="section">
-  <button class="back-btn" onclick="showSection('lobby')">← Return to Lobby</button>
-  <h2 class="section-title">Room 02 — Music & Performance</h2>
-  <div class="video-section"><div class="video-grid" id="videos-room-2"></div></div>
-</section>
-<section id="room-tech" class="section">
-  <button class="back-btn" onclick="showSection('lobby')">← Return to Lobby</button>
-  <h2 class="section-title">Room 03 — Technology</h2>
-  <div class="video-section"><div class="video-grid" id="videos-room-3"></div></div>
-</section>
-<section id="room-themes" class="section">
-  <button class="back-btn" onclick="showSection('lobby')">← Return to Lobby</button>
-  <h2 class="section-title">Room 04 — Intersecting Themes</h2>
-  <div class="video-section"><div class="video-grid" id="videos-room-4"></div></div>
-</section>
-<section id="room-forms" class="section">
-  <button class="back-btn" onclick="showSection('lobby')">← Return to Lobby</button>
-  <h2 class="section-title">Room 05 — Forms of Pop Culture</h2>
-  <div class="video-section"><div class="video-grid" id="videos-room-5"></div></div>
-</section>
-<section id="room-patterns" class="section">
-  <button class="back-btn" onclick="showSection('lobby')">← Return to Lobby</button>
-  <h2 class="section-title">Room 06 — Patterns & Change</h2>
-  <div class="video-section"><div class="video-grid" id="videos-room-6"></div></div>
-</section>
-
-<section id="timeline-section" class="section">
-  <h2 class="section-title">Historical Timeline</h2>
-  <p>2000-2010 Timeline content here.</p>
-</section>
-
-<section id="references" class="section">
-  <h2 class="section-title">References & Copyright</h2>
-  <p>All rights reserved.</p>
-</section>
-
-<!-- MODALS -->
-<div id="artifact-modal" class="modal-overlay">
-  <div class="modal-box">
-    <button class="close-modal" onclick="closeArtifactModal()">×</button>
-    <div id="modal-img-container" class="modal-img-container"><img id="modal-img" src=""></div>
-    <h3 id="modal-title">Title</h3>
-    <p id="modal-desc" style="color:var(--gray); margin-top:10px;">Description</p>
-  </div>
-</div>
-
-<div id="video-modal" class="modal-overlay">
-  <div class="video-modal-box">
-    <button class="close-modal" onclick="closeVideoModal()">×</button>
-    <div class="video-player-wrapper" id="video-iframe-container"></div>
-  </div>
-</div>
-
-<script>
-  // RE-ADDING THE VIDEO LOGIC
-  const museumVideos = [
-    { room: 1, title: "Y2K Fashion & Emo/Skater Culture", type: "poster", img: "room%201.jpeg", tag: "CHIC", desc: "Low-rise jeans, side-swept bangs, and chunky skate shoes." },
-    { room: 2, title: "Hale — Broken Sonnet", type: "video", url: "https://www.youtube.com/watch?v=WurY8WdS8Fw" },
-    { room: 2, title: "Sponge Cola — Jeepney", type: "video", url: "https://www.youtube.com/watch?v=KgxvglVEylo" },
-    { room: 3, title: "Counter-Strike 1.6 Internet Cafe", type: "video", url: "https://www.youtube.com/watch?v=j5MvwIokLiw" },
-    { room: 4, title: "Asianovela Theme Songs", type: "video", url: "https://www.youtube.com/watch?v=q4qdG57QufE" },
-    { room: 5, title: "Itaktak Mo (Joey De Leon)", type: "video", url: "https://www.youtube.com/watch?v=nDKfY_DqmSo" },
-  ];
-
-  function renderVideos() {
-    for (let i = 1; i <= 6; i++) {
-      const container = document.getElementById(`videos-room-${i}`);
-      if (!container) continue;
       
-      museumVideos.filter(v => v.room === i).forEach(video => {
-        const card = document.createElement('div');
-        card.className = 'video-card';
-        
-        let thumbHTML = '';
-        if (video.type === 'video') {
-          thumbHTML = `<div class="video-thumb"><div class="play-icon">▶</div></div>`;
-          card.onclick = () => openVideoModal(video.title, video.url);
-        } else {
-          // Poster fallback
-          thumbHTML = `<div class="video-thumb" style="background-image:url('${video.img}')"></div>`;
-          card.onclick = () => openArtifactModal(video.title, video.desc, video.img);
-        }
+      <p class="hero-description">
+        Philippine popular culture in 2000-2010 was a transitional "hinge" period between broadcast-centered culture and the increasingly networked culture of the 2010s.
+      </p>
+      
+      <p class="hero-quote">"Memories. Moments. Movements. We Lived It."</p>
+      
+      <div class="hero-buttons">
+        <a href="#lobby" class="btn btn-primary" onclick="showSection('lobby')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          ENTER THE ARCHIVE
+        </a>
+        <a href="#timeline-section" class="btn btn-secondary" onclick="showSection('timeline-section')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          EXPLORE TIMELINE
+        </a>
+      </div>
+    </div>
 
-        card.innerHTML = thumbHTML + `<div class="video-info"><h4>${video.title}</h4></div>`;
-        container.appendChild(card);
-      });
+    <div class="hero-ribbon"></div>
+  </section>
+
+  <section id="lobby" class="section">
+    <h2 class="section-title">Museum Lobby</h2>
+    <div class="lobby-grid">
+      <div class="room-card" onclick="alert('Room 1 Opening soon!')"><h3>Room 01 — Body & Self-Image</h3></div>
+      <div class="room-card" onclick="alert('Room 2 Opening soon!')"><h3>Room 02 — Music & Performance</h3></div>
+      <div class="room-card" onclick="alert('Room 3 Opening soon!')"><h3>Room 03 — Technology</h3></div>
+    </div>
+  </section>
+
+  <section id="timeline-section" class="section">
+    <h2 class="section-title">Timeline</h2>
+    <p style="color: white;">2000-2010 Timeline</p>
+  </section>
+
+  <section id="references" class="section">
+    <h2 class="section-title">References</h2>
+    <p style="color: white;">Copyright info here.</p>
+  </section>
+
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('.section, .hero').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+      window.scrollTo(0,0);
     }
-  }
-
-  function showSection(sectionId) {
-    document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
-    document.getElementById(sectionId).classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'instant' });
-  }
-
-  function openArtifactModal(title, desc, imgUrl) {
-    document.getElementById('modal-title').innerText = title;
-    document.getElementById('modal-desc').innerText = desc;
-    document.getElementById('modal-img').src = imgUrl;
-    document.getElementById('modal-img-container').style.display = 'block';
-    document.getElementById('artifact-modal').classList.add('open');
-  }
-  function closeArtifactModal() { document.getElementById('artifact-modal').classList.remove('open'); }
-
-  function openVideoModal(title, url) {
-    let videoId = '';
-    if (url.includes('watch?v=')) videoId = url.split('watch?v=')[1].split('&')[0];
-    if (videoId) {
-      document.getElementById('video-iframe-container').innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" allowfullscreen></iframe>`;
-    }
-    document.getElementById('video-modal').classList.add('open');
-  }
-  function closeVideoModal() {
-    document.getElementById('video-modal').classList.remove('open');
-    document.getElementById('video-iframe-container').innerHTML = '';
-  }
-
-  // Close modals on outside click
-  document.getElementById('artifact-modal').addEventListener('click', function(e) { if(e.target === this) closeArtifactModal(); });
-  document.getElementById('video-modal').addEventListener('click', function(e) { if(e.target === this) closeVideoModal(); });
-
-  renderVideos();
-</script>
+  </script>
 </body>
 </html>
