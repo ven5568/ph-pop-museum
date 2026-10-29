@@ -404,4 +404,116 @@
     // Room 4
     { room: 4, title: "Asianovela Theme Songs", url: "https://www.youtube.com/watch?v=q4qdG57QufE", type: "video" },
     // Room 5
-    { room: 5, title: "Itaktak Mo Dance Craze", url: "https://www.youtube.com/watch?v=wZ3jex
+    { room: 5, title: "Itaktak Mo Dance Craze", url: "https://www.youtube.com/watch?v=wZ3jex4kZ7E", type: "video" }, // From search result [citation:10]
+    // Room 6 - No direct video links verified, leaving empty for now
+  ];
+
+  // 2. DYNAMICALLY BUILD VIDEO CARDS (Only renders if there are videos)
+  function renderVideos() {
+    for (let i = 1; i <= 6; i++) {
+      const container = document.getElementById(`videos-room-${i}`);
+      if (!container) continue;
+      
+      const roomVideos = museumVideos.filter(v => v.room === i);
+      
+      if (roomVideos.length === 0) {
+        container.innerHTML = '<p style="color: #666; padding: 20px;">No verified direct video links available for this room yet. You can add your own in the HTML code.</p>';
+        continue;
+      }
+
+      roomVideos.forEach(video => {
+        const card = document.createElement('div');
+        card.className = 'video-card';
+        card.onclick = () => openVideoModal(video.title, video.url);
+
+        card.innerHTML = `
+          <div class="video-thumb"><div class="play-icon">▶</div></div>
+          <div class="video-info">
+            <h4>${video.title}</h4>
+            <p>Plays in website</p>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+  }
+
+  // 3. NAVIGATION
+  function showSection(sectionId) {
+    document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+    document.getElementById(sectionId).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    document.getElementById('nav-links').classList.remove('active');
+  }
+
+  // 4. MODALS
+  function openArtifactModal(title, desc) {
+    document.getElementById('modal-title').innerText = title;
+    document.getElementById('modal-desc').innerText = desc;
+    document.getElementById('artifact-modal').classList.add('open');
+  }
+  function closeArtifactModal() {
+    document.getElementById('artifact-modal').classList.remove('open');
+  }
+
+  // 5. VIDEO PLAYER (Only for direct links)
+  function openVideoModal(title, url) {
+    document.getElementById('video-credit').innerText = title;
+    const iframeContainer = document.getElementById('video-iframe-container');
+    
+    let videoId = '';
+    if (url.includes('watch?v=')) videoId = url.split('watch?v=')[1].split('&')[0];
+    else if (url.includes('youtu.be/')) videoId = url.split('youtu.be/')[1].split('?')[0];
+    else if (url.includes('embed/')) videoId = url.split('embed/')[1].split('?')[0];
+
+    if (videoId) {
+      iframeContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+    } else {
+      iframeContainer.innerHTML = `<p style="color:white; padding:20px;">Invalid Video Link</p>`;
+    }
+    
+    document.getElementById('video-modal').classList.add('open');
+  }
+
+  function closeVideoModal() {
+    document.getElementById('video-modal').classList.remove('open');
+    document.getElementById('video-iframe-container').innerHTML = '';
+  }
+
+  // 6. SIMULATORS
+  function switchTab(event, tabId) {
+    const sim = event.target.closest('.friendster-sim');
+    sim.querySelectorAll('.fs-content').forEach(c => c.classList.remove('active'));
+    sim.querySelectorAll('.fs-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  function sendSms() {
+    const input = document.getElementById('sms-input');
+    if(!input.value.trim()) return;
+    const container = document.getElementById('sms-container');
+    const bubble = document.createElement('div');
+    bubble.className = 'sms-bubble sent';
+    bubble.innerText = input.value;
+    container.appendChild(bubble);
+    input.value = '';
+  }
+  function handleSmsEnter(e) { if(e.key === 'Enter') sendSms(); }
+
+  // 7. CURSOR GLOW
+  if (window.matchMedia("(pointer: fine)").matches) {
+    const glow = document.getElementById('cursorGlow');
+    glow.style.display = 'block';
+    document.addEventListener('mousemove', (e) => {
+      glow.style.left = e.clientX + 'px';
+      glow.style.top = e.clientY + 'px';
+    });
+  }
+
+  // Initialize
+  renderVideos();
+</script>
+
+</body>
+</html>
