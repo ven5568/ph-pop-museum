@@ -121,18 +121,31 @@
     .artifact-card h4 { font-size: 1.1rem; margin-bottom: 8px; color: var(--white); }
     .artifact-card .artifact-tag { font-size: 0.75rem; color: var(--purple); text-transform: uppercase; font-weight: 700; }
 
-    /* VIDEO CARDS */
+    /* VIDEO CARDS & POSTERS */
     .video-section { margin-top: 48px; }
     .video-section h3 { font-size: 1.5rem; color: var(--white); margin-bottom: 24px; border-left: 4px solid var(--pink); padding-left: 16px; }
     .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
     .video-card { background: var(--window-bg); border: 1px solid var(--window-border); border-radius: 12px; overflow: hidden; cursor: pointer; transition: all 0.3s; }
     .video-card:hover { border-color: var(--pink); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(255,107,157,0.1); }
-    .video-thumb { background: #000; height: 160px; display: flex; align-items: center; justify-content: center; position: relative; }
+    
+    .video-thumb { background: #000; height: 160px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
     .video-thumb::after { content: ''; position: absolute; inset: 0; background: linear-gradient(45deg, rgba(139,92,246,0.2), rgba(0,168,255,0.2)); opacity: 0; transition: 0.3s; }
     .video-card:hover .video-thumb::after { opacity: 1; }
     .video-thumb .play-icon { width: 54px; height: 54px; border-radius: 50%; background: rgba(255,255,255,0.1); backdrop-filter: blur(4px); border: 2px solid var(--white); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: white; transition: all 0.3s; z-index: 2; }
     .video-card:hover .play-icon { transform: scale(1.1); background: var(--electric-blue); border-color: var(--electric-blue); color: var(--black); box-shadow: 0 0 20px var(--electric-blue); }
-    .video-info { padding: 20px; }
+    
+    /* CUSTOM POSTER STYLES */
+    .poster-bg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 4rem; opacity: 0.15; z-index: 1; transition: transform 0.5s; }
+    .video-card:hover .poster-bg { transform: scale(1.1) rotate(5deg); opacity: 0.25; }
+    
+    .poster-fashion { background: linear-gradient(135deg, #ff6b9d, #8b5cf6); }
+    .poster-music { background: linear-gradient(135deg, #00a8ff, #3b82f6); }
+    .poster-tech { background: linear-gradient(135deg, #10b981, #00a8ff); }
+    .poster-media { background: linear-gradient(135deg, #f59e0b, #ff6b9d); }
+    .poster-tv { background: linear-gradient(135deg, #8b5cf6, #ec4899); }
+    .poster-nostalgia { background: linear-gradient(135deg, #6366f1, #8b5cf6); }
+
+    .video-info { padding: 20px; position: relative; z-index: 3; background: var(--window-bg); }
     .video-info h4 { font-size: 1rem; margin-bottom: 6px; }
     .video-info p { font-size: 0.85rem; color: var(--gray); }
 
@@ -392,23 +405,35 @@
 </div>
 
 <script>
-  // 1. MUSEUM VIDEO DATA (Direct links only - no search links)
+  // 1. MUSEUM DATA: Mix of Real Videos and Custom Posters
   const museumVideos = [
-    // Room 1 - No direct video links verified in search results, leaving empty for now
-    // Room 2
-    { room: 2, title: "Hale — Broken Sonnet", url: "https://www.youtube.com/watch?v=WurY8WdS8Fw", type: "video" },
-    { room: 2, title: "Sponge Cola — Jeepney", url: "https://www.youtube.com/watch?v=KgxvglVEylo", type: "video" },
-    { room: 2, title: "Orange & Lemons — Pinoy Ako", url: "https://www.youtube.com/watch?v=J6mLBOj9YJ", type: "video" }, // Using ID from search result [citation:2]
-    // Room 3
-    { room: 3, title: "Counter-Strike 1.6 Internet Cafe", url: "https://www.youtube.com/watch?v=j5MvwIokLiw", type: "video" },
-    // Room 4
-    { room: 4, title: "Asianovela Theme Songs", url: "https://www.youtube.com/watch?v=q4qdG57QufE", type: "video" },
-    // Room 5
-    { room: 5, title: "Itaktak Mo Dance Craze", url: "https://www.youtube.com/watch?v=wZ3jex4kZ7E", type: "video" }, // From search result [citation:10]
-    // Room 6 - No direct video links verified, leaving empty for now
+    // ROOM 1: Posters (No verified video links found)
+    { room: 1, title: "2000s Pinoy Emo Fashion", type: "poster", posterClass: "poster-fashion", icon: "🖤", desc: "Visual exploration of side-swept bangs and emo aesthetics." },
+    { room: 1, title: "Filipino Y2K & Skate Style", type: "poster", posterClass: "poster-fashion", icon: "🛹", desc: "Chunky shoes, low-rise jeans, and mall culture." },
+    
+    // ROOM 2: Verified Videos from your links
+    { room: 2, title: "Hale — Broken Sonnet", type: "video", url: "https://www.youtube.com/watch?v=WurY8WdS8Fw" },
+    { room: 2, title: "Sponge Cola — Jeepney", type: "video", url: "https://www.youtube.com/watch?v=KgxvglVEylo" },
+    { room: 2, title: "OPM Rock Playlist", type: "external", url: "https://music.youtube.com/playlist?list=PL6Y3Nje4JRGVHZ5zlxPZ6K9MniXP-ukOd", posterClass: "poster-music", icon: "🎸", desc: "Full playlist of 2000s OPM hits (opens externally)." },
+    
+    // ROOM 3: Verified Videos
+    { room: 3, title: "Counter-Strike 1.6 Internet Cafe", type: "video", url: "https://www.youtube.com/watch?v=j5MvwIokLiw" },
+    { room: 3, title: "Friendster & Top 8 Nostalgia", type: "poster", posterClass: "poster-tech", icon: "💻", desc: "A visual deep dive into early social networking profiles." },
+    
+    // ROOM 4: Verified Videos
+    { room: 4, title: "Asianovela Theme Songs", type: "video", url: "https://www.youtube.com/watch?v=q4qdG57QufE" },
+    { room: 4, title: "MYX & Music Television", type: "poster", posterClass: "poster-media", icon: "📺", desc: "The golden era of music videos and VJ culture." },
+    
+    // ROOM 5: Verified Videos
+    { room: 5, title: "Star In A Million Season 2", type: "video", url: "https://www.youtube.com/live/oJ-7LmWmr0o" },
+    { room: 5, title: "Novelty Dances (Itaktak Mo)", type: "video", url: "https://www.youtube.com/watch?v=wZ3jex4kZ7E" },
+    
+    // ROOM 6: Posters & External Podcast
+    { room: 6, title: "TiToTeaTime: Analog to Digital", type: "external", url: "https://music.youtube.com/podcast/pUmj1GQBwKs", posterClass: "poster-nostalgia", icon: "🎙️", desc: "Podcast discussing the 2000s transition (opens externally)." },
+    { room: 6, title: "Growing Up in the 2000s", type: "poster", posterClass: "poster-nostalgia", icon: "📼", desc: "Nostalgic look at childhood, school life, and technology." }
   ];
 
-  // 2. DYNAMICALLY BUILD VIDEO CARDS (Only renders if there are videos)
+  // 2. RENDER CARDS
   function renderVideos() {
     for (let i = 1; i <= 6; i++) {
       const container = document.getElementById(`videos-room-${i}`);
@@ -416,23 +441,32 @@
       
       const roomVideos = museumVideos.filter(v => v.room === i);
       
-      if (roomVideos.length === 0) {
-        container.innerHTML = '<p style="color: #666; padding: 20px;">No verified direct video links available for this room yet. You can add your own in the HTML code.</p>';
-        continue;
-      }
-
       roomVideos.forEach(video => {
         const card = document.createElement('div');
         card.className = 'video-card';
-        card.onclick = () => openVideoModal(video.title, video.url);
+        
+        // Setup thumbnail (either video play button or custom poster)
+        let thumbHTML = '';
+        if (video.type === 'video') {
+          thumbHTML = `<div class="video-thumb"><div class="play-icon">▶</div></div>`;
+          card.onclick = () => openVideoModal(video.title, video.url);
+        } else if (video.type === 'external') {
+          thumbHTML = `<div class="video-thumb ${video.posterClass}"><div class="poster-bg">${video.icon}</div><div class="play-icon">↗</div></div>`;
+          card.onclick = () => window.open(video.url, '_blank');
+        } else if (video.type === 'poster') {
+          thumbHTML = `<div class="video-thumb ${video.posterClass}"><div class="poster-bg">${video.icon}</div></div>`;
+          card.onclick = () => alert(video.desc || "Visual archive exhibit."); // Opens a simple alert for posters
+        }
 
-        card.innerHTML = `
-          <div class="video-thumb"><div class="play-icon">▶</div></div>
+        // Setup text info
+        let infoHTML = `
           <div class="video-info">
             <h4>${video.title}</h4>
-            <p>Plays in website</p>
+            <p>${video.type === 'video' ? 'Plays in website' : video.type === 'external' ? 'Opens externally' : 'Visual Poster'}</p>
           </div>
         `;
+
+        card.innerHTML = thumbHTML + infoHTML;
         container.appendChild(card);
       });
     }
@@ -456,7 +490,6 @@
     document.getElementById('artifact-modal').classList.remove('open');
   }
 
-  // 5. VIDEO PLAYER (Only for direct links)
   function openVideoModal(title, url) {
     document.getElementById('video-credit').innerText = title;
     const iframeContainer = document.getElementById('video-iframe-container');
@@ -464,12 +497,12 @@
     let videoId = '';
     if (url.includes('watch?v=')) videoId = url.split('watch?v=')[1].split('&')[0];
     else if (url.includes('youtu.be/')) videoId = url.split('youtu.be/')[1].split('?')[0];
-    else if (url.includes('embed/')) videoId = url.split('embed/')[1].split('?')[0];
+    else if (url.includes('live/')) videoId = url.split('live/')[1].split('?')[0];
 
     if (videoId) {
       iframeContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
     } else {
-      iframeContainer.innerHTML = `<p style="color:white; padding:20px;">Invalid Video Link</p>`;
+      iframeContainer.innerHTML = `<p style="color:white; padding:20px;">Video link cannot be embedded directly.</p>`;
     }
     
     document.getElementById('video-modal').classList.add('open');
@@ -480,7 +513,7 @@
     document.getElementById('video-iframe-container').innerHTML = '';
   }
 
-  // 6. SIMULATORS
+  // 5. SIMULATORS
   function switchTab(event, tabId) {
     const sim = event.target.closest('.friendster-sim');
     sim.querySelectorAll('.fs-content').forEach(c => c.classList.remove('active'));
@@ -501,7 +534,7 @@
   }
   function handleSmsEnter(e) { if(e.key === 'Enter') sendSms(); }
 
-  // 7. CURSOR GLOW
+  // 6. CURSOR GLOW
   if (window.matchMedia("(pointer: fine)").matches) {
     const glow = document.getElementById('cursorGlow');
     glow.style.display = 'block';
