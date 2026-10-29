@@ -131,15 +131,16 @@
     .video-card { background: var(--window-bg); border: 1px solid var(--window-border); border-radius: 12px; overflow: hidden; cursor: pointer; transition: all 0.3s; }
     .video-card:hover { border-color: var(--pink); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(255,107,157,0.1); }
     
-    .video-thumb { background: #000; height: 200px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    /* UPDATED THUMBNAIL HEIGHT & BACKGROUND FOR POSTERS */
+    .video-thumb { background: #000; height: 260px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
     .video-thumb::after { content: ''; position: absolute; inset: 0; background: linear-gradient(45deg, rgba(139,92,246,0.2), rgba(0,168,255,0.2)); opacity: 0; transition: 0.3s; }
     .video-card:hover .video-thumb::after { opacity: 1; }
     .video-thumb .play-icon { width: 54px; height: 54px; border-radius: 50%; background: rgba(255,255,255,0.1); backdrop-filter: blur(4px); border: 2px solid var(--white); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: white; transition: all 0.3s; z-index: 3; }
     .video-card:hover .play-icon { transform: scale(1.1); background: var(--electric-blue); border-color: var(--electric-blue); color: var(--black); box-shadow: 0 0 20px var(--electric-blue); }
     
-    /* PDF-STYLE COLLAGE POSTERS */
-    .poster-art { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1; overflow: hidden; background-size: cover; background-position: center; }
-    .poster-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); z-index: 2; }
+    /* PDF-STYLE COLLAGE POSTERS (UPDATED TO SHOW FULL IMAGE) */
+    .poster-art { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1; overflow: hidden; background-color: #0a0a0a; background-size: contain; background-position: center; background-repeat: no-repeat; }
+    .poster-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.95), transparent); z-index: 2; }
     .poster-text { position: absolute; bottom: 15px; left: 15px; z-index: 3; font-size: 1.1rem; font-weight: 900; color: var(--white); text-transform: uppercase; letter-spacing: 1px; text-shadow: 2px 2px 0px var(--ppt-pink); }
     .poster-sticker { position: absolute; top: 15px; right: 15px; z-index: 3; background: var(--ppt-lime); color: #000; padding: 4px 12px; border-radius: 20px; font-weight: 800; font-size: 0.75rem; transform: rotate(5deg); border: 2px solid #000; box-shadow: 3px 3px 0px #000; }
 
@@ -404,30 +405,19 @@
 
 <script>
   // 1. MUSEUM DATA
-  // I am pointing directly to the images you uploaded to your GitHub repo.
+  // Using the exact names of the files you uploaded to GitHub
   const museumVideos = [
-    // ROOM 1
     { room: 1, title: "Y2K Fashion & Emo/Skater Culture", type: "poster", img: "room%201.jpeg", tag: "CHIC", desc: "Low-rise jeans, side-swept bangs, and chunky skate shoes." },
-    
-    // ROOM 2
     { room: 2, title: "Hale — Broken Sonnet", type: "video", url: "https://www.youtube.com/watch?v=WurY8WdS8Fw" },
     { room: 2, title: "Sponge Cola — Jeepney", type: "video", url: "https://www.youtube.com/watch?v=KgxvglVEylo" },
     { room: 2, title: "OPM Rock Renaissance", type: "poster", img: "room%202.jpeg", tag: "OPM", desc: "Eraserheads, Rivermaya, and Kamikazee defined the era." },
-    
-    // ROOM 3
     { room: 3, title: "Counter-Strike 1.6 Internet Cafe", type: "video", url: "https://www.youtube.com/watch?v=j5MvwIokLiw" },
     { room: 3, title: "Dial-Up, PC Gaming, Friendster", type: "poster", img: "room%203.jpeg", tag: "TECH", desc: "The transition to digital culture." },
-    
-    // ROOM 4
     { room: 4, title: "Asianovela Theme Songs", type: "video", url: "https://www.youtube.com/watch?v=q4qdG57QufE" },
     { room: 4, title: "Global Influences", type: "poster", img: "room%204.jpeg", tag: "GLOBAL", desc: "Global influences shaping local tastes." },
-    
-    // ROOM 5
     { room: 5, title: "Star In A Million Season 2", type: "video", url: "https://www.youtube.com/live/oJ-7LmWmr0o" },
     { room: 5, title: "Itaktak Mo (Starstruck)", type: "video", url: "https://www.youtube.com/watch?v=wZ3jex4kZ7E" },
     { room: 5, title: "Philippine TV & Reality Shows", type: "poster", img: "room%205.jpeg", tag: "TV", desc: "Reality talent searches and prime-time dramas." },
-    
-    // ROOM 6
     { room: 6, title: "Analog to Digital Podcast", type: "external", url: "https://music.youtube.com/podcast/pUmj1GQBwKs", tag: "TALK", desc: "TiToTeaTime discusses the 2000s transition (opens externally)." },
     { room: 6, title: "Nostalgia & Change", type: "poster", img: "room%206.jpeg", tag: "RETRO", desc: "How the 2000s bridged broadcast to networked culture." }
   ];
@@ -444,7 +434,6 @@
         const card = document.createElement('div');
         card.className = 'video-card';
         
-        // Setup thumbnail
         let thumbHTML = '';
         if (video.type === 'video') {
           thumbHTML = `<div class="video-thumb"><div class="play-icon">▶</div></div>`;
@@ -472,7 +461,6 @@
           card.onclick = () => openArtifactModal(video.title, video.desc);
         }
 
-        // Setup text info
         let infoHTML = `
           <div class="video-info">
             <h4>${video.title}</h4>
