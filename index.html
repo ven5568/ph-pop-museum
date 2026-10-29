@@ -17,7 +17,6 @@
     ::-webkit-scrollbar-thumb { background: var(--window-border); border-radius: 5px; }
     ::-webkit-scrollbar-thumb:hover { background: var(--purple); }
 
-    /* GLOBAL BACKGROUND */
     body { 
       font-family: 'Segoe UI', system-ui, sans-serif; 
       background-color: var(--black); 
@@ -28,7 +27,6 @@
       position: relative;
     }
 
-    /* Animated Global Background */
     .global-bg {
       position: fixed; inset: -50%; z-index: -2;
       background: radial-gradient(circle at 30% 50%, rgba(139,92,246,0.1) 0%, transparent 40%),
@@ -42,7 +40,7 @@
       background: radial-gradient(circle, rgba(0, 168, 255, 0.1) 0%, transparent 60%);
       border-radius: 50%; pointer-events: none; z-index: 9999;
       transform: translate(-50%, -50%); transition: opacity 0.3s;
-      mix-blend-mode: screen; display: none; /* Hidden on touch devices */
+      mix-blend-mode: screen; display: none;
     }
 
     .scanlines {
@@ -62,7 +60,6 @@
     nav ul li a { padding: 8px 16px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; color: var(--gray); transition: all 0.3s; cursor: pointer; text-decoration: none; }
     nav ul li a:hover, nav ul li a.active { color: var(--white); background: var(--window-bg); box-shadow: inset 0 0 0 1px var(--window-border); }
     
-    /* Mobile Menu Toggle */
     .menu-toggle { display: none; background: none; border: none; color: var(--white); font-size: 1.5rem; cursor: pointer; }
 
     /* HERO */
@@ -179,7 +176,7 @@
 
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* RESPONSIVE DESIGN (TABLETS & PHONES) */
+    /* RESPONSIVE DESIGN */
     @media (max-width: 900px) {
       .menu-toggle { display: block; }
       nav ul { 
@@ -417,7 +414,7 @@
     { room: 6, title: "Philippine Pop Culture Retrospective", url: "https://www.youtube.com/results?search_query=Philippine+pop+culture+2000s+retrospective", type: "search" }
   ];
 
-  // 2. DYNAMICALLY BUILD VIDEO CARDS
+  // 2. DYNAMICALLY BUILD VIDEO CARDS (Always opens in modal now)
   function renderVideos() {
     for (let i = 1; i <= 6; i++) {
       const container = document.getElementById(`videos-room-${i}`);
@@ -429,17 +426,14 @@
         const card = document.createElement('div');
         card.className = 'video-card';
         
-        if (video.type === 'video') {
-          card.onclick = () => openVideoModal(video.title, video.url);
-        } else {
-          card.onclick = () => window.open(video.url, '_blank');
-        }
+        // Force ALL links to open in the modal
+        card.onclick = () => openVideoModal(video.title, video.url);
 
         card.innerHTML = `
           <div class="video-thumb"><div class="play-icon">▶</div></div>
           <div class="video-info">
             <h4>${video.title}</h4>
-            <p>${video.type === 'video' ? 'Plays in website' : 'Opens YouTube Search'}</p>
+            <p>Plays in website</p>
           </div>
         `;
         container.appendChild(card);
@@ -449,15 +443,9 @@
 
   // 3. NAVIGATION (Fixes the scroll down bug)
   function showSection(sectionId) {
-    // Hide all sections
     document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
-    // Show target section
     document.getElementById(sectionId).classList.add('active');
-    
-    // Force instant scroll to top (No smooth behavior)
     window.scrollTo({ top: 0, behavior: 'instant' });
-    
-    // Close mobile menu if open
     document.getElementById('nav-links').classList.remove('active');
   }
 
@@ -471,24 +459,31 @@
     document.getElementById('artifact-modal').classList.remove('open');
   }
 
+  // 5. VIDEO PLAYER (Handles both direct videos and search links inside the iframe)
   function openVideoModal(title, url) {
     document.getElementById('video-credit').innerText = title;
-    let videoId = '';
-    if (url.includes('watch?v=')) videoId = url.split('watch?v=')[1].split('&')[0];
-    else if (url.includes('youtu.be/')) videoId = url.split('youtu.be/')[1].split('?')[0];
-
     const iframeContainer = document.getElementById('video-iframe-container');
-    if (videoId) {
+    
+    // Check if it's a direct video link
+    if (url.includes('watch?v=')) {
+      let videoId = url.split('watch?v=')[1].split('&')[0];
       iframeContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+    } 
+    // If it's a search link, embed the search page directly into the iframe
+    else {
+      // We use a special mobile-friendly embed for search pages
+      iframeContainer.innerHTML = `<iframe src="${url}" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
     }
+    
     document.getElementById('video-modal').classList.add('open');
   }
+
   function closeVideoModal() {
     document.getElementById('video-modal').classList.remove('open');
     document.getElementById('video-iframe-container').innerHTML = '';
   }
 
-  // 5. SIMULATORS
+  // 6. SIMULATORS
   function switchTab(event, tabId) {
     const sim = event.target.closest('.friendster-sim');
     sim.querySelectorAll('.fs-content').forEach(c => c.classList.remove('active'));
@@ -509,7 +504,7 @@
   }
   function handleSmsEnter(e) { if(e.key === 'Enter') sendSms(); }
 
-  // 6. CURSOR GLOW (Only on Desktop)
+  // 7. CURSOR GLOW
   if (window.matchMedia("(pointer: fine)").matches) {
     const glow = document.getElementById('cursorGlow');
     glow.style.display = 'block';
@@ -519,7 +514,7 @@
     });
   }
 
-  // Initialize Video Cards on Load
+  // Initialize
   renderVideos();
 </script>
 
