@@ -29,7 +29,6 @@
       color: #fff;
       background-color: var(--y2k-dark);
       overflow-x: hidden;
-      /* Y2K Grid Background */
       background-image: 
         linear-gradient(rgba(255,0,168,0.08) 1px, transparent 1px),
         linear-gradient(90deg, rgba(0,217,255,0.08) 1px, transparent 1px);
@@ -37,11 +36,11 @@
     }
 
     /* =========================================
-       3D SCROLL INTRO (THE VIDEO & TITLE)
+       3D SCROLL INTRO
        ========================================= */
     .scroll-container {
       position: relative;
-      height: 300vh; /* Gives us enough space to scroll */
+      height: 300vh; 
     }
 
     .sticky-wrapper {
@@ -52,13 +51,11 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      /* 3D Perspective */
       perspective: 1200px;
       background: #000;
       z-index: 100;
     }
 
-    /* The Video Background */
     .intro-video {
       position: absolute;
       top: 0; left: 0;
@@ -68,7 +65,6 @@
       z-index: 1;
     }
     
-    /* Dark Overlay for the video */
     .intro-overlay {
       position: absolute;
       inset: 0;
@@ -76,18 +72,18 @@
       z-index: 2;
     }
 
-    /* The 3D Title */
     .intro-title-wrapper {
       position: relative;
       z-index: 3;
       transform-style: preserve-3d;
-      /* This transform is controlled by JS */
       transform: translateZ(0) translateY(0) scale(1);
+      text-align: center;
+      padding: 0 20px;
     }
 
     .intro-title {
       font-family: 'Orbitron', sans-serif;
-      font-size: clamp(60px, 12vw, 180px);
+      font-size: clamp(40px, 12vw, 180px);
       font-weight: 900;
       color: var(--y2k-lime);
       text-transform: uppercase;
@@ -98,7 +94,6 @@
         8px 8px 15px rgba(0,0,0,0.9);
     }
 
-    /* Scroll Indicator */
     .scroll-hint {
       position: absolute;
       bottom: 40px;
@@ -108,6 +103,8 @@
       font-size: 1.2rem;
       letter-spacing: 2px;
       animation: bounce 2s infinite;
+      text-align: center;
+      width: 100%;
     }
     
     @keyframes bounce {
@@ -116,7 +113,6 @@
       60% { transform: translateY(-10px); }
     }
 
-    /* Main Content Wrapper (starts after the scroll intro) */
     .main-content {
       position: relative;
       z-index: 200;
@@ -142,7 +138,7 @@
     }
 
     /* =========================================
-       HERO SECTION (Inside Main Content)
+       HERO SECTION
        ========================================= */
     .hero {
       position: relative;
@@ -155,7 +151,6 @@
       overflow: hidden;
     }
 
-    /* Taped Polaroids */
     .polaroid {
       position: absolute;
       background: #fff;
@@ -177,19 +172,19 @@
       box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
 
+    /* 2000-2010 ERA IMAGES */
     .pol-1 { top: 15%; left: 5%; transform: rotate(-10deg); }
     .pol-1 img { width: 220px; height: 160px; object-fit: cover; background: #333; border: 1px solid #ccc;}
-
+    
     .pol-2 { bottom: 10%; left: 10%; transform: rotate(8deg); width: 240px;}
     .pol-2 img { width: 100%; height: 170px; object-fit: cover; background: #333; border: 1px solid #ccc;}
-
+    
     .pol-3 { top: 20%; right: 8%; transform: rotate(12deg); width: 200px;}
     .pol-3 img { width: 100%; height: 240px; object-fit: cover; background: #333; border: 1px solid #ccc;}
-
+    
     .pol-4 { bottom: 8%; right: 12%; transform: rotate(-6deg); width: 260px;}
     .pol-4 img { width: 100%; height: 150px; object-fit: cover; background: #333; border: 1px solid #ccc;}
 
-    /* Hero Content */
     .hero-content {
       position: relative;
       z-index: 5;
@@ -221,7 +216,6 @@
       transform: rotate(2deg);
     }
 
-    /* Buttons */
     .hero-buttons { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
 
     .btn-y2k {
@@ -240,14 +234,10 @@
 
     .btn-pink { background: var(--y2k-pink); color: #fff; }
     .btn-blue { background: var(--y2k-blue); color: #000; }
-    
-    .btn-y2k:hover {
-      transform: translate(3px, 3px);
-      box-shadow: 3px 3px 0 #000;
-    }
+    .btn-y2k:hover { transform: translate(3px, 3px); box-shadow: 3px 3px 0 #000; }
 
     /* =========================================
-       NAVIGATION (Retro Windows Taskbar)
+       NAVIGATION
        ========================================= */
     .navbar {
       position: fixed;
@@ -260,7 +250,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 1000; /* Above everything */
+      z-index: 1000;
       box-shadow: 0 5px 15px rgba(0,0,0,0.5);
     }
 
@@ -273,9 +263,10 @@
       padding: 5px 15px;
       border: 2px solid #000;
       box-shadow: 2px 2px 0 #000;
+      white-space: nowrap;
     }
 
-    .nav-links { display: flex; gap: 10px; }
+    .nav-links { display: flex; gap: 10px; flex-wrap: wrap; }
     .nav-links a {
       font-family: 'VT323', monospace;
       font-size: 1.4rem;
@@ -287,6 +278,7 @@
       border-right-color: #555;
       border-bottom-color: #555;
       cursor: pointer;
+      white-space: nowrap;
     }
     .nav-links a:hover, .nav-links a.active {
       background: var(--y2k-yellow);
@@ -296,7 +288,7 @@
     }
 
     /* =========================================
-       SECTIONS (Museum, Rooms, etc.)
+       SECTIONS
        ========================================= */
     .section { display: none; padding: 120px 20px 60px; max-width: 1200px; margin: 0 auto; min-height: 100vh; }
     
@@ -316,8 +308,7 @@
       margin-bottom: 40px;
     }
 
-    /* Lobby Grid (Magazine Layout) */
-    .lobby-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 35px; }
+    .lobby-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 35px; }
     
     .room-card {
       background: #fff;
@@ -330,7 +321,6 @@
     }
     .room-card:nth-child(even) { box-shadow: 10px 10px 0 var(--y2k-blue); }
     .room-card:nth-child(3n) { box-shadow: 10px 10px 0 var(--y2k-lime); }
-    
     .room-card:hover { transform: translateY(-10px) rotate(-1deg); }
 
     .room-card h3 {
@@ -343,7 +333,6 @@
     }
     .room-card p { color: #222; font-family: 'VT323', monospace; font-size: 1.3rem; line-height: 1.4; }
 
-    /* Back Button */
     .back-btn {
       background: #000; color: #fff; border: 3px solid var(--y2k-blue);
       font-family: 'VT323', monospace; font-size: 1.5rem; padding: 10px 20px;
@@ -352,7 +341,6 @@
     }
     .back-btn:hover { background: var(--y2k-blue); color: #000; box-shadow: 4px 4px 0 #000; }
 
-    /* Room Details Box */
     .room-details {
       background: #111;
       border: 4px solid var(--y2k-lime);
@@ -369,7 +357,7 @@
       font-family: 'Orbitron', sans-serif; color: var(--y2k-yellow); font-size: 2rem; margin-bottom: 25px;
       text-shadow: 3px 3px 0 #000;
     }
-    .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+    .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; }
     
     .video-card {
       background: #000; border: 4px solid #fff; cursor: pointer; transition: 0.3s;
@@ -394,9 +382,7 @@
     .video-info h4 { font-family: 'Orbitron', sans-serif; font-size: 1.1rem; margin-bottom: 5px; }
     .video-info p { font-family: 'VT323', monospace; font-size: 1.3rem; color: var(--y2k-pink); font-weight: bold; }
 
-    /* =========================================
-       TIMELINE & REFERENCES
-       ========================================= */
+    /* TIMELINE & REFERENCES */
     .timeline-container { position: relative; max-width: 800px; margin: 0 auto; padding: 40px 0; }
     .timeline-container::before {
       content: ''; position: absolute; top: 0; bottom: 0; left: 50%; width: 8px;
@@ -424,16 +410,29 @@
     /* =========================================
        MODALS
        ========================================= */
-    .modal-overlay { display: none; position: fixed; inset: 0; z-index: 2000; background: rgba(0,0,0,0.95); align-items: center; justify-content: center; padding: 20px; }
+    .modal-overlay { display: none; position: fixed; inset: 0; z-index: 2000; background: rgba(0,0,0,0.95); align-items: center; justify-content: center; padding: 20px; overflow-y: auto; }
     .modal-overlay.open { display: flex; }
     
-    .modal-box { background: #fff; border: 8px solid #000; max-width: 800px; width: 100%; position: relative; box-shadow: 15px 15px 0 var(--y2k-pink); }
-    .close-modal { position: absolute; top: -25px; right: -25px; background: var(--y2k-pink); color: #fff; border: 4px solid #000; width: 50px; height: 50px; font-size: 2rem; font-family: 'VT323', monospace; cursor: pointer; font-weight: bold; display: flex; align-items: center; justify-content: center;}
+    .modal-box { 
+      background: #fff; border: 8px solid #000; 
+      max-width: 800px; width: 100%; 
+      position: relative; box-shadow: 15px 15px 0 var(--y2k-pink); 
+      max-height: 95vh; display: flex; flex-direction: column;
+    }
+    
+    .close-modal { 
+      position: absolute; top: -20px; right: -20px; 
+      background: var(--y2k-pink); color: #fff; border: 4px solid #000; 
+      width: 50px; height: 50px; font-size: 2rem; font-family: 'VT323', monospace; 
+      cursor: pointer; font-weight: bold; display: flex; align-items: center; justify-content: center;
+      z-index: 10;
+    }
     .close-modal:hover { background: #000; color: var(--y2k-pink); transform: scale(1.1); }
     
-    .modal-img-container { width: 100%; display: none; }
-    .modal-img-container img { width: 100%; display: block; border-bottom: 6px solid #000; }
-    .modal-content-padding { padding: 40px; color: #000; }
+    .modal-img-container { width: 100%; display: none; overflow-y: auto; border-bottom: 6px solid #000; flex-shrink: 1; }
+    .modal-img-container img { width: 100%; height: auto; display: block; }
+    
+    .modal-content-padding { padding: 30px; color: #000; flex-shrink: 0; }
     .modal-content-padding h3 { font-family: 'Orbitron', sans-serif; font-size: 2rem; margin-bottom: 15px; text-shadow: 2px 2px 0 var(--y2k-blue); }
     .modal-content-padding p { font-size: 1.4rem; line-height: 1.5; }
 
@@ -449,48 +448,53 @@
     /* =========================================
        RESPONSIVE
        ========================================= */
-    @media (max-width: 1024px) {
-      .polaroid { opacity: 0.15; } 
-    }
+    @media (max-width: 1024px) { .polaroid { opacity: 0.15; pointer-events: none; } .section-title { font-size: 3rem; } }
 
     @media (max-width: 768px) {
-      .navbar { flex-direction: column; gap: 10px; }
-      .nav-links { flex-wrap: wrap; justify-content: center; }
-      
+      .navbar { flex-direction: column; gap: 10px; padding: 10px; top: 5px; left: 5px; right: 5px; }
+      .logo { width: 100%; text-align: center; font-size: 1.1rem; }
+      .nav-links { width: 100%; justify-content: center; gap: 5px; }
+      .nav-links a { font-size: 1.1rem; padding: 4px 8px; }
+      .hero { padding: 160px 15px 60px; }
+      .hero-description { font-size: 1rem; padding: 15px; }
+      .hero-quote { font-size: 1.3rem; }
+      .hero-buttons { flex-direction: column; width: 100%; }
+      .btn-y2k { width: 100%; }
+      .section { padding: 160px 15px 60px; }
+      .section-title { font-size: 2.2rem; }
+      .section-subtitle { font-size: 1.4rem; }
+      .lobby-grid { grid-template-columns: 1fr; }
+      .video-grid { grid-template-columns: 1fr; }
       .timeline-container::before { left: 20px; }
       .timeline-item { width: 100%; padding-left: 50px; padding-right: 0; text-align: left !important; }
       .timeline-item::after { left: 6px !important; }
+      .modal-box { margin-top: 40px; margin-bottom: 40px; }
+      .close-modal { top: 5px; right: 5px; width: 40px; height: 40px; font-size: 1.5rem; }
+      .modal-content-padding { padding: 20px; }
+      .modal-content-padding h3 { font-size: 1.5rem; }
+      .modal-content-padding p { font-size: 1.2rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- =========================================
-       3D SCROLL INTRO SECTION
-       ========================================= -->
+  <!-- 3D SCROLL INTRO -->
   <div class="scroll-container" id="scroll-container">
     <div class="sticky-wrapper">
-      <!-- Retro Video Background (Placeholder) -->
       <video class="intro-video" autoplay loop muted playsinline>
         <source src="https://assets.mixkit.co/videos/preview/mixkit-retro-tv-screen-with-a-static-signal-34554-large.mp4" type="video/mp4">
       </video>
       <div class="intro-overlay"></div>
-      
-      <!-- 3D Title that will move -->
       <div class="intro-title-wrapper" id="intro-title-wrapper">
         <h1 class="intro-title">THE HINGE</h1>
       </div>
-      
       <div class="scroll-hint">SCROLL DOWN TO ENTER</div>
     </div>
   </div>
 
-  <!-- =========================================
-       MAIN CONTENT WRAPPER
-       ========================================= -->
+  <!-- MAIN CONTENT -->
   <div class="main-content">
     
-    <!-- NAVIGATION (Moved outside Hero so it's fixed) -->
     <nav class="navbar">
       <div class="logo">H THE HINGE</div>
       <div class="nav-links">
@@ -501,13 +505,25 @@
       </div>
     </nav>
 
-    <!-- HERO SECTION -->
+    <!-- HERO -->
     <section id="hero" class="hero active">
-      <!-- Taped Polaroids -->
-      <div class="polaroid pol-1"><div class="tape"></div><img src="https://images.unsplash.com/photo-1583273086045-15275b2e2c8f?q=80&w=400&auto=format&fit=crop" alt="Jeepney"></div>
-      <div class="polaroid pol-2"><div class="tape" style="background:rgba(0,217,255,0.5)"></div><img src="https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?q=80&w=400&auto=format&fit=crop" alt="TV"></div>
-      <div class="polaroid pol-3"><div class="tape" style="background:rgba(204,255,0,0.5)"></div><img src="https://images.unsplash.com/photo-1580910051074-3eb694886505?q=80&w=400&auto=format&fit=crop" alt="Phone"></div>
-      <div class="polaroid pol-4"><div class="tape"></div><img src="https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?q=80&w=400&auto=format&fit=crop" alt="Magazine"></div>
+      <!-- 2000-2010 ERA IMAGES -->
+      <div class="polaroid pol-1">
+        <div class="tape"></div>
+        <img src="https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?q=80&w=400&auto=format&fit=crop" alt="CRT TV">
+      </div>
+      <div class="polaroid pol-2">
+        <div class="tape" style="background:rgba(0,217,255,0.5)"></div>
+        <img src="https://images.unsplash.com/photo-1580910051074-3eb694886505?q=80&w=400&auto=format&fit=crop" alt="Nokia Phone">
+      </div>
+      <div class="polaroid pol-3">
+        <div class="tape" style="background:rgba(204,255,0,0.5)"></div>
+        <img src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=400&auto=format&fit=crop" alt="CDs">
+      </div>
+      <div class="polaroid pol-4">
+        <div class="tape"></div>
+        <img src="https://images.unsplash.com/photo-1583273086045-15275b2e2c8f?q=80&w=400&auto=format&fit=crop" alt="Jeepney">
+      </div>
 
       <div class="hero-content">
         <h1 class="intro-title" style="font-size: clamp(40px, 8vw, 100px); margin-bottom: 20px; color: var(--y2k-lime);">THE HINGE</h1>
@@ -785,11 +801,10 @@
       document.getElementById(id).classList.add('active');
       document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
       
-      // If navigating from the video intro, skip the scroll
       const scrollContainer = document.getElementById('scroll-container');
       if (scrollContainer) {
           window.scrollTo({
-              top: window.innerHeight * 3, // Scroll past the intro
+              top: window.innerHeight * 3, 
               behavior: 'smooth'
           });
       } else {
@@ -840,41 +855,30 @@
       if(e.target === this) closeVideoModal();
     });
 
-    // ==========================================
-    // 3D SCROLL ANIMATION LOGIC
-    // ==========================================
     const scrollContainer = document.getElementById('scroll-container');
     const titleWrapper = document.getElementById('intro-title-wrapper');
 
     window.addEventListener('scroll', () => {
       if (!scrollContainer || !titleWrapper) return;
       
-      // Calculate how far we've scrolled in the intro section
       const scrollY = window.scrollY;
-      const maxScroll = window.innerHeight * 2; // The 300vh container minus 100vh view
+      const maxScroll = window.innerHeight * 2; 
       
-      // Only animate if we are within the scroll container
       if (scrollY <= maxScroll) {
-        // Calculate progress from 0 to 1
         const progress = Math.min(scrollY / maxScroll, 1);
         
-        // Move the title backwards and up, scaling it down
-        // We want it to fly past the camera
-        const scale = 1 + (progress * 4); // Scales up to 5x
-        const moveZ = progress * 1000; // Moves towards the camera
-        const moveY = progress * 300; // Moves up
+        const scale = 1 + (progress * 4); 
+        const moveZ = progress * 1000; 
+        const moveY = progress * 300; 
         
         titleWrapper.style.transform = `translateZ(${moveZ}px) translateY(-${moveY}px) scale(${scale})`;
-        
-        // Fade out the title and hint as we scroll
         titleWrapper.style.opacity = 1 - progress;
         
         const hint = document.querySelector('.scroll-hint');
-        if(hint) hint.style.opacity = 1 - (progress * 3); // Fade out hint faster
+        if(hint) hint.style.opacity = 1 - (progress * 3);
       }
     });
 
-    // Initialize
     renderVideos();
   </script>
 </body>
