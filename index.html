@@ -377,4 +377,114 @@
 
 <section id="themes-section" class="section">
   <h2 class="section-title">Themes Overview</h2>
-  <p class="section-subtitle">Please
+  <p class="section-subtitle">Please visit Room 04 in the museum for the interactive relationship map.</p>
+  <button class="btn btn-primary" onclick="showSection('room-themes')">Go to Room 04</button>
+</section>
+
+<section id="about" class="section">
+  <h2 class="section-title">About the Project</h2>
+  <p style="color:#bbb; max-width: 800px;">
+    <strong>Tracing the Pop: A Decade in PH Pop Culture (2000–2010)</strong> is an interactive virtual museum. It explores how Philippine popular culture served as a transitional bridge between broadcast-centered culture and the increasingly networked culture of the 2010s.
+  </p>
+</section>
+
+<section id="references" class="section">
+  <h2 class="section-title">References</h2>
+  <p class="section-subtitle">Sources and credits.</p>
+  <ul class="ref-list">
+    <li>Original presentation: "Tracing the Pop: A Decade in PH Pop Culture (2000–2010)".</li>
+    <li>Historical context: General knowledge regarding Y2K aesthetics, OPM, and early Philippine internet culture.</li>
+    <li>Interface inspiration: Early 2000s desktop environments and Friendster UI.</li>
+  </ul>
+</section>
+
+<!-- MODAL OVERLAY -->
+<div id="artifact-modal" class="modal-overlay">
+  <div class="modal-box">
+    <button class="close-modal" onclick="closeModal()">×</button>
+    <div class="modal-tag" id="modal-tag">Tag</div>
+    <h3 id="modal-title">Title</h3>
+    <p id="modal-desc">Description</p>
+  </div>
+</div>
+
+<!-- JAVASCRIPT (The "Brain") -->
+<script>
+  // 1. Navigation / Show Section
+  function showSection(sectionId) {
+    // Hide all sections
+    document.querySelectorAll('.section').forEach(sec => {
+      sec.classList.remove('active');
+    });
+    // Show target section
+    const target = document.getElementById(sectionId);
+    if(target) target.classList.add('active');
+    
+    // Update nav active state
+    document.querySelectorAll('nav ul li a').forEach(a => a.classList.remove('active'));
+    
+    // Scroll to top
+    window.scrollTo(0,0);
+  }
+
+  // 2. Modal functions
+  function openModal(title, tag, desc) {
+    document.getElementById('modal-title').innerText = title;
+    document.getElementById('modal-tag').innerText = tag;
+    document.getElementById('modal-desc').innerText = desc;
+    document.getElementById('artifact-modal').classList.add('open');
+  }
+
+  function closeModal() {
+    document.getElementById('artifact-modal').classList.remove('open');
+  }
+
+  // Close modal when clicking outside
+  document.getElementById('artifact-modal').addEventListener('click', function(e) {
+    if(e.target === this) closeModal();
+  });
+
+  // 3. Friendster Tabs
+  function switchTab(event, tabId) {
+    // Hide all contents in this simulator
+    const sim = event.target.closest('.friendster-sim');
+    sim.querySelectorAll('.fs-content').forEach(c => c.classList.remove('active'));
+    sim.querySelectorAll('.fs-tab').forEach(t => t.classList.remove('active'));
+    
+    // Show selected
+    document.getElementById(tabId).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  // 4. SMS Simulator
+  function sendSms() {
+    const input = document.getElementById('sms-input');
+    const text = input.value.trim();
+    if(!text) return;
+
+    const container = document.getElementById('sms-container');
+    const bubble = document.createElement('div');
+    bubble.className = 'sms-bubble sent';
+    bubble.innerText = text;
+    container.appendChild(bubble);
+    
+    input.value = '';
+    container.scrollTop = container.scrollHeight;
+  }
+
+  function handleSmsEnter(e) {
+    if(e.key === 'Enter') sendSms();
+  }
+
+  // 5. Relationship Map
+  function showRelDetail(relId, element) {
+    document.querySelectorAll('.rel-detail').forEach(d => d.classList.remove('active'));
+    document.querySelectorAll('.rel-node').forEach(n => n.classList.remove('active'));
+    
+    document.getElementById(relId).classList.add('active');
+    element.classList.add('active');
+  }
+</script>
+
+</body>
+</html>
