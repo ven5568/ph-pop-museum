@@ -172,7 +172,6 @@
       box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
 
-    /* YOUR UPLOADED IMAGES */
     .pol-1 { top: 15%; left: 5%; transform: rotate(-10deg); }
     .pol-1 img { width: 220px; height: 160px; object-fit: cover; background: #333; border: 1px solid #ccc;}
     
@@ -230,6 +229,8 @@
       transition: all 0.2s;
       position: relative;
       box-shadow: 6px 6px 0 #000;
+      text-decoration: none;
+      display: inline-block;
     }
 
     .btn-pink { background: var(--y2k-pink); color: #fff; }
@@ -351,6 +352,38 @@
     .room-details p, .room-details li { font-family: 'VT323', monospace; font-size: 1.4rem; color: #fff; line-height: 1.5; }
     .room-details h4 { font-family: 'Orbitron', sans-serif; color: var(--y2k-pink); margin: 20px 0 10px; font-size: 1.2rem; }
     .room-details ul { margin-left: 25px; }
+
+    /* NEW: THEN & NOW GRID FOR SOCIETY SECTION */
+    .society-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-bottom: 50px;
+    }
+    .society-card {
+      background: #fff;
+      border: 4px solid #000;
+      padding: 25px;
+      box-shadow: 8px 8px 0 var(--y2k-yellow);
+    }
+    .society-card h3 {
+      font-family: 'Orbitron', sans-serif;
+      color: #000;
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      border-bottom: 3px dashed #000;
+      padding-bottom: 10px;
+      text-transform: uppercase;
+    }
+    .society-card .then, .society-card .now {
+      font-family: 'VT323', monospace;
+      color: #333;
+      font-size: 1.3rem;
+      line-height: 1.4;
+      margin-bottom: 10px;
+    }
+    .society-card .then strong { color: var(--y2k-pink); }
+    .society-card .now strong { color: var(--y2k-blue); }
 
     /* Videos / Posters */
     .video-section h3 {
@@ -491,8 +524,7 @@
       <div class="scroll-hint">SCROLL DOWN TO ENTER</div>
     </div>
   </div>
-
-  <!-- MAIN CONTENT -->
+    <!-- MAIN CONTENT -->
   <div class="main-content">
     
     <nav class="navbar">
@@ -507,7 +539,6 @@
 
     <!-- HERO -->
     <section id="hero" class="hero active">
-      <!-- YOUR UPLOADED IMAGES -->
       <div class="polaroid pol-1">
         <div class="tape"></div>
         <img src="crt.jpeg" alt="CRT TV">
@@ -544,7 +575,7 @@
     <!-- MUSEUM LOBBY -->
     <section id="lobby" class="section">
       <h2 class="section-title">Museum Lobby</h2>
-      <p class="section-subtitle">// Six exhibition rooms await.</p>
+      <p class="section-subtitle">// Seven exhibition rooms await.</p>
       <div class="lobby-grid">
         <div class="room-card" onclick="showSection('room-body')">
           <h3>01 // Body & Self-Image</h3>
@@ -569,6 +600,11 @@
         <div class="room-card" onclick="showSection('room-patterns')">
           <h3>06 // Patterns & Change</h3>
           <p>What continued from earlier decades, what shifted, and how the 2000s became a bridge to the 2010s.</p>
+        </div>
+        <!-- NEW ROOM 07 CARD -->
+        <div class="room-card" onclick="showSection('room-society')" style="box-shadow: 10px 10px 0 var(--y2k-yellow); border-color: var(--y2k-yellow);">
+          <h3>07 // Society: Then & Now</h3>
+          <p>A short comparison of social, economic, and political life in the Philippines from the 2000s to the present day.</p>
         </div>
       </div>
     </section>
@@ -678,7 +714,66 @@
       <div class="video-section"><h3>WATCH THE ARCHIVE</h3><div class="video-grid" id="videos-room-6"></div></div>
     </section>
 
-    <!-- TIMELINE -->
+    <!-- ROOM 07: SOCIETY THEN & NOW (NEW) -->
+    <section id="room-society" class="section">
+      <button class="back-btn" onclick="showSection('lobby')"><< RETURN TO LOBBY</button>
+      <h2 class="section-title">Room 07 — Society: Then & Now</h2>
+      
+      <div class="room-details" style="border-color: var(--y2k-yellow);">
+        <p><strong>PURPOSE:</strong> A short comparison of social, economic, and political life in the Philippines over time.</p>
+      </div>
+
+      <div class="society-grid">
+        <div class="society-card">
+          <h3>Social</h3>
+          <p class="then"><strong>2000s:</strong> Texting and internet cafes were the primary means to connect.</p>
+          <p class="now"><strong>Present:</strong> Social media and online communities facilitate near-instant connection.</p>
+        </div>
+        <div class="society-card">
+          <h3>Economic</h3>
+          <p class="then"><strong>2000s:</strong> Dominated by shopping malls, TV ads, and physical stores.</p>
+          <p class="now"><strong>Present:</strong> E-commerce, online selling, and digital payments are common.</p>
+        </div>
+        <div class="society-card">
+          <h3>Political</h3>
+          <p class="then"><strong>2000s:</strong> Community participation was primarily limited to local town hall meetings and print media.</p>
+          <p class="now"><strong>Present:</strong> Decent movements, online crowd funding, and global digital activism are widespread.</p>
+        </div>
+      </div>
+
+      <div class="room-details" style="border-color: var(--y2k-blue);">
+        <h4>EVERYDAY EXAMPLES</h4>
+        <ul>
+          <li><strong>News:</strong> Transitioned from newspaper to online digital alerts.</li>
+          <li><strong>Communication:</strong> Transitioned from landline phone calls to instant video calling.</li>
+          <li><strong>Media:</strong> From TV commercials to social media ads.</li>
+        </ul>
+      </div>
+
+      <div class="society-grid">
+        <div class="society-card" style="box-shadow: 8px 8px 0 var(--y2k-lime);">
+          <h3>Benefits</h3>
+          <ul style="margin-left: 20px; font-family: 'VT323', monospace; font-size: 1.3rem; color: #333;">
+            <li>Rapid Information access</li>
+            <li>New Economic opportunities</li>
+            <li>Global Connectivity</li>
+          </ul>
+        </div>
+        <div class="society-card" style="box-shadow: 8px 8px 0 var(--y2k-pink);">
+          <h3>Challenges</h3>
+          <ul style="margin-left: 20px; font-family: 'VT323', monospace; font-size: 1.3rem; color: #333;">
+            <li>Cyberbullying</li>
+            <li>Data breaches</li>
+            <li>Fake News</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="room-details" style="background: var(--y2k-yellow); border-color: #000; color: #000;">
+        <p style="color: #000; font-weight: bold;"><strong>CONCLUSION:</strong> Society has become more connected and digital. Communication, shopping, and political discussions are now faster and more accessible. However, people should protect their privacy, check information carefully, and use technology responsibly.</p>
+      </div>
+    </section>
+            <!-- TIMELINE -->
     <section id="timeline-section" class="section">
       <h2 class="section-title">The Hinge Timeline</h2>
       <p class="section-subtitle">// Tracing the shift from broadcast to network.</p>
@@ -702,6 +797,13 @@
             <p>Competitive gaming (DotA, CS 1.6) fills internet cafés. Reality talent shows create overnight celebrities. The shift toward modern social media begins.</p>
           </div>
         </div>
+        <!-- NEW PRESENT DAY TIMELINE ITEM -->
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h4>Present Day</h4>
+            <p>The Digital Shift. E-commerce, digital payments, social media feeds, and online activism redefine everyday life. Society becomes more connected, but faces new challenges like fake news and data privacy.</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -711,6 +813,7 @@
       
       <ul class="ref-list">
         <li><strong>Original Presentation:</strong> "Tracing the Pop: A Decade in PH Pop Culture (2000–2010)".</li>
+        <li><strong>Society Then & Now:</strong> "Filipino Society: Then & Now" presentation (Social, Economic, Political comparisons).</li>
         <li><strong>Historical Context:</strong> Y2K aesthetics, OPM history, early Philippine internet culture, and broadcast media analysis.</li>
         <li><strong>Image Sources:</strong> Archival posters and illustrative recreations generated for educational purposes.</li>
         <li><strong>Video Sources:</strong> Embedded via YouTube's public API from respective copyright holders.</li>
